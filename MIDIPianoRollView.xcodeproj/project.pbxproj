@@ -1,0 +1,470 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5398FBE821AC203E005EC24C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5398FBE721AC203E005EC24C /* AppDelegate.swift */; };
+		5398FBEA21AC203E005EC24C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5398FBE921AC203E005EC24C /* ViewController.swift */; };
+		5398FBED21AC203E005EC24C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5398FBEB21AC203E005EC24C /* Main.storyboard */; };
+		5398FBEF21AC2041005EC24C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5398FBEE21AC2041005EC24C /* Assets.xcassets */; };
+		5398FBF221AC2041005EC24C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5398FBF021AC2041005EC24C /* LaunchScreen.storyboard */; };
+		5398FBFD21AC2041005EC24C /* MIDIPianoRollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5398FBFC21AC2041005EC24C /* MIDIPianoRollViewTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5398FBF921AC2041005EC24C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5398FBDC21AC203E005EC24C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5398FBE321AC203E005EC24C;
+			remoteInfo = MIDIPianoRollView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5398FBE421AC203E005EC24C /* MIDIPianoRollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIDIPianoRollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5398FBE721AC203E005EC24C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5398FBE921AC203E005EC24C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5398FBEC21AC203E005EC24C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5398FBEE21AC2041005EC24C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5398FBF121AC2041005EC24C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5398FBF321AC2041005EC24C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5398FBF821AC2041005EC24C /* MIDIPianoRollViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MIDIPianoRollViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5398FBFC21AC2041005EC24C /* MIDIPianoRollViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPianoRollViewTests.swift; sourceTree = "<group>"; };
+		5398FBFE21AC2041005EC24C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5398FBE121AC203E005EC24C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5398FBF521AC2041005EC24C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5398FBDB21AC203E005EC24C = {
+			isa = PBXGroup;
+			children = (
+				5398FBE621AC203E005EC24C /* MIDIPianoRollView */,
+				5398FBFB21AC2041005EC24C /* MIDIPianoRollViewTests */,
+				5398FBE521AC203E005EC24C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5398FBE521AC203E005EC24C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5398FBE421AC203E005EC24C /* MIDIPianoRollView.app */,
+				5398FBF821AC2041005EC24C /* MIDIPianoRollViewTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5398FBE621AC203E005EC24C /* MIDIPianoRollView */ = {
+			isa = PBXGroup;
+			children = (
+				5398FBE721AC203E005EC24C /* AppDelegate.swift */,
+				5398FBE921AC203E005EC24C /* ViewController.swift */,
+				5398FBEB21AC203E005EC24C /* Main.storyboard */,
+				5398FBEE21AC2041005EC24C /* Assets.xcassets */,
+				5398FBF021AC2041005EC24C /* LaunchScreen.storyboard */,
+				5398FBF321AC2041005EC24C /* Info.plist */,
+			);
+			path = MIDIPianoRollView;
+			sourceTree = "<group>";
+		};
+		5398FBFB21AC2041005EC24C /* MIDIPianoRollViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				5398FBFC21AC2041005EC24C /* MIDIPianoRollViewTests.swift */,
+				5398FBFE21AC2041005EC24C /* Info.plist */,
+			);
+			path = MIDIPianoRollViewTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5398FBE321AC203E005EC24C /* MIDIPianoRollView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5398FC0121AC2041005EC24C /* Build configuration list for PBXNativeTarget "MIDIPianoRollView" */;
+			buildPhases = (
+				5398FBE021AC203E005EC24C /* Sources */,
+				5398FBE121AC203E005EC24C /* Frameworks */,
+				5398FBE221AC203E005EC24C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MIDIPianoRollView;
+			productName = MIDIPianoRollView;
+			productReference = 5398FBE421AC203E005EC24C /* MIDIPianoRollView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5398FBF721AC2041005EC24C /* MIDIPianoRollViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5398FC0421AC2041005EC24C /* Build configuration list for PBXNativeTarget "MIDIPianoRollViewTests" */;
+			buildPhases = (
+				5398FBF421AC2041005EC24C /* Sources */,
+				5398FBF521AC2041005EC24C /* Frameworks */,
+				5398FBF621AC2041005EC24C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5398FBFA21AC2041005EC24C /* PBXTargetDependency */,
+			);
+			name = MIDIPianoRollViewTests;
+			productName = MIDIPianoRollViewTests;
+			productReference = 5398FBF821AC2041005EC24C /* MIDIPianoRollViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5398FBDC21AC203E005EC24C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = cemolcay;
+				TargetAttributes = {
+					5398FBE321AC203E005EC24C = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					5398FBF721AC2041005EC24C = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 5398FBE321AC203E005EC24C;
+					};
+				};
+			};
+			buildConfigurationList = 5398FBDF21AC203E005EC24C /* Build configuration list for PBXProject "MIDIPianoRollView" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5398FBDB21AC203E005EC24C;
+			productRefGroup = 5398FBE521AC203E005EC24C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5398FBE321AC203E005EC24C /* MIDIPianoRollView */,
+				5398FBF721AC2041005EC24C /* MIDIPianoRollViewTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5398FBE221AC203E005EC24C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5398FBF221AC2041005EC24C /* LaunchScreen.storyboard in Resources */,
+				5398FBEF21AC2041005EC24C /* Assets.xcassets in Resources */,
+				5398FBED21AC203E005EC24C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5398FBF621AC2041005EC24C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5398FBE021AC203E005EC24C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5398FBEA21AC203E005EC24C /* ViewController.swift in Sources */,
+				5398FBE821AC203E005EC24C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5398FBF421AC2041005EC24C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5398FBFD21AC2041005EC24C /* MIDIPianoRollViewTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5398FBFA21AC2041005EC24C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5398FBE321AC203E005EC24C /* MIDIPianoRollView */;
+			targetProxy = 5398FBF921AC2041005EC24C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5398FBEB21AC203E005EC24C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5398FBEC21AC203E005EC24C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5398FBF021AC2041005EC24C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5398FBF121AC2041005EC24C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5398FBFF21AC2041005EC24C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5398FC0021AC2041005EC24C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5398FC0221AC2041005EC24C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 77Y3N48SNF;
+				INFOPLIST_FILE = MIDIPianoRollView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cemolcay.MIDIPianoRollView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5398FC0321AC2041005EC24C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 77Y3N48SNF;
+				INFOPLIST_FILE = MIDIPianoRollView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cemolcay.MIDIPianoRollView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5398FC0521AC2041005EC24C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 77Y3N48SNF;
+				INFOPLIST_FILE = MIDIPianoRollViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cemolcay.MIDIPianoRollViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MIDIPianoRollView.app/MIDIPianoRollView";
+			};
+			name = Debug;
+		};
+		5398FC0621AC2041005EC24C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 77Y3N48SNF;
+				INFOPLIST_FILE = MIDIPianoRollViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cemolcay.MIDIPianoRollViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MIDIPianoRollView.app/MIDIPianoRollView";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5398FBDF21AC203E005EC24C /* Build configuration list for PBXProject "MIDIPianoRollView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5398FBFF21AC2041005EC24C /* Debug */,
+				5398FC0021AC2041005EC24C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5398FC0121AC2041005EC24C /* Build configuration list for PBXNativeTarget "MIDIPianoRollView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5398FC0221AC2041005EC24C /* Debug */,
+				5398FC0321AC2041005EC24C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5398FC0421AC2041005EC24C /* Build configuration list for PBXNativeTarget "MIDIPianoRollViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5398FC0521AC2041005EC24C /* Debug */,
+				5398FC0621AC2041005EC24C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5398FBDC21AC203E005EC24C /* Project object */;
+}
