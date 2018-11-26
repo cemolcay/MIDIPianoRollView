@@ -20,6 +20,8 @@ public class MIDIPianoRollRowView: UIView {
   public var maxFontSize: CGFloat = 17
   /// Maximum font size of the pitch label.
   public var minFontSize: CGFloat = 11
+  /// Row line at the bottom.
+  public var bottomLine = CALayer()
 
   // MARK: Init
 
@@ -49,14 +51,20 @@ public class MIDIPianoRollRowView: UIView {
     translatesAutoresizingMaskIntoConstraints = false
     pitchLabel.translatesAutoresizingMaskIntoConstraints = false
     pitchLabel.fill(to: self)
+    pitchLabel.text = "\(pitch)"
     // Setup default coloring
     backgroundColor = pitch.key.accidental == .natural ? UIColor.white : UIColor.black
     pitchLabel.textColor = pitch.key.accidental == .natural ? UIColor.black : UIColor.white
+    // Setup bottom line
+    layer.addSublayer(bottomLine)
+    layer.masksToBounds = false
   }
 
+  /// Renders row.
   public override func layoutSubviews() {
     super.layoutSubviews()
     let fontSize = min(maxFontSize, max(minFontSize, frame.size.height - 4))
     pitchLabel.font = pitchLabel.font.withSize(fontSize)
+    bottomLine.frame = CGRect(x: 0, y: frame.size.height - 1, width: 0, height: 1)
   }
 }
