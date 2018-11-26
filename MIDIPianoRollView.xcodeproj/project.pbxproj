@@ -13,6 +13,12 @@
 		5398FBEF21AC2041005EC24C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5398FBEE21AC2041005EC24C /* Assets.xcassets */; };
 		5398FBF221AC2041005EC24C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5398FBF021AC2041005EC24C /* LaunchScreen.storyboard */; };
 		5398FBFD21AC2041005EC24C /* MIDIPianoRollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5398FBFC21AC2041005EC24C /* MIDIPianoRollViewTests.swift */; };
+		5398FC0921AC20B2005EC24C /* MIDIPianoRollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5398FC0821AC20B2005EC24C /* MIDIPianoRollView.swift */; };
+		5398FC0B21AC224D005EC24C /* MIDIPianoRollRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5398FC0A21AC224D005EC24C /* MIDIPianoRollRowView.swift */; };
+		5398FC0D21AC226F005EC24C /* MIDIPianoRollCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5398FC0C21AC226F005EC24C /* MIDIPianoRollCellView.swift */; };
+		5398FC0F21AC2284005EC24C /* MIDIPianoRollNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5398FC0E21AC2284005EC24C /* MIDIPianoRollNote.swift */; };
+		C25B29DB7B7A9E22799E0379 /* Pods_MIDIPianoRollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D719704A3589DBFEBBC770 /* Pods_MIDIPianoRollView.framework */; };
+		F980333B5538745E65D45D66 /* Pods_MIDIPianoRollViewTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692D2BD3047E60C8BA71123C /* Pods_MIDIPianoRollViewTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0819E12AD17E87D97302DC9E /* Pods-MIDIPianoRollViewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIDIPianoRollViewTests.debug.xcconfig"; path = "Target Support Files/Pods-MIDIPianoRollViewTests/Pods-MIDIPianoRollViewTests.debug.xcconfig"; sourceTree = "<group>"; };
+		45D719704A3589DBFEBBC770 /* Pods_MIDIPianoRollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MIDIPianoRollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		48C21D7D6C1DBDAC6693689F /* Pods-MIDIPianoRollView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIDIPianoRollView.release.xcconfig"; path = "Target Support Files/Pods-MIDIPianoRollView/Pods-MIDIPianoRollView.release.xcconfig"; sourceTree = "<group>"; };
 		5398FBE421AC203E005EC24C /* MIDIPianoRollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIDIPianoRollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5398FBE721AC203E005EC24C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5398FBE921AC203E005EC24C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +45,13 @@
 		5398FBF821AC2041005EC24C /* MIDIPianoRollViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MIDIPianoRollViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5398FBFC21AC2041005EC24C /* MIDIPianoRollViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPianoRollViewTests.swift; sourceTree = "<group>"; };
 		5398FBFE21AC2041005EC24C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5398FC0821AC20B2005EC24C /* MIDIPianoRollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPianoRollView.swift; sourceTree = "<group>"; };
+		5398FC0A21AC224D005EC24C /* MIDIPianoRollRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPianoRollRowView.swift; sourceTree = "<group>"; };
+		5398FC0C21AC226F005EC24C /* MIDIPianoRollCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPianoRollCellView.swift; sourceTree = "<group>"; };
+		5398FC0E21AC2284005EC24C /* MIDIPianoRollNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPianoRollNote.swift; sourceTree = "<group>"; };
+		5B038AF2741E7CF65DE5B25E /* Pods-MIDIPianoRollViewTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIDIPianoRollViewTests.release.xcconfig"; path = "Target Support Files/Pods-MIDIPianoRollViewTests/Pods-MIDIPianoRollViewTests.release.xcconfig"; sourceTree = "<group>"; };
+		692D2BD3047E60C8BA71123C /* Pods_MIDIPianoRollViewTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MIDIPianoRollViewTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B35BB284784389FDCA1513FA /* Pods-MIDIPianoRollView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIDIPianoRollView.debug.xcconfig"; path = "Target Support Files/Pods-MIDIPianoRollView/Pods-MIDIPianoRollView.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C25B29DB7B7A9E22799E0379 /* Pods_MIDIPianoRollView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F980333B5538745E65D45D66 /* Pods_MIDIPianoRollViewTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +80,8 @@
 				5398FBE621AC203E005EC24C /* MIDIPianoRollView */,
 				5398FBFB21AC2041005EC24C /* MIDIPianoRollViewTests */,
 				5398FBE521AC203E005EC24C /* Products */,
+				EBD41A8634EDC65BDA0D7FE1 /* Pods */,
+				960F57052ED5164B54914BF0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +97,7 @@
 		5398FBE621AC203E005EC24C /* MIDIPianoRollView */ = {
 			isa = PBXGroup;
 			children = (
+				5398FC0721AC209D005EC24C /* Source */,
 				5398FBE721AC203E005EC24C /* AppDelegate.swift */,
 				5398FBE921AC203E005EC24C /* ViewController.swift */,
 				5398FBEB21AC203E005EC24C /* Main.storyboard */,
@@ -96,6 +117,37 @@
 			path = MIDIPianoRollViewTests;
 			sourceTree = "<group>";
 		};
+		5398FC0721AC209D005EC24C /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				5398FC0821AC20B2005EC24C /* MIDIPianoRollView.swift */,
+				5398FC0A21AC224D005EC24C /* MIDIPianoRollRowView.swift */,
+				5398FC0C21AC226F005EC24C /* MIDIPianoRollCellView.swift */,
+				5398FC0E21AC2284005EC24C /* MIDIPianoRollNote.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		960F57052ED5164B54914BF0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				45D719704A3589DBFEBBC770 /* Pods_MIDIPianoRollView.framework */,
+				692D2BD3047E60C8BA71123C /* Pods_MIDIPianoRollViewTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EBD41A8634EDC65BDA0D7FE1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B35BB284784389FDCA1513FA /* Pods-MIDIPianoRollView.debug.xcconfig */,
+				48C21D7D6C1DBDAC6693689F /* Pods-MIDIPianoRollView.release.xcconfig */,
+				0819E12AD17E87D97302DC9E /* Pods-MIDIPianoRollViewTests.debug.xcconfig */,
+				5B038AF2741E7CF65DE5B25E /* Pods-MIDIPianoRollViewTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,9 +155,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5398FC0121AC2041005EC24C /* Build configuration list for PBXNativeTarget "MIDIPianoRollView" */;
 			buildPhases = (
+				F7ACA1E3F73F7E9D0CB449F6 /* [CP] Check Pods Manifest.lock */,
 				5398FBE021AC203E005EC24C /* Sources */,
 				5398FBE121AC203E005EC24C /* Frameworks */,
 				5398FBE221AC203E005EC24C /* Resources */,
+				E04A4CDF27183C4DF20C4EDD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -120,6 +174,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5398FC0421AC2041005EC24C /* Build configuration list for PBXNativeTarget "MIDIPianoRollViewTests" */;
 			buildPhases = (
+				B52F0A65BADBD70DC3147F42 /* [CP] Check Pods Manifest.lock */,
 				5398FBF421AC2041005EC24C /* Sources */,
 				5398FBF521AC2041005EC24C /* Frameworks */,
 				5398FBF621AC2041005EC24C /* Resources */,
@@ -192,6 +247,79 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B52F0A65BADBD70DC3147F42 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MIDIPianoRollViewTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E04A4CDF27183C4DF20C4EDD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MIDIPianoRollView/Pods-MIDIPianoRollView-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ALKit/ALKit.framework",
+				"${BUILT_PRODUCTS_DIR}/MIDIEventKit/MIDIEventKit.framework",
+				"${BUILT_PRODUCTS_DIR}/MusicTheorySwift/MusicTheorySwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ALKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MIDIEventKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MusicTheorySwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MIDIPianoRollView/Pods-MIDIPianoRollView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7ACA1E3F73F7E9D0CB449F6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MIDIPianoRollView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5398FBE021AC203E005EC24C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -199,6 +327,10 @@
 			files = (
 				5398FBEA21AC203E005EC24C /* ViewController.swift in Sources */,
 				5398FBE821AC203E005EC24C /* AppDelegate.swift in Sources */,
+				5398FC0921AC20B2005EC24C /* MIDIPianoRollView.swift in Sources */,
+				5398FC0D21AC226F005EC24C /* MIDIPianoRollCellView.swift in Sources */,
+				5398FC0B21AC224D005EC24C /* MIDIPianoRollRowView.swift in Sources */,
+				5398FC0F21AC2284005EC24C /* MIDIPianoRollNote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +490,7 @@
 		};
 		5398FC0221AC2041005EC24C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B35BB284784389FDCA1513FA /* Pods-MIDIPianoRollView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -376,6 +509,7 @@
 		};
 		5398FC0321AC2041005EC24C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48C21D7D6C1DBDAC6693689F /* Pods-MIDIPianoRollView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -394,6 +528,7 @@
 		};
 		5398FC0521AC2041005EC24C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0819E12AD17E87D97302DC9E /* Pods-MIDIPianoRollViewTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -415,6 +550,7 @@
 		};
 		5398FC0621AC2041005EC24C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B038AF2741E7CF65DE5B25E /* Pods-MIDIPianoRollViewTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

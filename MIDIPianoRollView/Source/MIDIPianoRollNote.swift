@@ -1,0 +1,37 @@
+//
+//  MIDIPianoRollNote.swift
+//  MIDIPianoRollView
+//
+//  Created by cem.olcay on 26/11/2018.
+//  Copyright © 2018 cemolcay. All rights reserved.
+//
+
+import UIKit
+import MusicTheorySwift
+import MIDIEventKit
+
+/// Data structure that represents a MIDI note in the piano roll grid.
+public struct MIDIPianoRollNote {
+  /// MIDI note number.
+  public var note: UInt8
+  /// MIDI velocity.
+  public var velocity: UInt8
+  /// Starting beat position on the grid.
+  public var position: Double
+  /// Duration of the note in beats.
+  public var duration: Double
+
+  /// Initilizes the data structure.
+  ///
+  /// - Parameters:
+  ///   - note: MIDI note number.
+  ///   - velocity: MIDI velocity.
+  ///   - position: Starting beat position of the note.
+  ///   - duration: Duration of the note in beats
+  public init(note: UInt8, velocity: UInt8, position: Double, duration: Double) {
+    self.note = note
+    self.velocity = velocity
+    self.position = position
+    self.duration = duration
+  }
+}
