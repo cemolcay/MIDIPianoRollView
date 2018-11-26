@@ -39,7 +39,6 @@ public class MIDIPianoRollMeasureLineLayer: CALayer {
 
 /// Piano roll with customisable row count, row range, beat count and editable note cells.
 public class MIDIPianoRollView: UIScrollView {
-
   /// Number of bars in the piano roll view grid.
   public enum BarCount {
     /// Fixed number of bars.
