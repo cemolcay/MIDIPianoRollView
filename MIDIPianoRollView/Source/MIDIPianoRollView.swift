@@ -202,7 +202,8 @@ public class MIDIPianoRollView: UIScrollView {
   /// Renders the piano roll.
   public override func layoutSubviews() {
     super.layoutSubviews()
-    CATransaction.disableActions()
+    CATransaction.begin()
+    CATransaction.setDisableActions(true)
 
     // Layout rows
     var currentY: CGFloat = isMeasureEnabled ? barHeight : 0
@@ -334,6 +335,9 @@ public class MIDIPianoRollView: UIScrollView {
   @objc private func didPinch(pinch: UIPinchGestureRecognizer) {
     switch pinch.state {
     case .began, .changed:
+      guard pinch.numberOfTouches == 2 else { return }
+
+      // Calculate pinch direction.
       let t1 = pinch.location(ofTouch: 0, in: self)
       let t2 = pinch.location(ofTouch: 1, in: self)
       let xD = abs(t1.x - t2.x)
