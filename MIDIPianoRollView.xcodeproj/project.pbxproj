@@ -286,6 +286,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MIDIPianoRollView/Pods-MIDIPianoRollView-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ALKit/ALKit.framework",
+				"${BUILT_PRODUCTS_DIR}/DirectedPinchGestureRecognizer/DirectedPinchGestureRecognizer.framework",
 				"${BUILT_PRODUCTS_DIR}/MIDIEventKit/MIDIEventKit.framework",
 				"${BUILT_PRODUCTS_DIR}/MusicTheorySwift/MusicTheorySwift.framework",
 			);
@@ -294,6 +295,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ALKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DirectedPinchGestureRecognizer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MIDIEventKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MusicTheorySwift.framework",
 			);

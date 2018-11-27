@@ -15,8 +15,8 @@ public class MIDIPianoRollMeasureLineLayer: CALayer {
   public var beatTextLayer = CATextLayer()
   /// Vertical line layer.
   public var beatLineLayer = CALayer()
-  /// Note value that line representing.
-  public var type: NoteValueType = .whole
+  /// Position on piano roll.
+  public var pianoRollPosition: MIDIPianoRollPosition = .zero
 
   /// Property for controlling beat text rendering.
   public var showsBeatText: Bool = true {

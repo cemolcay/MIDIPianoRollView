@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MusicTheorySwift
 
 // MARK: - Equatable
 
@@ -28,7 +29,7 @@ public func +(lhs: MIDIPianoRollPosition, rhs: MIDIPianoRollPosition) -> MIDIPia
   // Calculate beat
   var newBeat = lhs.beat + rhs.beat + beatCarry
   let barCarry = newBeat / 4
-  newBeat -= beatCarry * 4
+  newBeat -= barCarry * 4
   // Calculate bar
   let newBar = lhs.bar + rhs.bar + barCarry
   // Return new position
@@ -105,10 +106,16 @@ public func <(lhs: MIDIPianoRollPosition, rhs: MIDIPianoRollPosition) -> Bool {
   return false
 }
 
+infix operator <~>
+public func <~>(lhs: MIDIPianoRollPosition, rhs: MIDIPianoRollPosition) -> Bool {
+  return (lhs.beat == rhs.beat && lhs.subbeat == 0 && rhs.subbeat == 0 && lhs.cent == 0 && rhs.cent == 0) ||
+    (lhs.subbeat == rhs.subbeat && lhs.cent == 0 && rhs.cent == 0)
+}
+
 // MARK: - MIDIPianoRollPosition
 
 /// Represents the position on the piano roll by bar, beat, subbeat and cent values.
-public struct MIDIPianoRollPosition: Equatable, Comparable, Codable {
+public struct MIDIPianoRollPosition: Equatable, Comparable, Codable, CustomStringConvertible {
   /// Bar number.
   public var bar: Int
   /// Beat number of a bar, between 0 and 4.
@@ -120,6 +127,11 @@ public struct MIDIPianoRollPosition: Equatable, Comparable, Codable {
 
   /// Zero position.
   public static let zero = MIDIPianoRollPosition(bar: 0, beat: 0, subbeat: 0, cent: 0)
+
+  /// Returns true if beat, subbeat and cent is zero. The position is on the begining of a bar.
+  public var isBarPosition: Bool {
+    return beat == 0 && subbeat == 0 && cent == 0
+  }
 
   /// Initilizes the position.
   ///
@@ -175,5 +187,42 @@ public struct MIDIPianoRollPosition: Equatable, Comparable, Codable {
     }
     return self
   }
+
+  /// Returns piano roll beat text friendly string.
+  public var description: String {
+    if beat == 0 && subbeat == 0 && cent == 0 {
+      return "\(bar)"
+    } else if subbeat == 0 && cent == 0 {
+      return "\(bar).\(beat)"
+    } else if cent == 0 {
+      return "\(bar).\(beat).\(subbeat)"
+    } else {
+      return "\(bar).\(beat).\(subbeat).\(cent)"
+    }
+  }
 }
 
+// MARK: - NoteValueExtension
+
+extension NoteValue {
+  public var pianoRollPosition: MIDIPianoRollPosition {
+    switch self.type {
+    case .doubleWhole:
+      return MIDIPianoRollPosition(bar: 2, beat: 0, subbeat: 0, cent: 0)
+    case .whole:
+      return MIDIPianoRollPosition(bar: 1, beat: 0, subbeat: 0, cent: 0)
+    case .half:
+      return MIDIPianoRollPosition(bar: 0, beat: 2, subbeat: 0, cent: 0)
+    case .quarter:
+      return MIDIPianoRollPosition(bar: 0, beat: 1, subbeat: 0, cent: 0)
+    case .eighth:
+      return MIDIPianoRollPosition(bar: 0, beat: 0, subbeat: 2, cent: 0)
+    case .sixteenth:
+      return MIDIPianoRollPosition(bar: 0, beat: 0, subbeat: 1, cent: 0)
+    case .thirtysecond:
+      return MIDIPianoRollPosition(bar: 0, beat: 0, subbeat: 0, cent: 120)
+    case .sixtyfourth:
+      return MIDIPianoRollPosition(bar: 0, beat: 0, subbeat: 0, cent: 60)
+    }
+  }
+}
