@@ -12,7 +12,7 @@ import MusicTheorySwift
 import MIDIEventKit
 
 /// Piano roll with customisable row count, row range, beat count and editable note cells.
-public class MIDIPianoRollView: UIScrollView {
+open class MIDIPianoRollView: UIScrollView {
   /// Piano roll bars.
   public enum Bars {
     /// Fixed number of bars.
@@ -200,7 +200,7 @@ public class MIDIPianoRollView: UIScrollView {
   // MARK: Lifecycle
 
   /// Renders the piano roll.
-  public override func layoutSubviews() {
+  open override func layoutSubviews() {
     super.layoutSubviews()
     CATransaction.begin()
     CATransaction.setDisableActions(true)

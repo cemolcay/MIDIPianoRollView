@@ -10,7 +10,7 @@ import UIKit
 import MusicTheorySwift
 
 /// Represents a MIDI note row of the `MIDIPianoRollView`.
-public class MIDIPianoRollRowView: UIView {
+open class MIDIPianoRollRowView: UIView {
   /// Pitch of the row.
   public var pitch: Pitch
   /// Label of the pitch.
@@ -58,7 +58,7 @@ public class MIDIPianoRollRowView: UIView {
 
   // MARK: Lifecycle
 
-  public override func layoutSubviews() {
+  open override func layoutSubviews() {
     super.layoutSubviews()
     pitchLabel.frame = bounds
     leftLine.frame = CGRect(x: frame.size.width - 0.5, y: 0, width: 0.5, height: frame.size.height)
