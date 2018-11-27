@@ -152,7 +152,7 @@ public class MIDIPianoRollView: UIScrollView {
   /// Reference for controlling bar line redrawing in layoutSubview function.
   private var needsRedrawBar: Bool = false
   /// The last bar by notes position and duration. Updates on cells notes array change.
-  private var lastBar: Double = 0
+  private var lastBar: Int = 0
 
   /// Calculates the number of bars in the piano roll by the `BarCount` rule.
   private var barCount: Int {
@@ -160,7 +160,7 @@ public class MIDIPianoRollView: UIScrollView {
     case .fixed(let count):
       return count
     case .auto:
-      return Int(lastBar + 1)
+      return lastBar + 1
     }
   }
 
@@ -232,25 +232,53 @@ public class MIDIPianoRollView: UIScrollView {
         topMeasureLine = CALayer()
         layer.addSublayer(topMeasureLine)
 
+        let beatCount = timeSignature.beats * Int(zoomLevel.noteValue.type.rawValue)
         for bar in 0...barCount {
-          for beat in 0..<timeSignature.beats * Int(zoomLevel.noteValue.type.rawValue) {
+          for beat in 0..<beatCount {
             let line = MIDIPianoRollMeasureLineLayer()
             layer.addSublayer(line)
             measureLines.append(line)
 
-            if beat == 0 || (beat == (timeSignature.beats - 1) && bar == barCount) {
-              line.isBarLine = true
+            // Set the line type.
+            if beat == 0 {
+              line.type = .whole
+            } else if beat % (beatCount / Int(zoomLevel.noteValue.type.rawValue)) == 0 {
+              line.type = zoomLevel.noteValue.type
+            } else {
+              line.type = .quarter
+              line.showsBeatText = false
+            }
+
+            // Draw beat text
+            if line.showsBeatText {
               line.beatTextLayer.frame = CGRect(
                 x: 0,
-                y: 0,
-                width: 20,
-                height: 20)
-              line.beatTextLayer.string = "\(bar)"
+                y: barHeight - 15,
+                width: max(barHeight, beatWidth),
+                height: 15)
+              line.beatTextLayer.fontSize = 13
+
+              var beatText = ""
+              switch line.type {
+              case .whole:
+               beatText = "\(bar)"
+              case .half:
+                beatText = "\(bar)"
+              case .quarter:
+                beatText = "\(bar)"
+              default:
+                break
+              }
+              line.beatTextLayer.string = beatText
+            }
+
+            // Dont draw text on last bar line
+            if (beat == (timeSignature.beats - 1) && bar == barCount) {
+              line.showsBeatText = false
             }
           }
         }
       }
-
       needsRedrawBar = false
     }
 
@@ -258,12 +286,13 @@ public class MIDIPianoRollView: UIScrollView {
     var currentX: CGFloat = rowWidth
 
     for line in measureLines {
-      line.beatLineLayer.frame = CGRect(
+      line.frame = CGRect(
         x: currentX,
         y: 0,
-        width: lineWidth * (line.isBarLine ? 2 : 1),
+        width: lineWidth * (line.type == .whole ? 2 : 1),
         height: contentSize.height > 0 ? contentSize.height : frame.size.height)
-      line.beatLineLayer.backgroundColor = line.isBarLine ? UIColor.black.cgColor : UIColor.gray.cgColor
+      line.beatLineLayer.frame = CGRect(origin: .zero, size: line.frame.size)
+      line.beatLineLayer.backgroundColor = line.type == .whole ? UIColor.black.cgColor : UIColor.gray.cgColor
       currentX += beatWidth
     }
 
@@ -306,11 +335,11 @@ public class MIDIPianoRollView: UIScrollView {
     lastBar = notes
       .map({ $0.position + $0.duration })
       .sorted(by: { $1 > $0 })
-      .first?.rounded() ?? 0
+      .first?.bar ?? 0
 
     let barWidth = beatWidth * CGFloat(timeSignature.beats)
     if CGFloat(lastBar + 1) * barWidth < max(frame.size.width, frame.size.height) {
-      lastBar = ceil(Double(frame.size.width / barWidth)) + 1
+      lastBar = Int(ceil(Double(frame.size.width / barWidth)) + 1)
     }
 
     needsRedrawBar = true

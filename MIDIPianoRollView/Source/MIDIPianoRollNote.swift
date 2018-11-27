@@ -6,20 +6,20 @@
 //  Copyright © 2018 cemolcay. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import MusicTheorySwift
 import MIDIEventKit
 
 /// Data structure that represents a MIDI note in the piano roll grid.
-public struct MIDIPianoRollNote {
+public struct MIDIPianoRollNote: Equatable, Codable {
   /// MIDI note number.
   public var note: UInt8
   /// MIDI velocity.
   public var velocity: UInt8
   /// Starting beat position on the grid.
-  public var position: Double
+  public var position: MIDIPianoRollPosition
   /// Duration of the note in beats.
-  public var duration: Double
+  public var duration: MIDIPianoRollPosition
 
   /// Initilizes the data structure.
   ///
@@ -28,7 +28,7 @@ public struct MIDIPianoRollNote {
   ///   - velocity: MIDI velocity.
   ///   - position: Starting beat position of the note.
   ///   - duration: Duration of the note in beats
-  public init(note: UInt8, velocity: UInt8, position: Double, duration: Double) {
+  public init(note: UInt8, velocity: UInt8, position: MIDIPianoRollPosition, duration: MIDIPianoRollPosition) {
     self.note = note
     self.velocity = velocity
     self.position = position

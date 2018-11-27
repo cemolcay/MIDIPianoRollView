@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5312FF6921AD27B4009C326D /* MIDIPianoRollMeasureLineLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312FF6821AD27B4009C326D /* MIDIPianoRollMeasureLineLayer.swift */; };
+		5312FF7021AD760B009C326D /* MIDIPianoRollPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312FF6F21AD760B009C326D /* MIDIPianoRollPosition.swift */; };
 		5398FBE821AC203E005EC24C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5398FBE721AC203E005EC24C /* AppDelegate.swift */; };
 		5398FBEA21AC203E005EC24C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5398FBE921AC203E005EC24C /* ViewController.swift */; };
 		5398FBED21AC203E005EC24C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5398FBEB21AC203E005EC24C /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 		45D719704A3589DBFEBBC770 /* Pods_MIDIPianoRollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MIDIPianoRollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C21D7D6C1DBDAC6693689F /* Pods-MIDIPianoRollView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIDIPianoRollView.release.xcconfig"; path = "Target Support Files/Pods-MIDIPianoRollView/Pods-MIDIPianoRollView.release.xcconfig"; sourceTree = "<group>"; };
 		5312FF6821AD27B4009C326D /* MIDIPianoRollMeasureLineLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPianoRollMeasureLineLayer.swift; sourceTree = "<group>"; };
+		5312FF6F21AD760B009C326D /* MIDIPianoRollPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIPianoRollPosition.swift; sourceTree = "<group>"; };
 		5398FBE421AC203E005EC24C /* MIDIPianoRollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIDIPianoRollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5398FBE721AC203E005EC24C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5398FBE921AC203E005EC24C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -125,8 +127,9 @@
 				5398FC0821AC20B2005EC24C /* MIDIPianoRollView.swift */,
 				5398FC0A21AC224D005EC24C /* MIDIPianoRollRowView.swift */,
 				5398FC0C21AC226F005EC24C /* MIDIPianoRollCellView.swift */,
-				5398FC0E21AC2284005EC24C /* MIDIPianoRollNote.swift */,
 				5312FF6821AD27B4009C326D /* MIDIPianoRollMeasureLineLayer.swift */,
+				5398FC0E21AC2284005EC24C /* MIDIPianoRollNote.swift */,
+				5312FF6F21AD760B009C326D /* MIDIPianoRollPosition.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				5398FC0D21AC226F005EC24C /* MIDIPianoRollCellView.swift in Sources */,
 				5398FC0B21AC224D005EC24C /* MIDIPianoRollRowView.swift in Sources */,
 				5312FF6921AD27B4009C326D /* MIDIPianoRollMeasureLineLayer.swift in Sources */,
+				5312FF7021AD760B009C326D /* MIDIPianoRollPosition.swift in Sources */,
 				5398FC0F21AC2284005EC24C /* MIDIPianoRollNote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
