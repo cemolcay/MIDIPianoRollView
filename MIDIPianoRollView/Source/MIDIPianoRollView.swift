@@ -73,16 +73,29 @@ public class MIDIPianoRollView: UIScrollView {
       }
     }
 
-    /// Corresponding multiplier for calculating the measure line in a bar.
-    public var multiplier: Int {
+    /// Next level after zooming in.
+    public var zoomedIn: ZoomLevel? {
       switch self {
-      case .whole: return 1
-      case .half: return 2
-      case .quarter: return 4
-      case .eighth: return 8
-      case .sixteenth: return 16
-      case .thirtysecond: return 32
-      case .sixtyfourth: return 64
+      case .whole: return .half
+      case .half: return .quarter
+      case .quarter: return .eighth
+      case .eighth: return .sixteenth
+      case .sixteenth: return .thirtysecond
+      case .thirtysecond: return .sixtyfourth
+      case .sixtyfourth: return nil
+      }
+    }
+
+    /// Previous level after zooming out.
+    public var zoomedOut: ZoomLevel? {
+      switch self {
+      case .whole: return nil
+      case .half: return .whole
+      case .quarter: return .half
+      case .eighth: return .quarter
+      case .sixteenth: return .eighth
+      case .thirtysecond: return .sixteenth
+      case .sixtyfourth: return .thirtysecond
       }
     }
   }
@@ -97,15 +110,15 @@ public class MIDIPianoRollView: UIScrollView {
   public var keys: Keys = .ranged(0...127) { didSet { reload() }}
 
   /// Current `ZoomLevel` of the piano roll.
-  public var zoomLevel: ZoomLevel = .quarter
+  public var zoomLevel: ZoomLevel = .whole
   /// Speed of zooming by pinch gesture.
   public var zoomSpeed: CGFloat = 0.4
   /// Maximum width of a beat on the bar, max zoomed in.
-  public var maxBarWidth: CGFloat = 500
+  public var maxBeatWidth: CGFloat = 20
   /// Minimum width of a beat on the bar, max zoomed out.
-  public var minBarWidth: CGFloat = 50
+  public var minBeatWidth: CGFloat = 10
   /// Current with of a beat on the measure.
-  public var barWidth: CGFloat = 90
+  public var beatWidth: CGFloat = 10
   /// Fixed height of the bar on the top.
   public var barHeight: CGFloat = 40
   /// Fixed left hand side row width on the piano roll.
@@ -220,12 +233,12 @@ public class MIDIPianoRollView: UIScrollView {
         layer.addSublayer(topMeasureLine)
 
         for bar in 0...barCount {
-          for beat in 0...timeSignature.beats {
+          for beat in 0..<timeSignature.beats * Int(zoomLevel.noteValue.type.rawValue) {
             let line = MIDIPianoRollMeasureLineLayer()
             layer.addSublayer(line)
             measureLines.append(line)
 
-            if beat == 0 || (beat == timeSignature.beats && bar == barCount) {
+            if beat == 0 || (beat == (timeSignature.beats - 1) && bar == barCount) {
               line.isBarLine = true
               line.beatTextLayer.frame = CGRect(
                 x: 0,
@@ -243,7 +256,6 @@ public class MIDIPianoRollView: UIScrollView {
 
     // Start laying out bars after the key rows.
     var currentX: CGFloat = rowWidth
-    let beatWidth: CGFloat = barWidth / CGFloat(timeSignature.beats)
 
     for line in measureLines {
       line.beatLineLayer.frame = CGRect(
@@ -296,6 +308,7 @@ public class MIDIPianoRollView: UIScrollView {
       .sorted(by: { $1 > $0 })
       .first?.rounded() ?? 0
 
+    let barWidth = beatWidth * CGFloat(timeSignature.beats)
     if CGFloat(lastBar + 1) * barWidth < max(frame.size.width, frame.size.height) {
       lastBar = ceil(Double(frame.size.width / barWidth)) + 1
     }
@@ -310,11 +323,27 @@ public class MIDIPianoRollView: UIScrollView {
     case .began, .changed:
       var deltaScale = pinch.scale
       deltaScale = ((deltaScale - 1) * zoomSpeed) + 1
-      deltaScale = min(deltaScale, maxBarWidth/barWidth)
-      deltaScale = max(deltaScale, minBarWidth/barWidth)
-      barWidth *= deltaScale
+      deltaScale = min(deltaScale, maxBeatWidth/beatWidth)
+      deltaScale = max(deltaScale, minBeatWidth/beatWidth)
+      beatWidth *= deltaScale
       setNeedsLayout()
       pinch.scale = 1
+
+      // Get in new zoom level.
+      if beatWidth >= maxBeatWidth {
+        if let zoom = zoomLevel.zoomedIn {
+          zoomLevel = zoom
+          beatWidth = minBeatWidth
+          needsRedrawBar = true
+        }
+      } else if beatWidth <= minBeatWidth {
+        if let zoom = zoomLevel.zoomedOut {
+          zoomLevel = zoom
+          beatWidth = maxBeatWidth
+          needsRedrawBar = true
+        }
+      }
+
     default:
       return
     }
