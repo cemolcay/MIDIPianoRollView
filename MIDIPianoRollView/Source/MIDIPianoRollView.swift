@@ -11,60 +11,36 @@ import ALKit
 import MusicTheorySwift
 import MIDIEventKit
 
-/// Vertical line layer with measure beat text for each beat of the measure on the `MIDIPianoRollView`.
-public class MIDIPianoRollMeasureLineLayer: CALayer {
-  /// Position on the measure in beats.
-  public var measurePosition: Double = 0
-  /// Is visible or not.
-  public var isVisible: Bool = true
-  /// Property for controlling beat text rendering.
-  public var showsBeatText: Bool = true
-  /// Measure text layer.
-  public var beatTextLayer = CATextLayer()
-  /// Vertical line layer.
-  public var beatLineLayer = CALayer()
-
-  /// Initilizes the line with the position on the measure and visibility.
-  ///
-  /// - Parameters:
-  ///   - measurePosition: Position on the measure.
-  ///   - isVisible: 
-  init(measurePosition: Double, isVisible: Bool = true) {
-    self.measurePosition = measurePosition
-    self.isVisible = true
-    super.init()
-    commonInit()
-  }
-
-  /// Initilizes the line with the default zero values.
-  override init() {
-    super.init()
-    commonInit()
-  }
-
-  /// Initilizes with a coder.
-  ///
-  /// - Parameter aDecoder: Coder.
-  public required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    commonInit()
-  }
-
-  /// Default initilizer.
-  private func commonInit() {
-    addSublayer(beatTextLayer)
-    addSublayer(beatLineLayer)
-  }
-}
-
 /// Piano roll with customisable row count, row range, beat count and editable note cells.
 public class MIDIPianoRollView: UIScrollView {
-  /// Number of bars in the piano roll view grid.
-  public enum BarCount {
+  /// Piano roll bars.
+  public enum Bars {
     /// Fixed number of bars.
     case fixed(Int)
     /// Always a bar more than the last note's bar.
     case auto
+  }
+
+  /// Piano roll keys.
+  public enum Keys {
+    /// In a MIDI note range between 0 - 127
+    case ranged(ClosedRange<UInt8>)
+    /// In a musical scale.
+    case scale(scale: Scale, minOctave: Int, maxOctave: Int)
+    /// With custom keys.
+    case custom([Pitch])
+
+    /// Returns the pitches.
+    public var pitches: [Pitch] {
+      switch self {
+      case .ranged(let range):
+        return range.map({ Pitch(midiNote: Int($0)) })
+      case .scale(let scale, let minOctave, let maxOctave):
+        return scale.pitches(octaves: [Int](minOctave...maxOctave))
+      case .custom(let pitches):
+        return pitches
+      }
+    }
   }
 
   /// Zoom level of the piano roll that showing the mininum amount of beat.
@@ -116,51 +92,58 @@ public class MIDIPianoRollView: UIScrollView {
   /// Time signature of the piano roll. Defaults to 4/4.
   public var timeSignature = TimeSignature() { didSet { reload() }}
   /// Bar count of the piano roll. Defaults to auto.
-  public var barCount: BarCount = .auto { didSet { reload() }}
+  public var bars: Bars = .auto { didSet { reload() }}
   /// Rendering note range of the piano roll. Defaults all MIDI notes, from 0 to 127.
-  public var noteRange: ClosedRange<UInt8> = 0...127 { didSet { reload() }}
-  /// Enables/disables the edit mode. Defaults false.
-  public var isEditing: Bool = false
+  public var keys: Keys = .ranged(0...127) { didSet { reload() }}
 
   /// Current `ZoomLevel` of the piano roll.
   public var zoomLevel: ZoomLevel = .quarter
-  /// Maximum width of a beat on the measure, max zoomed in.
-  public var maxMeasureWidth: CGFloat = 120
-  /// Minimum width of a beat on the measure, max zoomed out.
-  public var minMeasureWidth: CGFloat = 50
+  /// Speed of zooming by pinch gesture.
+  public var zoomSpeed: CGFloat = 0.4
+  /// Maximum width of a beat on the bar, max zoomed in.
+  public var maxBarWidth: CGFloat = 500
+  /// Minimum width of a beat on the bar, max zoomed out.
+  public var minBarWidth: CGFloat = 50
   /// Current with of a beat on the measure.
-  public var measureWidth: CGFloat = 90
-  /// Fixed height of the measure on the top.
-  public var measureHeight: CGFloat = 40
+  public var barWidth: CGFloat = 90
+  /// Fixed height of the bar on the top.
+  public var barHeight: CGFloat = 40
   /// Fixed left hand side row width on the piano roll.
-  public var rowWidth: CGFloat = 120
+  public var rowWidth: CGFloat = 60
   /// Fixed height of a row on the piano roll.
   public var rowHeight: CGFloat = 40
   /// Label configuration for the measure beat labels.
   public var measureLabelConfig = UILabel()
+  /// Global variable for all line widths.
+  public var lineWidth: CGFloat = 0.5
 
+  /// Enables/disables the edit mode. Defaults false.
+  public var isEditing: Bool = false
   /// Enables/disables the zooming feature. Defaults true.
-  public var isZoomingEnabled: Bool = true
+  public var isZoomingEnabled: Bool = true { didSet { pinchGesture.isEnabled = isZoomingEnabled }}
   /// Enables/disables the measure rendering. Defaults true.
-  public var isMeasureEnabled: Bool = true
+  public var isMeasureEnabled: Bool = true { didSet { needsRedrawBar = true }}
   /// Enables/disables the multiple note cell editing at once. Defaults true.
   public var isMultipleEditingEnabled: Bool = true
 
+  /// Pinch gesture for zooming.
+  private var pinchGesture = UIGestureRecognizer()
   /// Reference of the all row views.
   private var rowViews: [MIDIPianoRollRowView] = []
   /// Reference of the all cell views.
   private var cellViews: [MIDIPianoRollCellView] = []
   /// Reference of the all vertical measure beat lines.
   private var measureLines: [MIDIPianoRollMeasureLineLayer] = []
-
-  /// Calculates the last bar by notes position and duration.
-  private var lastBar: Double {
-    return notes.map({ $0.position + $0.duration }).sorted(by: { $1 > $0 }).first?.rounded() ?? 0
-  }
+  /// Reference of the line on the top, drawn between measure and the piano roll grid.
+  private var topMeasureLine = CALayer()
+  /// Reference for controlling bar line redrawing in layoutSubview function.
+  private var needsRedrawBar: Bool = false
+  /// The last bar by notes position and duration. Updates on cells notes array change.
+  private var lastBar: Double = 0
 
   /// Calculates the number of bars in the piano roll by the `BarCount` rule.
-  private var numberOfBars: Int {
-    switch barCount {
+  private var barCount: Int {
+    switch bars {
     case .fixed(let count):
       return count
     case .auto:
@@ -189,6 +172,10 @@ public class MIDIPianoRollView: UIScrollView {
   /// Default initilizer.
   private func commonInit() {
     reload()
+    let pinch = UIPinchGestureRecognizer(
+      target: self,
+      action: #selector(didPinch(pinch:)))
+    addGestureRecognizer(pinch)
   }
 
   // MARK: Lifecycle
@@ -197,9 +184,87 @@ public class MIDIPianoRollView: UIScrollView {
   public override func layoutSubviews() {
     super.layoutSubviews()
 
-    // References of the current width and height for laying out.
-    var currentWidth: CGFloat = 0
-    var currentHeight: CGFloat = 0
+    // Start laying out rows under the measure.
+    var currentY: CGFloat = isMeasureEnabled ? barHeight : 0
+
+    // Layout rows
+    for rowView in rowViews.reversed() {
+      rowView.frame = CGRect(
+        x: contentOffset.x,
+        y: currentY,
+        width: rowWidth,
+        height: rowHeight)
+      rowView.layer.zPosition = 1
+      // Bottom line
+      rowView.bottomLine.backgroundColor = UIColor.black.cgColor
+      rowView.bottomLine.frame = CGRect(
+        x: 0,
+        y: rowView.frame.size.height - lineWidth,
+        width: frame.size.width,
+        height: lineWidth)
+      // Go to next row.
+      currentY += rowHeight
+    }
+
+    // Update content size vertically
+    contentSize.height = currentY
+
+    // Check if needs redraw measure lines.
+    if needsRedrawBar {
+      measureLines.forEach({ $0.removeFromSuperlayer() })
+      measureLines = []
+      topMeasureLine.removeFromSuperlayer()
+
+      if isMeasureEnabled {
+        topMeasureLine = CALayer()
+        layer.addSublayer(topMeasureLine)
+
+        for bar in 0...barCount {
+          for beat in 0...timeSignature.beats {
+            let line = MIDIPianoRollMeasureLineLayer()
+            layer.addSublayer(line)
+            measureLines.append(line)
+
+            if beat == 0 || (beat == timeSignature.beats && bar == barCount) {
+              line.isBarLine = true
+              line.beatTextLayer.frame = CGRect(
+                x: 0,
+                y: 0,
+                width: 20,
+                height: 20)
+              line.beatTextLayer.string = "\(bar)"
+            }
+          }
+        }
+      }
+
+      needsRedrawBar = false
+    }
+
+    // Start laying out bars after the key rows.
+    var currentX: CGFloat = rowWidth
+    let beatWidth: CGFloat = barWidth / CGFloat(timeSignature.beats)
+
+    for line in measureLines {
+      line.beatLineLayer.frame = CGRect(
+        x: currentX,
+        y: 0,
+        width: lineWidth * (line.isBarLine ? 2 : 1),
+        height: contentSize.height > 0 ? contentSize.height : frame.size.height)
+      line.beatLineLayer.backgroundColor = line.isBarLine ? UIColor.black.cgColor : UIColor.gray.cgColor
+      currentX += beatWidth
+    }
+
+    // Update content size horizontally
+    contentSize.width = currentX
+
+    // Update top line.
+    topMeasureLine.frame = CGRect(
+      x: 0,
+      y: barHeight - lineWidth,
+      width: (contentSize.width > 0 ? contentSize.width : frame.size.width) - beatWidth,
+      height: lineWidth)
+    topMeasureLine.backgroundColor = UIColor.black.cgColor
   }
 
   /// Removes each component and creates them again.
@@ -210,27 +275,48 @@ public class MIDIPianoRollView: UIScrollView {
     // Reset cell views.
     cellViews.forEach({ $0.removeFromSuperview() })
     cellViews = []
-    // Reset measure lines.
-    measureLines.forEach({ $0.removeFromSuperlayer() })
-    measureLines = []
-
-    // Setup measure labels.
-    for _ in 0..<(numberOfBars * zoomLevel.multiplier) {
-      let line = MIDIPianoRollMeasureLineLayer()
-      layer.addSublayer(line)
-      measureLines.append(line)
-    }
 
     // Setup row views.
-    for i in noteRange {
-      let rowView = MIDIPianoRollRowView(pitch: Pitch(midiNote: Int(i)))
+    for pitch in keys.pitches {
+      let rowView = MIDIPianoRollRowView(pitch: pitch)
+      addSubview(rowView)
       rowViews.append(rowView)
     }
 
     // Setup cell views.
     for note in notes {
       let cellView = MIDIPianoRollCellView(note: note)
+      addSubview(cellView)
       cellViews.append(cellView)
+    }
+
+    // Update bar.
+    lastBar = notes
+      .map({ $0.position + $0.duration })
+      .sorted(by: { $1 > $0 })
+      .first?.rounded() ?? 0
+
+    if CGFloat(lastBar + 1) * barWidth < max(frame.size.width, frame.size.height) {
+      lastBar = ceil(Double(frame.size.width / barWidth)) + 1
+    }
+
+    needsRedrawBar = true
+  }
+
+  // MARK: Zooming
+
+  @objc private func didPinch(pinch: UIPinchGestureRecognizer) {
+    switch pinch.state {
+    case .began, .changed:
+      var deltaScale = pinch.scale
+      deltaScale = ((deltaScale - 1) * zoomSpeed) + 1
+      deltaScale = min(deltaScale, maxBarWidth/barWidth)
+      deltaScale = max(deltaScale, minBarWidth/barWidth)
+      barWidth *= deltaScale
+      setNeedsLayout()
+      pinch.scale = 1
+    default:
+      return
     }
   }
 }
