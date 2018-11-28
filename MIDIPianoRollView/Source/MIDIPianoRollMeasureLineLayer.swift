@@ -11,17 +11,17 @@ import MusicTheorySwift
 
 /// Vertical line layer with measure beat text for each beat of the measure on the `MIDIPianoRollView`.
 public class MIDIPianoRollMeasureLineLayer: CALayer {
-  /// Measure text layer.
-  public var beatTextLayer = CATextLayer()
-  /// Vertical line layer.
-  public var beatLineLayer = CALayer()
+  /// Text on measure.
+  public var textLayer = CATextLayer()
+  /// Line on measure.
+  public var lineLayer = CALayer()
   /// Position on piano roll.
   public var pianoRollPosition: MIDIPianoRollPosition = .zero
 
   /// Property for controlling beat text rendering.
   public var showsBeatText: Bool = true {
     didSet {
-      beatTextLayer.isHidden = !showsBeatText
+      textLayer.isHidden = !showsBeatText
     }
   }
 
@@ -50,10 +50,12 @@ public class MIDIPianoRollMeasureLineLayer: CALayer {
   /// Default initilizer.
   private func commonInit() {
     masksToBounds = false
-    beatTextLayer.masksToBounds = false
-    beatTextLayer.foregroundColor = UIColor.black.cgColor
-    beatTextLayer.contentsScale = UIScreen.main.scale
-    addSublayer(beatTextLayer)
-    addSublayer(beatLineLayer)
+    // Setup text layer.
+    textLayer.masksToBounds = false
+    textLayer.foregroundColor = UIColor.black.cgColor
+    textLayer.contentsScale = UIScreen.main.scale
+    // Add sublayers.
+    addSublayer(lineLayer)
+    addSublayer(textLayer)
   }
 }
