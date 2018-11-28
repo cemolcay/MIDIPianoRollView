@@ -21,16 +21,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qER-zP-AeS" customClass="MIDIPianoRollView" customModule="MIDIPianoRollView" customModuleProvider="target">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZPV-dy-jkB">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                            </scrollView>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" translatesAutoresizingMaskIntoConstraints="NO" id="UkV-Qr-S3s">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Mode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eka-cH-qeQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="326" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IJj-Pq-OiZ">
+                                                <rect key="frame" x="326" y="0.0" width="51" height="20.5"/>
+                                                <connections>
+                                                    <action selector="editModeValueChangedWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="49Z-Qx-s00"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qER-zP-AeS" customClass="MIDIPianoRollView" customModule="MIDIPianoRollView" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="20.5" width="375" height="626.5"/>
+                                    </scrollView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="qER-zP-AeS" secondAttribute="trailing" id="8Ws-Y9-Bf5"/>
-                            <constraint firstItem="qER-zP-AeS" firstAttribute="top" secondItem="Y78-8J-Kon" secondAttribute="bottom" id="XoL-yE-B7r"/>
-                            <constraint firstItem="mMP-Mv-pzw" firstAttribute="top" secondItem="qER-zP-AeS" secondAttribute="bottom" id="a5a-mM-vw3"/>
-                            <constraint firstItem="qER-zP-AeS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hWh-Ey-dLG"/>
+                            <constraint firstItem="ZPV-dy-jkB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Jdx-0d-Uo2"/>
+                            <constraint firstAttribute="trailing" secondItem="ZPV-dy-jkB" secondAttribute="trailing" id="TRh-68-Uwy"/>
+                            <constraint firstItem="mMP-Mv-pzw" firstAttribute="top" secondItem="ZPV-dy-jkB" secondAttribute="bottom" id="lLy-mF-Kkn"/>
+                            <constraint firstItem="ZPV-dy-jkB" firstAttribute="top" secondItem="Y78-8J-Kon" secondAttribute="bottom" id="odu-cf-SOH"/>
                         </constraints>
                     </view>
                     <connections>

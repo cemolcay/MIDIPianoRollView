@@ -8,10 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MIDIPianoRollViewDelegate {
   @IBOutlet weak var pianoRollView: MIDIPianoRollView?
 
-  let notes: [MIDIPianoRollNote] = [
+  var notes: [MIDIPianoRollNote] = [
     MIDIPianoRollNote(
       midiNote: 60,
       velocity: 90,
@@ -34,9 +34,35 @@ class ViewController: UIViewController {
       duration: MIDIPianoRollPosition(bar: 0, beat: 3, subbeat: 0, cent: 0)),
   ]
 
+  // MARK: Lifecycle
+
   override func viewDidLoad() {
     super.viewDidLoad()
+    pianoRollView?.pianoRollDelegate = self
     pianoRollView?.keys = .ranged(50...70)
+    pianoRollView?.notes = notes
+  }
+
+  // MARK: Actions
+
+  @IBAction func editModeValueChanged(sender: UISwitch) {
+    pianoRollView?.isEditing = sender.isOn
+  }
+
+  // MARK: MIDIPianoRollViewDelegate
+  
+  func midiPianoRollView(_ midiPianoRollView: MIDIPianoRollView, didMove cellView: MIDIPianoRollCellView, to newPosition: MIDIPianoRollPosition, pitch: UInt8) {
+    print(cellView, newPosition, pitch)
+    guard let index = notes.lastIndex(of: cellView.note) else { return }
+    notes[index].position = newPosition
+    notes[index].midiNote = pitch
+    pianoRollView?.notes = notes
+  }
+
+  func midiPianoRollView(_ midiPianoRollView: MIDIPianoRollView, didResize cellView: MIDIPianoRollCellView, to newDuration: MIDIPianoRollPosition) {
+    print(cellView, newDuration)
+    guard let index = notes.lastIndex(of: cellView.note) else { return }
+    notes[index].duration = newDuration
     pianoRollView?.notes = notes
   }
 }

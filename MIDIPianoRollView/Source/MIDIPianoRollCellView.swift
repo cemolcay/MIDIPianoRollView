@@ -42,11 +42,11 @@ open class MIDIPianoRollCellView: UIView {
   /// Is cell selected or not.
   public var isSelected: Bool = false
   /// Inset from the rightmost side on the cell to capture resize gesture.
-  public var resizingViewWidth: CGFloat = 10
+  public var resizingViewWidth: CGFloat = 20
   /// View that holds the pan gesture on right most side in the view to use in resizing cell.
-  private let resizeView = UIView()
+  internal let resizeView = UIView()
   /// Delegate that informs about editing cell.
-  open weak var delegate: MIDIPianoRollCellViewDelegate?
+  public weak var delegate: MIDIPianoRollCellViewDelegate?
 
   // MARK: Init
 

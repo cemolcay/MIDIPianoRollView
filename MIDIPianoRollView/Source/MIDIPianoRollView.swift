@@ -11,6 +11,31 @@ import ALKit
 import MusicTheorySwift
 import MIDIEventKit
 
+/// Informs delegate about cell changes.
+public protocol MIDIPianoRollViewDelegate: class {
+  /// Informs delegate about that the cell is moved a new position and/or row.
+  ///
+  /// - Parameters:
+  ///   - midiPianoRollView: Edited piano roll view.
+  ///   - cellView: Moved cell.
+  ///   - newPosition: New position of the cell.
+  ///   - pitch: Moved pitch of the cell.
+  func midiPianoRollView(_ midiPianoRollView: MIDIPianoRollView,
+                         didMove cellView: MIDIPianoRollCellView,
+                         to newPosition: MIDIPianoRollPosition,
+                         pitch: UInt8)
+
+  /// Informs delegate about that the cell's duration changed.
+  ///
+  /// - Parameters:
+  ///   - midiPianoRollView: Edited piano roll view.
+  ///   - cellView: Moved cell.
+  ///   - newDuration: New duration of the cell.
+  func midiPianoRollView(_ midiPianoRollView: MIDIPianoRollView,
+                         didResize cellView: MIDIPianoRollCellView,
+                         to newDuration: MIDIPianoRollPosition)
+}
+
 /// Piano roll with customisable row count, row range, beat count and editable note cells.
 open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
   /// Piano roll bars.
@@ -158,8 +183,11 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
   /// Global variable for all line widths.
   public var lineWidth: CGFloat = 0.5
 
+  /// Delegate that informs about cell changes.
+  public weak var pianoRollDelegate: MIDIPianoRollViewDelegate?
+
   /// Enables/disables the edit mode. Defaults false.
-  public var isEditing: Bool = false
+  public var isEditing: Bool = false { didSet { isScrollEnabled = !isEditing }}
   /// Enables/disables the zooming feature. Defaults true.
   public var isZoomingEnabled: Bool = true { didSet { pinchGesture.isEnabled = isZoomingEnabled }}
   /// Enables/disables the measure rendering. Defaults true.
@@ -430,19 +458,6 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
     CATransaction.commit()
   }
 
-  private func gridPosition(
-    with pianoRollPosition: MIDIPianoRollPosition,
-    barWidth: CGFloat,
-    beatWidth: CGFloat,
-    subbeatWidth: CGFloat,
-    centWidth: CGFloat) -> CGFloat {
-    let bars = CGFloat(pianoRollPosition.bar) * barWidth
-    let beats = CGFloat(pianoRollPosition.beat) * beatWidth
-    let subbeats = CGFloat(pianoRollPosition.subbeat) * subbeatWidth
-    let cents = CGFloat(pianoRollPosition.cent) * centWidth
-    return bars + beats + subbeats + cents
-  }
-
   /// Removes each component and creates them again.
   public func reload() {
     // Reset row views.
@@ -494,6 +509,101 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
     }
 
     needsRedrawBar = true
+    setNeedsLayout()
+    layoutIfNeeded()
+  }
+
+  // MARK: Utils
+
+  private func gridPosition(
+    with pianoRollPosition: MIDIPianoRollPosition,
+    barWidth: CGFloat,
+    beatWidth: CGFloat,
+    subbeatWidth: CGFloat,
+    centWidth: CGFloat) -> CGFloat {
+    let bars = CGFloat(pianoRollPosition.bar) * barWidth
+    let beats = CGFloat(pianoRollPosition.beat) * beatWidth
+    let subbeats = CGFloat(pianoRollPosition.subbeat) * subbeatWidth
+    let cents = CGFloat(pianoRollPosition.cent) * centWidth
+    return bars + beats + subbeats + cents
+  }
+
+  private func pianoRollPosition(for cell: MIDIPianoRollCellView) -> MIDIPianoRollPosition {
+    // Calculate measure widths
+    let normalizedBeatWidth = beatWidth * CGFloat(zoomLevel.rawValue) / 4.0
+    let barWidth = normalizedBeatWidth * CGFloat(timeSignature.beats)
+    let subbeatWidth = normalizedBeatWidth / 4.0
+    let centWidth = subbeatWidth / 240.0
+
+    // Calculate new position
+    var position = cell.frame.origin.x - rowWidth
+    let bars = position / barWidth
+    position -= CGFloat(Int(bars))
+    let beats = position / normalizedBeatWidth
+    position -= CGFloat(Int(beats))
+    let subbeats = position / subbeatWidth
+    position -= CGFloat(Int(subbeats))
+    let cents = position / centWidth
+
+    return MIDIPianoRollPosition(
+      bar: Int(bars),
+      beat: Int(beats),
+      subbeat: Int(subbeats),
+      cent: Int(cents))
+  }
+
+  private func pianoRollPosition(for point: CGFloat) -> MIDIPianoRollPosition {
+    // Calculate measure widths
+    let normalizedBeatWidth = beatWidth * CGFloat(zoomLevel.rawValue) / 4.0
+    let barWidth = normalizedBeatWidth * CGFloat(timeSignature.beats)
+    let subbeatWidth = normalizedBeatWidth / 4.0
+    let centWidth = subbeatWidth / 240.0
+
+    // Calculate new position
+    var position = point
+    let bars = position / barWidth
+    position -= CGFloat(Int(bars))
+    let beats = position / normalizedBeatWidth
+    position -= CGFloat(Int(beats))
+    let subbeats = position / subbeatWidth
+    position -= CGFloat(Int(subbeats))
+    let cents = position / centWidth
+
+    return MIDIPianoRollPosition(
+      bar: Int(bars),
+      beat: Int(beats),
+      subbeat: Int(subbeats),
+      cent: Int(cents))
+  }
+
+  private func pianoRollDuration(for cell: MIDIPianoRollCellView) -> MIDIPianoRollPosition {
+    // Calculate measure widths
+    let normalizedBeatWidth = beatWidth * CGFloat(zoomLevel.rawValue) / 4.0
+    let barWidth = normalizedBeatWidth * CGFloat(timeSignature.beats)
+    let subbeatWidth = normalizedBeatWidth / 4.0
+    let centWidth = subbeatWidth / 240.0
+
+    // Calculate new position
+    var width = cell.frame.size.width
+    let bars = width / barWidth
+    width -= CGFloat(Int(bars))
+    let beats = width / normalizedBeatWidth
+    width -= CGFloat(Int(beats))
+    let subbeats = width / subbeatWidth
+    width -= CGFloat(Int(subbeats))
+    let cents = width / centWidth
+
+    return MIDIPianoRollPosition(
+      bar: Int(bars),
+      beat: Int(beats),
+      subbeat: Int(subbeats),
+      cent: Int(cents))
+  }
+
+  private func pianoRollPitch(for cell: MIDIPianoRollCellView) -> UInt8 {
+    let position = cell.frame.origin.y - measureHeight
+    let index = Int(position / rowHeight)
+    return rowViews.indices.contains(index) ? UInt8(rowViews[index].pitch.rawValue) : 0
   }
 
   // MARK: Zooming
@@ -555,19 +665,76 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
 
   // MARK: MIDIPianoRollViewCellDelegate
 
-  public func midiPianoRollCellViewDidTap(_ midiPianoRollCellView: MIDIPianoRollCellView) {
-
-  }
-
   public func midiPianoRollCellViewDidMove(_ midiPianoRollCellView: MIDIPianoRollCellView, pan: UIPanGestureRecognizer) {
+    guard isEditing else { return }
+    let translation = pan.translation(in: self)
 
+    if case .began = pan.state {
+      midiPianoRollCellView.isSelected = true
+    }
+
+    // Horizontal move
+    if translation.x > beatWidth, midiPianoRollCellView.frame.maxX < contentSize.width { // Right
+      midiPianoRollCellView.frame.origin.x += beatWidth
+      pan.setTranslation(CGPoint(x: 0, y: translation.y), in: self)
+    } else if translation.x < -beatWidth, midiPianoRollCellView.frame.minX > rowWidth { // Left
+      midiPianoRollCellView.frame.origin.x -= beatWidth
+      pan.setTranslation(CGPoint(x: 0, y: translation.y), in: self)
+    }
+
+    // Vertical move
+    if translation.y > rowHeight,
+      midiPianoRollCellView.frame.maxY < contentSize.height { // Down
+      midiPianoRollCellView.frame.origin.y += rowHeight
+      pan.setTranslation(CGPoint(x: translation.x, y: 0), in: self)
+    } else if translation.y < -rowHeight,
+      midiPianoRollCellView.frame.minY > measureHeight { // Up
+      midiPianoRollCellView.frame.origin.y -= rowHeight
+      pan.setTranslation(CGPoint(x: translation.x, y: 0), in: self)
+    }
+
+    if case .ended = pan.state {
+      let newCellPosition = pianoRollPosition(for: midiPianoRollCellView)
+      let newCellRow = pianoRollPitch(for: midiPianoRollCellView)
+      pianoRollDelegate?.midiPianoRollView(self, didMove: midiPianoRollCellView, to: newCellPosition, pitch: newCellRow)
+    }
   }
 
   public func midiPianoRollCellViewDidResize(_ midiPianoRollCellView: MIDIPianoRollCellView, pan: UIPanGestureRecognizer) {
+    guard isEditing else { return }
+    let translation = pan.translation(in: self)
 
+    if translation.x > beatWidth, midiPianoRollCellView.frame.maxX < contentSize.width - beatWidth { // Increase
+      midiPianoRollCellView.frame.size.width += beatWidth
+      pan.setTranslation(CGPoint(x: 0, y: translation.y), in: self)
+    } else if translation.x < -beatWidth, midiPianoRollCellView.frame.width > beatWidth { // Decrease
+      midiPianoRollCellView.frame.size.width -= beatWidth
+      pan.setTranslation(CGPoint(x: 0, y: translation.y), in: self)
+    }
+
+    if case .ended = pan.state {
+      let newDuration = pianoRollDuration(for: midiPianoRollCellView)
+      pianoRollDelegate?.midiPianoRollView(self, didResize: midiPianoRollCellView, to: newDuration)
+    }
+  }
+
+  public func midiPianoRollCellViewDidTap(_ midiPianoRollCellView: MIDIPianoRollCellView) {
+    guard isEditing else { return }
   }
 
   public func midiPianoRollCellViewDidDelete(_ midiPianoRollCellView: MIDIPianoRollCellView) {
+    guard isEditing else { return }
+  }
 
+  open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    guard isEditing,
+      let cell = cellViews.filter({ $0.frame.contains(point) }).first
+      else { return super.hitTest(point, with: event) }
+
+    // Check if cell is moving or resizing.
+    if cell.resizeView.bounds.contains(convert(point, to: cell.resizeView)) {
+      return cell.resizeView
+    }
+    return cell
   }
 }
