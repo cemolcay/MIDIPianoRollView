@@ -279,7 +279,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
     // Layout left row line
     rowLine.frame = CGRect(
       x: rowWidth,
-      y: measureHeight - contentOffset.y,
+      y: 0,
       width: lineWidth,
       height: frame.size.height)
     rowLine.backgroundColor = UIColor.black.cgColor
@@ -298,12 +298,6 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
       // Reset bottom measure line
       measureLine.removeFromSuperlayer()
       measureLayer.layer.addSublayer(measureLine)
-      measureLine.frame = CGRect(
-        x: 0,
-        y: measureHeight,
-        width: frame.size.width,
-        height: lineWidth)
-      measureLine.backgroundColor = UIColor.black.cgColor
 
       // Create lines
       let lineCount = barCount * timeSignature.beats * zoomLevel.rawValue
@@ -324,7 +318,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
         // Draw beat text
         if measureLine.showsBeatText && isMeasureEnabled {
           measureLine.textLayer.frame = CGRect(
-            x: 0,
+            x: 2,
             y: measureHeight - 15,
             width: max(measureHeight, beatWidth),
             height: 15)
@@ -361,6 +355,14 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
 
       currentX += beatWidth
     }
+
+    // Layout measure bottom line
+    measureLine.frame = CGRect(
+      x: 0,
+      y: measureHeight,
+      width: frame.size.width,
+      height: lineWidth)
+    measureLine.backgroundColor = UIColor.black.cgColor
 
     // Update content size horizontally
     contentSize.width = currentX

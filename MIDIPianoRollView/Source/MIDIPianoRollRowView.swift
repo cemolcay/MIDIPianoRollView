@@ -15,6 +15,8 @@ open class MIDIPianoRollRowView: UIView {
   public var pitch: Pitch
   /// Label of the pitch.
   public var pitchLabel = UILabel()
+  /// Line at the bottom.
+  public var bottomLine = CALayer()
 
   // MARK: Init
 
@@ -42,6 +44,9 @@ open class MIDIPianoRollRowView: UIView {
     pitchLabel.textAlignment = .center
     addSubview(pitchLabel)
     pitchLabel.text = "\(pitch)"
+    // Setup bottom line
+    layer.addSublayer(bottomLine)
+    bottomLine.backgroundColor = UIColor.black.cgColor
     // Setup default coloring
     backgroundColor = pitch.key.accidental == .natural ? UIColor.white : UIColor.black
     pitchLabel.textColor = pitch.key.accidental == .natural ? UIColor.black : UIColor.white
@@ -52,5 +57,6 @@ open class MIDIPianoRollRowView: UIView {
   open override func layoutSubviews() {
     super.layoutSubviews()
     pitchLabel.frame = bounds
+    bottomLine.frame = CGRect(x: 0, y: frame.size.height, width: frame.size.width, height: 0.5)
   }
 }
