@@ -13,7 +13,7 @@ import MIDIEventKit
 /// Data structure that represents a MIDI note in the piano roll grid.
 public struct MIDIPianoRollNote: Equatable, Codable {
   /// MIDI note number.
-  public var note: UInt8
+  public var midiNote: UInt8
   /// MIDI velocity.
   public var velocity: UInt8
   /// Starting beat position on the grid.
@@ -24,12 +24,12 @@ public struct MIDIPianoRollNote: Equatable, Codable {
   /// Initilizes the data structure.
   ///
   /// - Parameters:
-  ///   - note: MIDI note number.
+  ///   - midiNote: MIDI note number.
   ///   - velocity: MIDI velocity.
   ///   - position: Starting beat position of the note.
   ///   - duration: Duration of the note in beats
-  public init(note: UInt8, velocity: UInt8, position: MIDIPianoRollPosition, duration: MIDIPianoRollPosition) {
-    self.note = note
+  public init(midiNote: UInt8, velocity: UInt8, position: MIDIPianoRollPosition, duration: MIDIPianoRollPosition) {
+    self.midiNote = midiNote
     self.velocity = velocity
     self.position = position
     self.duration = duration

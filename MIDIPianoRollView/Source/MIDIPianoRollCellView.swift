@@ -63,7 +63,7 @@ open class MIDIPianoRollCellView: UIView {
   ///
   /// - Parameter aDecoder: Decoder.
   public required init?(coder aDecoder: NSCoder) {
-    self.note = MIDIPianoRollNote(note: 0, velocity: 0, position: .zero, duration: .zero)
+    self.note = MIDIPianoRollNote(midiNote: 0, velocity: 0, position: .zero, duration: .zero)
     super.init(coder: aDecoder)
     commonInit()
   }

@@ -106,12 +106,6 @@ public func <(lhs: MIDIPianoRollPosition, rhs: MIDIPianoRollPosition) -> Bool {
   return false
 }
 
-infix operator <~>
-public func <~>(lhs: MIDIPianoRollPosition, rhs: MIDIPianoRollPosition) -> Bool {
-  return (lhs.beat == rhs.beat && lhs.subbeat == 0 && rhs.subbeat == 0 && lhs.cent == 0 && rhs.cent == 0) ||
-    (lhs.subbeat == rhs.subbeat && lhs.cent == 0 && rhs.cent == 0)
-}
-
 // MARK: - MIDIPianoRollPosition
 
 /// Represents the position on the piano roll by bar, beat, subbeat and cent values.
@@ -205,7 +199,7 @@ public struct MIDIPianoRollPosition: Equatable, Comparable, Codable, CustomStrin
 // MARK: - NoteValueExtension
 
 extension NoteValue {
-  public var pianoRollPosition: MIDIPianoRollPosition {
+  public var pianoRollDuration: MIDIPianoRollPosition {
     switch self.type {
     case .doubleWhole:
       return MIDIPianoRollPosition(bar: 2, beat: 0, subbeat: 0, cent: 0)

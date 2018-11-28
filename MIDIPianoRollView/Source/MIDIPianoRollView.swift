@@ -12,7 +12,7 @@ import MusicTheorySwift
 import MIDIEventKit
 
 /// Piano roll with customisable row count, row range, beat count and editable note cells.
-open class MIDIPianoRollView: UIScrollView {
+open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
   /// Piano roll bars.
   public enum Bars {
     /// Fixed number of bars.
@@ -262,7 +262,7 @@ open class MIDIPianoRollView: UIScrollView {
         }
 
         // Go next line
-        linePosition = linePosition + zoomLevel.noteValue.pianoRollPosition
+        linePosition = linePosition + zoomLevel.noteValue.pianoRollDuration
       }
       needsRedrawBar = false
     }
@@ -284,13 +284,60 @@ open class MIDIPianoRollView: UIScrollView {
     contentSize.width = currentX
 
     // Update top line
-    topMeasureLine.frame = CGRect(
-      x: 0,
-      y: barHeight - lineWidth,
-      width: (contentSize.width > 0 ? contentSize.width : frame.size.width) - beatWidth,
-      height: lineWidth)
-    topMeasureLine.backgroundColor = UIColor.black.cgColor
+    if isMeasureEnabled {
+      topMeasureLine.frame = CGRect(
+        x: 0,
+        y: barHeight - lineWidth,
+        width: (contentSize.width > 0 ? contentSize.width : frame.size.width) - beatWidth,
+        height: lineWidth)
+      topMeasureLine.backgroundColor = UIColor.black.cgColor
+    }
+
+    // Layout cells
+    let normalizedBeatWidth = beatWidth * CGFloat(zoomLevel.rawValue) / 4.0
+    let barWidth = normalizedBeatWidth * CGFloat(timeSignature.beats)
+    let subbeatWidth = normalizedBeatWidth / 4.0
+    let centWidth = subbeatWidth / 240.0
+    for cell in cellViews {
+      guard let row = rowViews.filter({ $0.pitch.rawValue == cell.note.midiNote }).first
+        else { continue }
+
+      let startPosition = gridPosition(
+        with: cell.note.position,
+        barWidth: barWidth,
+        beatWidth: normalizedBeatWidth,
+        subbeatWidth: subbeatWidth,
+        centWidth: centWidth)
+      let endPosition = gridPosition(
+        with: (cell.note.position + cell.note.duration),
+        barWidth: barWidth,
+        beatWidth: normalizedBeatWidth,
+        subbeatWidth: subbeatWidth,
+        centWidth: centWidth)
+      let cellWidth = endPosition - startPosition
+
+      cell.frame = CGRect(
+        x: rowWidth + startPosition,
+        y: row.frame.origin.y,
+        width: cellWidth,
+        height: rowHeight)
+      cell.backgroundColor = .green
+    }
+
     CATransaction.commit()
+  }
+
+  private func gridPosition(
+    with pianoRollPosition: MIDIPianoRollPosition,
+    barWidth: CGFloat,
+    beatWidth: CGFloat,
+    subbeatWidth: CGFloat,
+    centWidth: CGFloat) -> CGFloat {
+    let bars = CGFloat(pianoRollPosition.bar) * barWidth
+    let beats = CGFloat(pianoRollPosition.beat) * beatWidth
+    let subbeats = CGFloat(pianoRollPosition.subbeat) * subbeatWidth
+    let cents = CGFloat(pianoRollPosition.cent) * centWidth
+    return bars + beats + subbeats + cents
   }
 
   /// Removes each component and creates them again.
@@ -312,6 +359,7 @@ open class MIDIPianoRollView: UIScrollView {
     // Setup cell views.
     for note in notes {
       let cellView = MIDIPianoRollCellView(note: note)
+      cellView.delegate = self
       addSubview(cellView)
       cellViews.append(cellView)
     }
@@ -349,7 +397,6 @@ open class MIDIPianoRollView: UIScrollView {
       if (ratio > 2) { isVertical = false }
       if (ratio < 0.5) { isVertical = true }
 
-
       // Vertical zooming
       if isVertical {
         var rowScale = pinch.scale
@@ -386,5 +433,23 @@ open class MIDIPianoRollView: UIScrollView {
     default:
       return
     }
+  }
+
+  // MARK: MIDIPianoRollViewCellDelegate
+
+  public func midiPianoRollCellViewDidTap(_ midiPianoRollCellView: MIDIPianoRollCellView) {
+
+  }
+
+  public func midiPianoRollCellViewDidMove(_ midiPianoRollCellView: MIDIPianoRollCellView, pan: UIPanGestureRecognizer) {
+
+  }
+
+  public func midiPianoRollCellViewDidResize(_ midiPianoRollCellView: MIDIPianoRollCellView, pan: UIPanGestureRecognizer) {
+
+  }
+
+  public func midiPianoRollCellViewDidDelete(_ midiPianoRollCellView: MIDIPianoRollCellView) {
+
   }
 }
