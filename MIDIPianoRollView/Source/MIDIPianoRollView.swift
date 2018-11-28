@@ -98,6 +98,26 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
       case .sixtyfourthNotes: return .thirtysecondNotes
       }
     }
+
+    /// Rendering measure texts for note values in each zoom level.
+    public var renderingMeasureTexts: [NoteValue] {
+      switch self {
+      case .wholeNotes:
+        return [NoteValue(type: .whole)]
+      case .halfNotes:
+        return [NoteValue(type: .whole)]
+      case .quarterNotes:
+        return [NoteValue(type: .whole)]
+      case .eighthNotes:
+        return [NoteValue(type: .whole), NoteValue(type: .half)]
+      case .sixteenthNotes:
+        return [NoteValue(type: .whole), NoteValue(type: .half), NoteValue(type: .quarter)]
+      case .thirtysecondNotes:
+        return [NoteValue(type: .whole), NoteValue(type: .half), NoteValue(type: .quarter), NoteValue(type: .eighth)]
+      case .sixtyfourthNotes:
+        return [NoteValue(type: .whole), NoteValue(type: .half), NoteValue(type: .quarter), NoteValue(type: .eighth), NoteValue(type: .sixteenth)]
+      }
+    }
   }
 
   /// All notes in the piano roll.
@@ -130,7 +150,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
   /// Current height of a row on the piano roll.
   public var rowHeight: CGFloat = 40
   /// Maximum height of a row on the piano roll.
-  public var maxRowHeight: CGFloat = 150
+  public var maxRowHeight: CGFloat = 80
   /// Minimum height of a row on the piano roll.
   public var minRowHeight: CGFloat = 30
   /// Label configuration for the measure beat labels.
@@ -299,6 +319,8 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
       measureLine.removeFromSuperlayer()
       measureLayer.layer.addSublayer(measureLine)
 
+      let renderingTexts = zoomLevel.renderingMeasureTexts
+
       // Create lines
       let lineCount = barCount * timeSignature.beats * zoomLevel.rawValue
       var linePosition: MIDIPianoRollPosition = .zero
@@ -306,7 +328,6 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
         // Create measure line
         let measureLine = MIDIPianoRollMeasureLineLayer()
         measureLine.pianoRollPosition = linePosition
-        measureLine.showsBeatText = linePosition.isBarPosition
         measureLayer.layer.addSublayer(measureLine)
         measureLines.append(measureLine)
 
@@ -314,6 +335,14 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
         let verticalLine = CALayer()
         verticalGridLines.append(verticalLine)
         gridLayer.layer.addSublayer(verticalLine)
+
+        // Decide if render measure text.
+        if let lineNoteValue = linePosition.noteValue,
+          renderingTexts.contains(where: { $0.type == lineNoteValue.type }) {
+          measureLine.showsBeatText = true
+        } else {
+          measureLine.showsBeatText = false
+        }
 
         // Draw beat text
         if measureLine.showsBeatText && isMeasureEnabled {

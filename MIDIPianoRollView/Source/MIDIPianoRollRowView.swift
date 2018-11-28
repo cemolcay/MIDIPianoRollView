@@ -56,7 +56,10 @@ open class MIDIPianoRollRowView: UIView {
 
   open override func layoutSubviews() {
     super.layoutSubviews()
+    CATransaction.begin()
+    CATransaction.setDisableActions(true)
     pitchLabel.frame = bounds
     bottomLine.frame = CGRect(x: 0, y: frame.size.height, width: frame.size.width, height: 0.5)
+    CATransaction.commit()
   }
 }
