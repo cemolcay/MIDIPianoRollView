@@ -59,11 +59,11 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
     public var pitches: [Pitch] {
       switch self {
       case .ranged(let range):
-        return range.map({ Pitch(midiNote: Int($0)) })
+        return range.map({ Pitch(midiNote: Int($0)) }).sorted(by: { $0 > $1 })
       case .scale(let scale, let minOctave, let maxOctave):
-        return scale.pitches(octaves: [Int](minOctave...maxOctave))
+        return scale.pitches(octaves: [Int](minOctave...maxOctave)).sorted(by: { $0 > $1 })
       case .custom(let pitches):
-        return pitches
+        return pitches.sorted(by: { $0 > $1 })
       }
     }
   }
@@ -297,7 +297,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
 
     // Layout rows
     var currentY: CGFloat = isMeasureEnabled ? measureHeight : 0
-    for (index, rowView) in rowViews.reversed().enumerated() {
+    for (index, rowView) in rowViews.enumerated() {
       // Layout row
       rowView.frame = CGRect(
         x: 0,
@@ -538,11 +538,11 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
     // Calculate new position
     var position = cell.frame.origin.x - rowWidth
     let bars = position / barWidth
-    position -= CGFloat(Int(bars))
+    position -= CGFloat(Int(bars)) * barWidth
     let beats = position / normalizedBeatWidth
-    position -= CGFloat(Int(beats))
+    position -= CGFloat(Int(beats)) * normalizedBeatWidth
     let subbeats = position / subbeatWidth
-    position -= CGFloat(Int(subbeats))
+    position -= CGFloat(Int(subbeats)) * subbeatWidth
     let cents = position / centWidth
 
     return MIDIPianoRollPosition(
@@ -562,11 +562,11 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
     // Calculate new position
     var position = point
     let bars = position / barWidth
-    position -= CGFloat(Int(bars))
+    position -= CGFloat(Int(bars)) * barWidth
     let beats = position / normalizedBeatWidth
-    position -= CGFloat(Int(beats))
+    position -= CGFloat(Int(beats)) * normalizedBeatWidth
     let subbeats = position / subbeatWidth
-    position -= CGFloat(Int(subbeats))
+    position -= CGFloat(Int(subbeats)) * subbeatWidth
     let cents = position / centWidth
 
     return MIDIPianoRollPosition(
@@ -586,11 +586,11 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
     // Calculate new position
     var width = cell.frame.size.width
     let bars = width / barWidth
-    width -= CGFloat(Int(bars))
+    width -= CGFloat(Int(bars)) * barWidth
     let beats = width / normalizedBeatWidth
-    width -= CGFloat(Int(beats))
+    width -= CGFloat(Int(beats)) * normalizedBeatWidth
     let subbeats = width / subbeatWidth
-    width -= CGFloat(Int(subbeats))
+    width -= CGFloat(Int(subbeats)) * subbeatWidth
     let cents = width / centWidth
 
     return MIDIPianoRollPosition(
