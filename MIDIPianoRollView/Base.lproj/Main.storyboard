@@ -24,25 +24,47 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZPV-dy-jkB">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" translatesAutoresizingMaskIntoConstraints="NO" id="UkV-Qr-S3s">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="oRk-M2-GEj">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="31"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Mode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eka-cH-qeQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="326" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IJj-Pq-OiZ">
-                                                <rect key="frame" x="326" y="0.0" width="51" height="20.5"/>
-                                                <connections>
-                                                    <action selector="editModeValueChangedWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="49Z-Qx-s00"/>
-                                                </connections>
-                                            </switch>
+                                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" translatesAutoresizingMaskIntoConstraints="NO" id="UkV-Qr-S3s">
+                                                <rect key="frame" x="0.0" y="0.0" width="183.5" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Mode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eka-cH-qeQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="134.5" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IJj-Pq-OiZ">
+                                                        <rect key="frame" x="134.5" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="editModeValueChangedWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="49Z-Qx-s00"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" translatesAutoresizingMaskIntoConstraints="NO" id="FL1-NN-YDP">
+                                                <rect key="frame" x="191.5" y="0.0" width="183.5" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multiple Editing:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jh1-jQ-kBM">
+                                                        <rect key="frame" x="0.0" y="0.0" width="134.5" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5dL-dn-DdL">
+                                                        <rect key="frame" x="134.5" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="multipleEditingModeValueChangedWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="uul-JN-m1N"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qER-zP-AeS" customClass="MIDIPianoRollView" customModule="MIDIPianoRollView" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="20.5" width="375" height="626.5"/>
+                                        <rect key="frame" x="0.0" y="31" width="375" height="616"/>
                                     </scrollView>
                                 </subviews>
                             </stackView>

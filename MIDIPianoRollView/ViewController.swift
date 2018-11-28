@@ -49,6 +49,10 @@ class ViewController: UIViewController, MIDIPianoRollViewDelegate {
     pianoRollView?.isEditing = sender.isOn
   }
 
+  @IBAction func multipleEditingModeValueChanged(sender: UISwitch) {
+    pianoRollView?.isMultipleEditingEnabled = sender.isOn
+  }
+
   // MARK: MIDIPianoRollViewDelegate
   
   func midiPianoRollView(_ midiPianoRollView: MIDIPianoRollView, didMove cellView: MIDIPianoRollCellView, to newPosition: MIDIPianoRollPosition, pitch: UInt8) {
@@ -64,6 +68,10 @@ class ViewController: UIViewController, MIDIPianoRollViewDelegate {
     guard let index = notes.lastIndex(of: cellView.note) else { return }
     notes[index].duration = newDuration
     pianoRollView?.notes = notes
+  }
+
+  func midiPianoRollViewMultipleEditingDraggingView(_ midiPianoRollView: MIDIPianoRollView) -> UIView? {
+    return nil
   }
 }
 

@@ -39,14 +39,21 @@ public protocol MIDIPianoRollCellViewDelegate: class {
 open class MIDIPianoRollCellView: UIView {
   /// The rendering note data.
   public var note: MIDIPianoRollNote
-  /// Is cell selected or not.
-  public var isSelected: Bool = false
   /// Inset from the rightmost side on the cell to capture resize gesture.
   public var resizingViewWidth: CGFloat = 20
   /// View that holds the pan gesture on right most side in the view to use in resizing cell.
   internal let resizeView = UIView()
+
   /// Delegate that informs about editing cell.
   public weak var delegate: MIDIPianoRollCellViewDelegate?
+
+  /// Is cell selected or not.
+  public var isSelected: Bool = false {
+    didSet {
+      layer.borderWidth = isSelected ? 2 : 0
+      layer.borderColor = isSelected ? UIColor.blue.cgColor : UIColor.clear.cgColor
+    }
+  }
 
   // MARK: Init
 

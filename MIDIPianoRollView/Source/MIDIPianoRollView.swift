@@ -34,6 +34,12 @@ public protocol MIDIPianoRollViewDelegate: class {
   func midiPianoRollView(_ midiPianoRollView: MIDIPianoRollView,
                          didResize cellView: MIDIPianoRollCellView,
                          to newDuration: MIDIPianoRollPosition)
+
+  /// Gets custom dragging view from delegate. The view using for multiple selection visual cue.
+  ///
+  /// - Parameter midiPianoRollView: Editing piano roll.
+  /// - Returns: Visual cue that represents the multiple selected item area.
+  func midiPianoRollViewMultipleEditingDraggingView(_ midiPianoRollView: MIDIPianoRollView) -> UIView?
 }
 
 /// Piano roll with customisable row count, row range, beat count and editable note cells.
@@ -192,8 +198,13 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
   public var isZoomingEnabled: Bool = true { didSet { pinchGesture.isEnabled = isZoomingEnabled }}
   /// Enables/disables the measure rendering. Defaults true.
   public var isMeasureEnabled: Bool = true { didSet { needsRedrawBar = true }}
-  /// Enables/disables the multiple note cell editing at once. Defaults true.
-  public var isMultipleEditingEnabled: Bool = true
+  /// Enables/disables the multiple note cell editing at once. Defaults false.
+  public var isMultipleEditingEnabled: Bool = false
+
+  /// Visual cue for editing multiple cells.
+  private var multipleEditingDraggingView: UIView?
+  /// Multiple editing start position on piano roll.
+  private var multipleEditingDraggingViewStartPosition: CGPoint?
 
   /// Pinch gesture for zooming.
   private var pinchGesture = UIPinchGestureRecognizer()
@@ -517,39 +528,15 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
 
   private func gridPosition(
     with pianoRollPosition: MIDIPianoRollPosition,
-    barWidth: CGFloat,
-    beatWidth: CGFloat,
-    subbeatWidth: CGFloat,
-    centWidth: CGFloat) -> CGFloat {
-    let bars = CGFloat(pianoRollPosition.bar) * barWidth
-    let beats = CGFloat(pianoRollPosition.beat) * beatWidth
-    let subbeats = CGFloat(pianoRollPosition.subbeat) * subbeatWidth
-    let cents = CGFloat(pianoRollPosition.cent) * centWidth
+    barWidth: CGFloat? = nil,
+    beatWidth: CGFloat? = nil,
+    subbeatWidth: CGFloat? = nil,
+    centWidth: CGFloat? = nil) -> CGFloat {
+    let bars = CGFloat(pianoRollPosition.bar) * (barWidth ?? ((self.beatWidth * CGFloat(zoomLevel.rawValue) / 4.0) * CGFloat(timeSignature.beats)))
+    let beats = CGFloat(pianoRollPosition.beat) * (beatWidth ?? self.beatWidth * CGFloat(zoomLevel.rawValue) / 4.0)
+    let subbeats = CGFloat(pianoRollPosition.subbeat) * (subbeatWidth ?? ((self.beatWidth * CGFloat(zoomLevel.rawValue) / 4.0) * CGFloat(zoomLevel.rawValue) / 4.0))
+    let cents = CGFloat(pianoRollPosition.cent) * (centWidth ?? (((self.beatWidth * CGFloat(zoomLevel.rawValue) / 4.0) / 4.0) / 240.0))
     return bars + beats + subbeats + cents
-  }
-
-  private func pianoRollPosition(for cell: MIDIPianoRollCellView) -> MIDIPianoRollPosition {
-    // Calculate measure widths
-    let normalizedBeatWidth = beatWidth * CGFloat(zoomLevel.rawValue) / 4.0
-    let barWidth = normalizedBeatWidth * CGFloat(timeSignature.beats)
-    let subbeatWidth = normalizedBeatWidth / 4.0
-    let centWidth = subbeatWidth / 240.0
-
-    // Calculate new position
-    var position = cell.frame.origin.x - rowWidth
-    let bars = position / barWidth
-    position -= CGFloat(Int(bars)) * barWidth
-    let beats = position / normalizedBeatWidth
-    position -= CGFloat(Int(beats)) * normalizedBeatWidth
-    let subbeats = position / subbeatWidth
-    position -= CGFloat(Int(subbeats)) * subbeatWidth
-    let cents = position / centWidth
-
-    return MIDIPianoRollPosition(
-      bar: Int(bars),
-      beat: Int(beats),
-      subbeat: Int(subbeats),
-      cent: Int(cents))
   }
 
   private func pianoRollPosition(for point: CGFloat) -> MIDIPianoRollPosition {
@@ -576,6 +563,11 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
       cent: Int(cents))
   }
 
+  private func pianoRollPosition(for cell: MIDIPianoRollCellView) -> MIDIPianoRollPosition {
+    let point = cell.frame.origin.x - rowWidth
+    return pianoRollPosition(for: point)
+  }
+
   private func pianoRollDuration(for cell: MIDIPianoRollCellView) -> MIDIPianoRollPosition {
     // Calculate measure widths
     let normalizedBeatWidth = beatWidth * CGFloat(zoomLevel.rawValue) / 4.0
@@ -600,10 +592,14 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
       cent: Int(cents))
   }
 
-  private func pianoRollPitch(for cell: MIDIPianoRollCellView) -> UInt8 {
-    let position = cell.frame.origin.y - measureHeight
-    let index = Int(position / rowHeight)
+  private func pianoRollPitch(for point: CGFloat) -> UInt8 {
+    let index = Int(point / rowHeight)
     return rowViews.indices.contains(index) ? UInt8(rowViews[index].pitch.rawValue) : 0
+  }
+
+  private func pianoRollPitch(for cell: MIDIPianoRollCellView) -> UInt8 {
+    let point = cell.frame.origin.y - measureHeight
+    return pianoRollPitch(for: point)
   }
 
   // MARK: Zooming
@@ -727,7 +723,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
   }
 
   open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-    guard isEditing,
+    guard isEditing, !isMultipleEditingEnabled,
       let cell = cellViews.filter({ $0.frame.contains(point) }).first
       else { return super.hitTest(point, with: event) }
 
@@ -736,5 +732,98 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
       return cell.resizeView
     }
     return cell
+  }
+
+  // MARK: Multiple Editing
+
+  open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesBegan(touches, with: event)
+    guard isEditing, isMultipleEditingEnabled,
+      multipleEditingDraggingView == nil,
+      let touch = touches.first
+      else { return }
+
+    // Reset cell views selected state.
+    cellViews.forEach({ $0.isSelected = false })
+
+    // Create dragging view.
+    if let view = pianoRollDelegate?.midiPianoRollViewMultipleEditingDraggingView(self) {
+      multipleEditingDraggingView = view
+    } else {
+      multipleEditingDraggingView = UIView()
+      multipleEditingDraggingView?.layer.borderColor = UIColor.red.cgColor
+      multipleEditingDraggingView?.layer.borderWidth = 2
+      multipleEditingDraggingView?.layer.backgroundColor = UIColor.black.cgColor
+      multipleEditingDraggingView?.layer.opacity = 0.3
+    }
+
+    guard let view = multipleEditingDraggingView else { return }
+    addSubview(view)
+
+    // Layout dragging view
+    let location = touch.location(in: self)
+    multipleEditingDraggingView?.frame = CGRect(
+      x: location.x,
+      y: location.y,
+      width: beatWidth,
+      height: rowHeight)
+    multipleEditingDraggingViewStartPosition = multipleEditingDraggingView?.frame.origin
+  }
+
+  open override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesMoved(touches, with: event)
+    guard isEditing, isMultipleEditingEnabled,
+      let dragView = multipleEditingDraggingView,
+      let origin = multipleEditingDraggingViewStartPosition,
+      let touch = touches.first
+      else { return }
+
+    // Update drag view frame
+    let touchLocation = touch.location(in: self)
+    if touchLocation.y < origin.y && touchLocation.x < origin.x {
+      dragView.frame = CGRect(
+        x: touchLocation.x,
+        y: touchLocation.y,
+        width: origin.x - touchLocation.x,
+        height: origin.y - touchLocation.y)
+    } else if touchLocation.y < origin.y && touchLocation.x > origin.x {
+      dragView.frame = CGRect(
+        x: origin.x,
+        y: touchLocation.y,
+        width: touchLocation.x - origin.x,
+        height: origin.y - touchLocation.y)
+    } else if touchLocation.y > origin.y && touchLocation.x > origin.x {
+      dragView.frame = CGRect(
+        x: origin.x,
+        y: origin.y,
+        width: touchLocation.x - origin.x,
+        height: touchLocation.y - origin.y)
+    } else if touchLocation.y > origin.y && touchLocation.x < origin.x {
+      dragView.frame = CGRect(
+        x: touchLocation.x,
+        y: origin.y,
+        width: origin.x - touchLocation.x,
+        height: touchLocation.y - origin.y)
+    }
+
+    cellViews.forEach({ $0.isSelected = $0.frame.intersects(dragView.frame) })
+  }
+
+  open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesCancelled(touches, with: event)
+    guard isEditing, isMultipleEditingEnabled else { return }
+    // Unselect cells.
+    cellViews.forEach({ $0.isSelected = false })
+    // Remove dragging view.
+    multipleEditingDraggingView?.removeFromSuperview()
+    multipleEditingDraggingView = nil
+  }
+
+  open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesEnded(touches, with: event)
+    guard isEditing, isMultipleEditingEnabled else { return }
+    // Remove dragging view.
+    multipleEditingDraggingView?.removeFromSuperview()
+    multipleEditingDraggingView = nil
   }
 }
