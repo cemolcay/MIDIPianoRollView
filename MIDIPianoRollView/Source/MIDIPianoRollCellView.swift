@@ -9,44 +9,46 @@
 import UIKit
 
 /// Delegate functions to inform about editing or deleting cell.
-public protocol MIDIPianoRollgCellViewDelegate: class {
+public protocol MIDIPianoRollCellViewDelegate: class {
   /// Informs about moving the cell with the pan gesture.
   ///
   /// - Parameters:
-  ///   - midiTimeTableCellView: Cell that moving around.
+  ///   - midiPianoRollCellView: Cell that moving around.
   ///   - pan: Pan gesture that moves the cell.
-  func midiTimeTableCellViewDidMove(_ midiTimeTableCellView: MIDITimeTableCellView, pan: UIPanGestureRecognizer)
+  func midiPianoRollCellViewDidMove(_ midiPianoRollCellView: MIDIPianoRollCellView, pan: UIPanGestureRecognizer)
 
   /// Informs about resizing the cell with the pan gesture.
   ///
   /// - Parameters:
-  ///   - midiTimeTableCellView: Cell that resizing.
+  ///   - midiPianoRollCellView: Cell that resizing.
   ///   - pan: Pan gesture that resizes the cell.
-  func midiTimeTableCellViewDidResize(_ midiTimeTableCellView: MIDITimeTableCellView, pan: UIPanGestureRecognizer)
+  func midiPianoRollCellViewDidResize(_ midiPianoRollCellView: MIDIPianoRollCellView, pan: UIPanGestureRecognizer)
 
   /// Informs about the cell has been tapped.
   ///
-  /// - Parameter midiTimeTableCellView: The cell that tapped.
-  func midiTimeTableCellViewDidTap(_ midiTimeTableCellView: MIDITimeTableCellView)
+  /// - Parameter midiPianoRollCellView: The cell that tapped.
+  func midiPianoRollCellViewDidTap(_ midiPianoRollCellView: MIDIPianoRollCellView)
 
   /// Informs about the cell is about to delete.
   ///
-  /// - Parameter midiTimeTableCellView: Cell is going to delete.
-  func midiTimeTableCellViewDidDelete(_ midiTimeTableCellView: MIDITimeTableCellView)
+  /// - Parameter midiPianoRollCellView: Cell is going to delete.
+  func midiPianoRollCellViewDidDelete(_ midiPianoRollCellView: MIDIPianoRollCellView)
 }
 
 /// Represents a MIDI note of the `MIDIPianoRollView`.
 open class MIDIPianoRollCellView: UIView {
   /// The rendering note data.
   public var note: MIDIPianoRollNote
-  /// View that holds the pan gesture on right most side in the view to use in resizing cell.
-  private let resizeView = UIView()
-  /// Inset from the rightmost side on the cell to capture resize gesture.
-  public var resizePanThreshold: CGFloat = 10
-  /// Delegate that informs about editing cell.
-  open weak var delegate: MIDIPianoRollCellViewDelegate?
   /// Is cell selected or not.
   public var isSelected: Bool = false
+  /// Inset from the rightmost side on the cell to capture resize gesture.
+  public var resizingViewWidth: CGFloat = 10
+  /// View that holds the pan gesture on right most side in the view to use in resizing cell.
+  private let resizeView = UIView()
+  /// Delegate that informs about editing cell.
+  open weak var delegate: MIDIPianoRollCellViewDelegate?
+
+  // MARK: Init
 
   /// Initilizes the cell view with a note data.
   ///
@@ -84,23 +86,23 @@ open class MIDIPianoRollCellView: UIView {
   open override func layoutSubviews() {
     super.layoutSubviews()
     resizeView.frame = CGRect(
-      x: frame.size.width - resizePanThreshold,
+      x: frame.size.width - resizingViewWidth,
       y: 0,
-      width: resizePanThreshold,
+      width: resizingViewWidth,
       height: frame.size.height)
   }
 
   // MARK: Gestures
+
   @objc public func didTap(tap: UITapGestureRecognizer) {
-    delegate?.midiTimeTableCellViewDidTap(self)
+    delegate?.midiPianoRollCellViewDidTap(self)
   }
 
   @objc public func didMove(pan: UIPanGestureRecognizer) {
-    delegate?.midiTimeTableCellViewDidMove(self, pan: pan)
+    delegate?.midiPianoRollCellViewDidMove(self, pan: pan)
   }
 
   @objc public func didResize(pan: UIPanGestureRecognizer) {
-    delegate?.midiTimeTableCellViewDidResize(self, pan: pan)
+    delegate?.midiPianoRollCellViewDidResize(self, pan: pan)
   }
-
 }
