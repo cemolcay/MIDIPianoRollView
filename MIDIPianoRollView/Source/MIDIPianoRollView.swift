@@ -506,13 +506,13 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
 
         // Get in new zoom level.
         if beatWidth >= maxBeatWidth {
-          if let zoom = zoomLevel.zoomedIn, zoom != maxZoomLevel {
+          if let zoom = zoomLevel.zoomedIn, zoom != maxZoomLevel.zoomedIn {
             zoomLevel = zoom
             beatWidth = minBeatWidth
             needsRedrawBar = true
           }
         } else if beatWidth <= minBeatWidth {
-          if let zoom = zoomLevel.zoomedOut, zoom != minZoomLevel {
+          if let zoom = zoomLevel.zoomedOut, zoom != minZoomLevel.zoomedOut {
             zoomLevel = zoom
             beatWidth = maxBeatWidth
             needsRedrawBar = true
