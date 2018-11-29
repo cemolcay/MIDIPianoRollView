@@ -806,7 +806,6 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
   public func midiPianoRollCellViewDidMove(_ midiPianoRollCellView: MIDIPianoRollCellView, pan: UIPanGestureRecognizer) {
     guard isEditing else { return }
     let translation = pan.translation(in: self)
-    let selectedCells = cellViews.filter({ $0.isSelected })
 
     // Mark the panning cell selected.
     if case .began = pan.state {
@@ -814,6 +813,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
     }
 
     // Get cell bounds.
+    let selectedCells = cellViews.filter({ $0.isSelected })
     let topMostCellPosition = selectedCells.map({ $0.frame.minY }).sorted().first ?? 0
     let lowestCellPosition = selectedCells.map({ $0.frame.maxX }).sorted().last ?? 0
     let leftMostCellPosition = selectedCells.map({ $0.frame.minX }).sorted().first ?? 0
@@ -865,11 +865,16 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
     }
 
     let selectedCells = cellViews.filter({ $0.isSelected })
+    let farMostCellPosition = selectedCells.map({ $0.frame.maxX }).sorted().last ?? 0
+
     for cell in selectedCells {
-      if translation.x > beatWidth, cell.frame.maxX < contentSize.width - beatWidth { // Increase
+      if translation.x > beatWidth,
+        cell.frame.maxX < contentSize.width - beatWidth,
+        farMostCellPosition + beatWidth <= contentSize.width { // Increase
         cell.frame.size.width += beatWidth
         pan.setTranslation(CGPoint(x: 0, y: translation.y), in: self)
-      } else if translation.x < -beatWidth, cell.frame.width > beatWidth { // Decrease
+      } else if translation.x < -beatWidth,
+        cell.frame.width > beatWidth { // Decrease
         cell.frame.size.width -= beatWidth
         pan.setTranslation(CGPoint(x: 0, y: translation.y), in: self)
       }
