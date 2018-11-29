@@ -806,31 +806,43 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
   public func midiPianoRollCellViewDidMove(_ midiPianoRollCellView: MIDIPianoRollCellView, pan: UIPanGestureRecognizer) {
     guard isEditing else { return }
     let translation = pan.translation(in: self)
+    let selectedCells = cellViews.filter({ $0.isSelected })
 
     // Mark the panning cell selected.
     if case .began = pan.state {
       midiPianoRollCellView.isSelected = true
     }
 
+    // Get cell bounds.
+    let topMostCellPosition = selectedCells.map({ $0.frame.minY }).sorted().first ?? 0
+    let lowestCellPosition = selectedCells.map({ $0.frame.maxX }).sorted().last ?? 0
+    let leftMostCellPosition = selectedCells.map({ $0.frame.minX }).sorted().first ?? 0
+    let farMostCellPosition = selectedCells.map({ $0.frame.maxX }).sorted().last ?? 0
+
     // Get all selected cells (in case of multiple selection).
-    let selectedCells = cellViews.filter({ $0.isSelected })
-      for cell in selectedCells {
+    for cell in selectedCells {
       // Horizontal move
-      if translation.x > beatWidth, cell.frame.maxX < contentSize.width { // Right
+      if translation.x > beatWidth,
+        cell.frame.maxX < contentSize.width,
+        farMostCellPosition + beatWidth <= contentSize.width { // Right
         cell.frame.origin.x += beatWidth
         pan.setTranslation(CGPoint(x: 0, y: translation.y), in: self)
-      } else if translation.x < -beatWidth, cell.frame.minX > rowWidth { // Left
+      } else if translation.x < -beatWidth,
+        cell.frame.minX > rowWidth,
+        leftMostCellPosition - beatWidth >= rowWidth { // Left
         cell.frame.origin.x -= beatWidth
         pan.setTranslation(CGPoint(x: 0, y: translation.y), in: self)
       }
 
       // Vertical move
       if translation.y > rowHeight,
-        cell.frame.maxY < contentSize.height { // Down
+        cell.frame.maxY < contentSize.height,
+        lowestCellPosition + rowWidth <= contentSize.height { // Down
         cell.frame.origin.y += rowHeight
         pan.setTranslation(CGPoint(x: translation.x, y: 0), in: self)
       } else if translation.y < -rowHeight,
-        cell.frame.minY > measureHeight { // Up
+        cell.frame.minY > measureHeight,
+        topMostCellPosition - rowHeight >= 0 { // Up
         cell.frame.origin.y -= rowHeight
         pan.setTranslation(CGPoint(x: translation.x, y: 0), in: self)
       }
@@ -839,8 +851,6 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
         let newCellPosition = pianoRollPosition(for: cell)
         let newCellRow = pianoRollPitch(for: cell)
         pianoRollDelegate?.midiPianoRollView(self, didMove: cell, to: newCellPosition, pitch: newCellRow)
-        cell.isSelected = true
-        cell.setNeedsLayout()
       }
     }
   }
