@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MIDIPianoRollView Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/MIDIPianoRollView" class="dashAnchor"></a>
+    <a title="MIDIPianoRollView Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">MIDIPianoRollView Docs</a> (91% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">MIDIPianoRollView Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        MIDIPianoRollView Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIPianoRollCellView.html">MIDIPianoRollCellView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIPianoRollMeasureLineLayer.html">MIDIPianoRollMeasureLineLayer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIPianoRollRowView.html">MIDIPianoRollRowView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIPianoRollView.html">MIDIPianoRollView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIPianoRollView/Bars.html">– Bars</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIPianoRollView/Keys.html">– Keys</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MIDIPianoRollView/ZoomLevel.html">– ZoomLevel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NoteValue.html">NoteValue</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:17MIDIPianoRollView1poiyAA0aB8PositionVAD_ADtF">+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:17MIDIPianoRollView1soiyAA0aB8PositionVAD_ADtF">-(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:17MIDIPianoRollView1loiySbAA0aB8PositionV_ADtF">&lt;(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/MIDIPianoRollCellViewDelegate.html">MIDIPianoRollCellViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MIDIPianoRollViewDelegate.html">MIDIPianoRollViewDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/MIDIPianoRollNote.html">MIDIPianoRollNote</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MIDIPianoRollPosition.html">MIDIPianoRollPosition</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>MIDIPianoRollView</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">MIDIPianoRollView</span> <span class="p">:</span> <span class="kt">UIScrollView</span><span class="p">,</span> <span class="kt"><a href="../Protocols/MIDIPianoRollCellViewDelegate.html">MIDIPianoRollCellViewDelegate</a></span><span class="p">,</span> <span class="kt">UIGestureRecognizerDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p>Piano roll with customisable row count, row range, beat count and editable note cells.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC4BarsO"></a>
+                    <a name="//apple_ref/swift/Enum/Bars" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC4BarsO">Bars</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Piano roll bars.</p>
+
+                        <a href="../Classes/MIDIPianoRollView/Bars.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Bars</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC4KeysO"></a>
+                    <a name="//apple_ref/swift/Enum/Keys" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC4KeysO">Keys</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Piano roll keys.</p>
+
+                        <a href="../Classes/MIDIPianoRollView/Keys.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Keys</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC9ZoomLevelO"></a>
+                    <a name="//apple_ref/swift/Enum/ZoomLevel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC9ZoomLevelO">ZoomLevel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Zoom level of the piano roll that showing the mininum amount of beat.</p>
+
+                        <a href="../Classes/MIDIPianoRollView/ZoomLevel.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ZoomLevel</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC5notesSayAA0aB4NoteVGvp"></a>
+                    <a name="//apple_ref/swift/Property/notes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC5notesSayAA0aB4NoteVGvp">notes</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>All notes in the piano roll.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">notes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/MIDIPianoRollNote.html">MIDIPianoRollNote</a></span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/timeSignature" class="dashAnchor"></a>
+                    <a class="token" href="#/">timeSignature</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Time signature of the piano roll. Defaults to 4/4.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">timeSignature</span><span class="p">:</span> <span class="o">&lt;&lt;</span><span class="n">error</span> <span class="n">type</span><span class="o">&gt;&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC4barsAB4BarsOvp"></a>
+                    <a name="//apple_ref/swift/Property/bars" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC4barsAB4BarsOvp">bars</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Bar count of the piano roll. Defaults to auto.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">bars</span><span class="p">:</span> <span class="kt">MIDIPianoRollView</span><span class="o">.</span><span class="kt"><a href="../Classes/MIDIPianoRollView/Bars.html">Bars</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC4keysAB4KeysOvp"></a>
+                    <a name="//apple_ref/swift/Property/keys" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC4keysAB4KeysOvp">keys</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Rendering note range of the piano roll. Defaults all MIDI notes, from 0 to 127.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">keys</span><span class="p">:</span> <span class="kt">MIDIPianoRollView</span><span class="o">.</span><span class="kt"><a href="../Classes/MIDIPianoRollView/Keys.html">Keys</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC9zoomLevelAB04ZoomE0Ovp"></a>
+                    <a name="//apple_ref/swift/Property/zoomLevel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC9zoomLevelAB04ZoomE0Ovp">zoomLevel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Current <code><a href="../Classes/MIDIPianoRollView/ZoomLevel.html">ZoomLevel</a></code> of the piano roll.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">zoomLevel</span><span class="p">:</span> <span class="kt">MIDIPianoRollView</span><span class="o">.</span><span class="kt"><a href="../Classes/MIDIPianoRollView/ZoomLevel.html">ZoomLevel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC12minZoomLevelAB0eF0Ovp"></a>
+                    <a name="//apple_ref/swift/Property/minZoomLevel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC12minZoomLevelAB0eF0Ovp">minZoomLevel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Minimum amount of the zoom level.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minZoomLevel</span><span class="p">:</span> <span class="kt">MIDIPianoRollView</span><span class="o">.</span><span class="kt"><a href="../Classes/MIDIPianoRollView/ZoomLevel.html">ZoomLevel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC12maxZoomLevelAB0eF0Ovp"></a>
+                    <a name="//apple_ref/swift/Property/maxZoomLevel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC12maxZoomLevelAB0eF0Ovp">maxZoomLevel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Maximum amount of the zoom level.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxZoomLevel</span><span class="p">:</span> <span class="kt">MIDIPianoRollView</span><span class="o">.</span><span class="kt"><a href="../Classes/MIDIPianoRollView/ZoomLevel.html">ZoomLevel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC9zoomSpeed12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/zoomSpeed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC9zoomSpeed12CoreGraphics7CGFloatVvp">zoomSpeed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Speed of zooming by pinch gesture.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">zoomSpeed</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC12maxBeatWidth12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/maxBeatWidth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC12maxBeatWidth12CoreGraphics7CGFloatVvp">maxBeatWidth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Maximum width of a beat on the bar, max zoomed in.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxBeatWidth</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC12minBeatWidth12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/minBeatWidth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC12minBeatWidth12CoreGraphics7CGFloatVvp">minBeatWidth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Minimum width of a beat on the bar, max zoomed out.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minBeatWidth</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC9beatWidth12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/beatWidth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC9beatWidth12CoreGraphics7CGFloatVvp">beatWidth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Current with of a beat on the measure.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">beatWidth</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC13measureHeight12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/measureHeight" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC13measureHeight12CoreGraphics7CGFloatVvp">measureHeight</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fixed height of the bar on the top.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">measureHeight</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC8rowWidth12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/rowWidth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC8rowWidth12CoreGraphics7CGFloatVvp">rowWidth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fixed left hand side row width on the piano roll.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">rowWidth</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC9rowHeight12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/rowHeight" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC9rowHeight12CoreGraphics7CGFloatVvp">rowHeight</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Current height of a row on the piano roll.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">rowHeight</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC12maxRowHeight12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/maxRowHeight" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC12maxRowHeight12CoreGraphics7CGFloatVvp">maxRowHeight</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Maximum height of a row on the piano roll.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxRowHeight</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC12minRowHeight12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/minRowHeight" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC12minRowHeight12CoreGraphics7CGFloatVvp">minRowHeight</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Minimum height of a row on the piano roll.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minRowHeight</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC18measureLabelConfigSo7UILabelCvp"></a>
+                    <a name="//apple_ref/swift/Property/measureLabelConfig" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC18measureLabelConfigSo7UILabelCvp">measureLabelConfig</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Label configuration for the measure beat labels.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">measureLabelConfig</span><span class="p">:</span> <span class="kt">UILabel</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC9lineWidth12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/lineWidth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC9lineWidth12CoreGraphics7CGFloatVvp">lineWidth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Global variable for all line widths.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">lineWidth</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC05pianoB8DelegateAA0abcE0_pSgXwvp"></a>
+                    <a name="//apple_ref/swift/Property/pianoRollDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC05pianoB8DelegateAA0abcE0_pSgXwvp">pianoRollDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delegate that informs about cell changes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">pianoRollDelegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/MIDIPianoRollViewDelegate.html">MIDIPianoRollViewDelegate</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC9isEditingSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isEditing" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC9isEditingSbvp">isEditing</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enables/disables the edit mode. Defaults false.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isEditing</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC16isZoomingEnabledSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isZoomingEnabled" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC16isZoomingEnabledSbvp">isZoomingEnabled</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enables/disables the zooming feature. Defaults true.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isZoomingEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC16isMeasureEnabledSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isMeasureEnabled" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC16isMeasureEnabledSbvp">isMeasureEnabled</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enables/disables the measure rendering. Defaults true.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isMeasureEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC17isMultipleEditingSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isMultipleEditing" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC17isMultipleEditingSbvp">isMultipleEditing</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enables/disables the multiple note cell editing at once. Defaults false.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isMultipleEditing</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Init"></a>
+                <a name="//apple_ref/swift/Section/Init" class="dashAnchor"></a>
+                <a href="#/Init">
+                  <h3 class="section-name">Init</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MIDIPianoRollView@objc(cs)MIDIPianoRollView(im)initWithFrame:"></a>
+                    <a name="//apple_ref/swift/Method/init(frame:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MIDIPianoRollView@objc(cs)MIDIPianoRollView(im)initWithFrame:">init(frame:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initilizes the piano roll with a frame.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="nf">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>frame</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Frame of the view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MIDIPianoRollView@objc(cs)MIDIPianoRollView(im)initWithCoder:"></a>
+                    <a name="//apple_ref/swift/Method/init(coder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MIDIPianoRollView@objc(cs)MIDIPianoRollView(im)initWithCoder:">init(coder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initilizes the piano roll with a coder.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>aDecoder</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Coder.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Lifecycle"></a>
+                <a name="//apple_ref/swift/Section/Lifecycle" class="dashAnchor"></a>
+                <a href="#/Lifecycle">
+                  <h3 class="section-name">Lifecycle</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MIDIPianoRollView@objc(cs)MIDIPianoRollView(im)layoutSubviews"></a>
+                    <a name="//apple_ref/swift/Method/layoutSubviews()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MIDIPianoRollView@objc(cs)MIDIPianoRollView(im)layoutSubviews">layoutSubviews()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">layoutSubviews</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MIDIPianoRollView@objc(cs)MIDIPianoRollView(im)hitTest:withEvent:"></a>
+                    <a name="//apple_ref/swift/Method/hitTest(_:with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MIDIPianoRollView@objc(cs)MIDIPianoRollView(im)hitTest:withEvent:">hitTest(_:with:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">hitTest</span><span class="p">(</span><span class="n">_</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="n">with</span> <span class="nv">event</span><span class="p">:</span> <span class="kt">UIEvent</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">UIView</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollViewAAC6reloadyyF"></a>
+                    <a name="//apple_ref/swift/Method/reload()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC6reloadyyF">reload()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes each component and creates them again.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">reload</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/MIDIPianoRollViewCellDelegate"></a>
+                <a name="//apple_ref/swift/Section/MIDIPianoRollViewCellDelegate" class="dashAnchor"></a>
+                <a href="#/MIDIPianoRollViewCellDelegate">
+                  <h3 class="section-name">MIDIPianoRollViewCellDelegate</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollView0ab4CellC8DelegateP09midiPianobdC7DidMove_3panyAA0abdC0C_So22UIPanGestureRecognizerCtF"></a>
+                    <a name="//apple_ref/swift/Method/midiPianoRollCellViewDidMove(_:pan:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollView0ab4CellC8DelegateP09midiPianobdC7DidMove_3panyAA0abdC0C_So22UIPanGestureRecognizerCtF">midiPianoRollCellViewDidMove(_:pan:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">midiPianoRollCellViewDidMove</span><span class="p">(</span><span class="n">_</span> <span class="nv">midiPianoRollCellView</span><span class="p">:</span> <span class="kt"><a href="../Classes/MIDIPianoRollCellView.html">MIDIPianoRollCellView</a></span><span class="p">,</span> <span class="nv">pan</span><span class="p">:</span> <span class="kt">UIPanGestureRecognizer</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollView0ab4CellC8DelegateP09midiPianobdC9DidResize_3panyAA0abdC0C_So22UIPanGestureRecognizerCtF"></a>
+                    <a name="//apple_ref/swift/Method/midiPianoRollCellViewDidResize(_:pan:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollView0ab4CellC8DelegateP09midiPianobdC9DidResize_3panyAA0abdC0C_So22UIPanGestureRecognizerCtF">midiPianoRollCellViewDidResize(_:pan:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">midiPianoRollCellViewDidResize</span><span class="p">(</span><span class="n">_</span> <span class="nv">midiPianoRollCellView</span><span class="p">:</span> <span class="kt"><a href="../Classes/MIDIPianoRollCellView.html">MIDIPianoRollCellView</a></span><span class="p">,</span> <span class="nv">pan</span><span class="p">:</span> <span class="kt">UIPanGestureRecognizer</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollView0ab4CellC8DelegateP09midiPianobdC6DidTapyyAA0abdC0CF"></a>
+                    <a name="//apple_ref/swift/Method/midiPianoRollCellViewDidTap(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollView0ab4CellC8DelegateP09midiPianobdC6DidTapyyAA0abdC0CF">midiPianoRollCellViewDidTap(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">midiPianoRollCellViewDidTap</span><span class="p">(</span><span class="n">_</span> <span class="nv">midiPianoRollCellView</span><span class="p">:</span> <span class="kt"><a href="../Classes/MIDIPianoRollCellView.html">MIDIPianoRollCellView</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:17MIDIPianoRollView0ab4CellC8DelegateP09midiPianobdC9DidDeleteyyAA0abdC0CF"></a>
+                    <a name="//apple_ref/swift/Method/midiPianoRollCellViewDidDelete(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollView0ab4CellC8DelegateP09midiPianobdC9DidDeleteyyAA0abdC0CF">midiPianoRollCellViewDidDelete(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">midiPianoRollCellViewDidDelete</span><span class="p">(</span><span class="n">_</span> <span class="nv">midiPianoRollCellView</span><span class="p">:</span> <span class="kt"><a href="../Classes/MIDIPianoRollCellView.html">MIDIPianoRollCellView</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://github.com/cemolcay/MIDIPianoRollView" target="_blank" rel="external">cemolcay</a>. All rights reserved. (Last updated: 2018-11-29)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
