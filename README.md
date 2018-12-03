@@ -29,6 +29,13 @@ Create a `MIDIPianoRollView` either from storyboard (subclass from `UIScrollView
 	-  A `Scale` of notes between specified octave range
 	-  Or custom unordered pitches.
 
+#### `MIDIPianoRollView.Bars`
+
+- An enum that represents the bar count on the piano roll.
+- It can be either
+	- A fixed value by `.fixed(barCount)` 
+	- Or `.auto` that auto-caluclating bar count by the data source.
+
 #### `MIDIPianoRollNote`
 
 - Set the `notes` data source array in order to pop the notes. 
