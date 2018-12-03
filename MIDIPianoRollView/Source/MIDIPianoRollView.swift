@@ -361,7 +361,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
       let renderingTexts = zoomLevel.renderingMeasureTexts
 
       // Create lines
-      let lineCount = barCount * timeSignature.beats * zoomLevel.rawValue
+      let lineCount = barCount * zoomLevel.rawValue
       var linePosition: MIDIPianoRollPosition = .zero
       for _ in 0...lineCount {
         // Create measure line
@@ -385,12 +385,6 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
 
         // Draw beat text
         if measureLine.showsBeatText && isMeasureEnabled {
-          measureLine.textLayer.frame = CGRect(
-            x: 2,
-            y: measureHeight - 15,
-            width: max(measureHeight, beatWidth),
-            height: 15)
-          measureLine.textLayer.fontSize = 13
           measureLine.textLayer.string = "\(linePosition)"
         }
 
@@ -412,6 +406,14 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
       // Layout measure line
       line.lineLayer.frame = CGRect(origin: .zero, size: line.frame.size)
       line.lineLayer.backgroundColor = line.pianoRollPosition.isBarPosition ? UIColor.black.cgColor : UIColor.gray.cgColor
+
+      // Layout measure text
+      line.textLayer.frame = CGRect(
+        x: 2,
+        y: measureHeight - 15,
+        width: beatWidth,
+        height: 15)
+      line.textLayer.fontSize = 13
 
       // Layout vertical grid line
       verticalGridLines[index].frame = CGRect(

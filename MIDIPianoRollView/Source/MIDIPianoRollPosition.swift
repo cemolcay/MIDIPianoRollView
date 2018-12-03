@@ -204,15 +204,13 @@ extension MIDIPianoRollPosition {
       return NoteValue(type: .whole)
     } else if beat == 2, subbeat == 0, cent == 0 {
       return NoteValue(type: .half)
-    } else if beat == 1, subbeat == 0, cent == 0 {
+    } else if subbeat == 0, cent == 0 {
       return NoteValue(type: .quarter)
     } else if subbeat == 2, cent == 0 {
       return NoteValue(type: .eighth)
-    } else if subbeat == 1, cent == 0 {
-      return NoteValue(type: .sixteenth)
-    } else if subbeat == 0, cent == 120 {
+    } else if cent == 120 {
       return NoteValue(type: .thirtysecond)
-    } else if subbeat == 0, cent == 60 {
+    } else if cent == 60 {
       return NoteValue(type: .sixtyfourth)
     }
     return nil

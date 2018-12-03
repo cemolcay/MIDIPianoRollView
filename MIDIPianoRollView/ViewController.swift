@@ -41,6 +41,8 @@ class ViewController: UIViewController, MIDIPianoRollViewDelegate {
     pianoRollView?.pianoRollDelegate = self
     pianoRollView?.keys = .ranged(50...70)
     pianoRollView?.notes = notes
+    pianoRollView?.bars = .fixed(4) // 4-bars
+    pianoRollView?.maxZoomLevel = .thirtysecondNotes
   }
 
   // MARK: Actions
