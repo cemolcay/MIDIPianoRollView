@@ -123,7 +123,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
     public var color: UIColor {
       switch self {
       case .rowHorizontal: return .black
-      case .rowVertical: return .red
+      case .rowVertical: return .black
       case .measureBottom: return .black
       case .measureText: return .black
       case .bar: return .black
@@ -146,7 +146,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
       case .measureText: return nil
       case .bar: return nil
       case .half: return nil
-      case .quarter: return [4, 4]
+      case .quarter: return nil
       case .eighth: return nil
       case .sixteenth: return nil
       case .thirtysecond: return nil
@@ -405,15 +405,15 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
 
     // Layout master layers
     cellLayer.frame = CGRect(
-      x: 0,
+      x: rowWidth,
       y: isMeasureEnabled ? measureHeight : 0,
-      width: contentFrame.size.width,
+      width: contentFrame.size.width - rowWidth,
       height: contentFrame.size.height - measureHeight)
 
     gridLayer.frame = CGRect(
-      x: 0,
+      x: rowWidth,
       y: isMeasureEnabled ? measureHeight : 0,
-      width: contentFrame.size.width,
+      width: contentFrame.size.width - rowWidth,
       height: contentFrame.size.height - measureHeight)
 
     rowLayer.frame = CGRect(
@@ -424,9 +424,9 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
     )
 
     measureLayer.frame = CGRect(
-      x: 0,
+      x: rowWidth,
       y: contentOffset.y,
-      width: contentFrame.size.width,
+      width: contentFrame.size.width - rowWidth,
       height: isMeasureEnabled ? measureHeight : 0)
 
     // Layout rows
@@ -451,7 +451,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
       currentY += rowHeight
     }
 
-    // Layout bottom horizontal line
+    // Layout bottom row horizontal line
     let horizontalGridLinePath = UIBezierPath()
     horizontalGridLinePath.move(to: CGPoint(x: contentOffset.x, y: currentY))
     horizontalGridLinePath.addLine(to: CGPoint(x: gridLayer.frame.size.width + contentOffset.x, y: currentY))
@@ -461,8 +461,8 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
 
     // Layout left row line
     let rowLinePath = UIBezierPath()
-    rowLinePath.move(to: CGPoint(x: rowWidth, y: contentOffset.y))
-    rowLinePath.addLine(to: CGPoint(x: rowWidth, y: rowLayer.frame.size.height + contentOffset.y))
+    rowLinePath.move(to: CGPoint(x: rowWidth, y: contentOffset.y - measureLayer.frame.size.height))
+    rowLinePath.addLine(to: CGPoint(x: rowWidth, y: rowLayer.frame.size.height + contentOffset.y - measureLayer.frame.size.height))
     rowLinePath.close()
     rowLinePath.lineWidth = GridLines.rowVertical.width
     rowLine.path = rowLinePath.cgPath
@@ -531,7 +531,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
     }
 
     // Layout measure and vertical lines.
-    var currentX: CGFloat = rowWidth
+    var currentX: CGFloat = 0
     for (index, measureLine) in measureLines.enumerated() {
       let gridLine = GridLines(from: measureLine.pianoRollPosition) ?? .default
       measureLine.frame = CGRect(
@@ -567,8 +567,8 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
 
     // Layout measure bottom line
     let measureBottomLinePath = UIBezierPath()
-    measureBottomLinePath.move(to: CGPoint(x: contentOffset.x, y: measureLayer.frame.size.height))
-    measureBottomLinePath.addLine(to: CGPoint(x: measureLayer.frame.size.width + contentOffset.x, y: measureLayer.frame.size.height))
+    measureBottomLinePath.move(to: CGPoint(x: contentOffset.x - rowWidth, y: measureLayer.frame.size.height))
+    measureBottomLinePath.addLine(to: CGPoint(x: measureLayer.frame.size.width + contentOffset.x - rowWidth, y: measureLayer.frame.size.height))
     measureBottomLinePath.close()
     measureBottomLinePath.lineWidth = GridLines.measureBottom.width
     measureBottomLine.path = measureBottomLinePath.cgPath
@@ -600,23 +600,23 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
       let cellWidth = endPosition - startPosition
 
       cell.frame = CGRect(
-        x: rowWidth + startPosition,
+        x: startPosition,
         y: row.frame.origin.y,
         width: cellWidth,
         height: rowHeight)
-      cell.backgroundColor = .green
     }
 
     CATransaction.commit()
   }
 
   open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    let cellPoint = convert(point, to: cellLayer)
     guard isEditing,
-      let cell = cellViews.filter({ $0.frame.contains(point) }).first
+      let cell = cellViews.filter({ $0.frame.contains(cellPoint) }).first
       else { return super.hitTest(point, with: event) }
 
     // Check if cell is moving or resizing.
-    if cell.resizeView.bounds.contains(convert(point, to: cell.resizeView)) {
+    if cell.resizeView.frame.contains(convert(point, to: cell)) {
       return cell.resizeView
     }
     return cell
@@ -743,7 +743,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
   /// - Parameter cell: The cell that you want to get `MIDIPianoRollPosition`.
   /// - Returns: Returns the `MIDIPianoRollPosition` value of a position on the grid.
   private func pianoRollPosition(for cell: MIDIPianoRollCellView) -> MIDIPianoRollPosition {
-    let point = cell.frame.origin.x - rowWidth
+    let point = cell.frame.origin.x
     return pianoRollPosition(for: point)
   }
 
@@ -861,7 +861,6 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
       multipleEditingDraggingViewPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didDrag(pan:)))
       multipleEditingDraggingViewPanGestureRecognizer?.maximumNumberOfTouches = 1
       multipleEditingDraggingViewPanGestureRecognizer?.minimumNumberOfTouches = 1
-      multipleEditingDraggingViewPanGestureRecognizer?.delegate = self
       guard let pan = multipleEditingDraggingViewPanGestureRecognizer else { return }
       addGestureRecognizer(pan)
     } else {
@@ -955,7 +954,8 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
 
   public func midiPianoRollCellViewDidMove(_ midiPianoRollCellView: MIDIPianoRollCellView, pan: UIPanGestureRecognizer) {
     guard isEditing else { return }
-    let translation = pan.translation(in: self)
+    let translationView = self
+    let translation = pan.translation(in: translationView)
 
     // Mark the panning cell selected.
     if case .began = pan.state {
@@ -973,28 +973,28 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
     for cell in selectedCells {
       // Horizontal move
       if translation.x > beatWidth,
-        cell.frame.maxX < contentSize.width,
-        farMostCellPosition + beatWidth <= contentSize.width { // Right
+        cell.frame.maxX < cellLayer.frame.size.width,
+        farMostCellPosition + beatWidth <= cellLayer.frame.size.width { // Right
         cell.frame.origin.x += beatWidth
-        pan.setTranslation(CGPoint(x: 0, y: translation.y), in: self)
+        pan.setTranslation(CGPoint(x: 0, y: translation.y), in: translationView)
       } else if translation.x < -beatWidth,
-        cell.frame.minX > rowWidth,
-        leftMostCellPosition - beatWidth >= rowWidth { // Left
+        cell.frame.minX > 0,
+        leftMostCellPosition - beatWidth >= 0 { // Left
         cell.frame.origin.x -= beatWidth
-        pan.setTranslation(CGPoint(x: 0, y: translation.y), in: self)
+        pan.setTranslation(CGPoint(x: 0, y: translation.y), in: translationView)
       }
 
       // Vertical move
       if translation.y > rowHeight,
-        cell.frame.maxY < contentSize.height,
-        lowestCellPosition + rowWidth <= contentSize.height { // Down
+        cell.frame.maxY < cellLayer.frame.size.height,
+        lowestCellPosition + rowWidth <= cellLayer.frame.size.height { // Down
         cell.frame.origin.y += rowHeight
-        pan.setTranslation(CGPoint(x: translation.x, y: 0), in: self)
+        pan.setTranslation(CGPoint(x: translation.x, y: 0), in: translationView)
       } else if translation.y < -rowHeight,
-        cell.frame.minY > measureHeight,
+        cell.frame.minY > 0,
         topMostCellPosition - rowHeight >= 0 { // Up
         cell.frame.origin.y -= rowHeight
-        pan.setTranslation(CGPoint(x: translation.x, y: 0), in: self)
+        pan.setTranslation(CGPoint(x: translation.x, y: 0), in: translationView)
       }
 
       if case .ended = pan.state {
@@ -1042,5 +1042,12 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
 
   public func midiPianoRollCellViewDidDelete(_ midiPianoRollCellView: MIDIPianoRollCellView) {
     guard isEditing else { return }
+  }
+
+  // MARK: UIGestureRecognizerDelegate
+
+  public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    print(gestureRecognizer.view, otherGestureRecognizer.view)
+    return true
   }
 }
