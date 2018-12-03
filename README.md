@@ -21,6 +21,14 @@ Usage
 
 Create a `MIDIPianoRollView` either from storyboard (subclass from `UIScrollView`) or programmatically.
 
+#### `MIDIPianoRollView.Keys`
+
+- An enum that represents the data source of the piano roll's keys.
+- It can be either
+	- 	A range of `UInt8` MIDI notes like `30...50` (30th note to 50th note)
+	-  A `Scale` of notes between specified octave range
+	-  Or custom unordered pitches.
+
 #### `MIDIPianoRollNote`
 
 - Set the `notes` data source array in order to pop the notes. 
@@ -51,7 +59,7 @@ Create a `MIDIPianoRollView` either from storyboard (subclass from `UIScrollView
 - You can set measure position label font and text colors.
 - If you don't want to render measure, then you can set the `isMeasureEnabled` property to false.
 
-#### `ZoomLevel`
+#### `MIDIPianoRollView.ZoomLevel`
 
 - Zoom level represents the currently rendering beat value on the piano roll.
 - It has a customisable `minZoomLevel` and `maxZoomLevel` range.
