@@ -8,6 +8,8 @@
 
 import XCTest
 @testable import MIDIPianoRollView
+import MIDIEventKit
+import MusicTheorySwift
 
 class MIDIPianoRollViewTests: XCTestCase {
 
@@ -34,5 +36,32 @@ extension MIDIPianoRollViewTests {
     XCTAssert(sub2 - sub1 == .zero)
 
     XCTAssertTrue(sub1 > sub2)
+  }
+
+  func testMIDITimestamp() {
+    let tempo = Tempo()
+    let notes: [MIDIPianoRollNote] = [
+      MIDIPianoRollNote(
+        midiNote: 60,
+        velocity: 90,
+        position: MIDIPianoRollPosition(bar: 0, beat: 0, subbeat: 0, cent: 0),
+        duration: MIDIPianoRollPosition(bar: 0, beat: 2, subbeat: 0, cent: 0)),
+      MIDIPianoRollNote(
+        midiNote: 58,
+        velocity: 90,
+        position: MIDIPianoRollPosition(bar: 0, beat: 3, subbeat: 0, cent: 0),
+        duration: MIDIPianoRollPosition(bar: 0, beat: 2, subbeat: 0, cent: 0)),
+      MIDIPianoRollNote(
+        midiNote: 60,
+        velocity: 90,
+        position: MIDIPianoRollPosition(bar: 1, beat: 3, subbeat: 3, cent: 0),
+        duration: MIDIPianoRollPosition(bar: 0, beat: 4, subbeat: 2, cent: 0)),
+      MIDIPianoRollNote(
+        midiNote: 56,
+        velocity: 90,
+        position: MIDIPianoRollPosition(bar: 3, beat: 1, subbeat: 2, cent: 0),
+        duration: MIDIPianoRollPosition(bar: 0, beat: 3, subbeat: 0, cent: 0)),
+    ]
+    notes.exportMIDI(tempo: tempo)
   }
 }
