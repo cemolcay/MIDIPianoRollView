@@ -8,7 +8,6 @@
 
 import Foundation
 import MusicTheorySwift
-import MIDIEventKit
 
 /// Data structure that represents a MIDI note in the piano roll grid.
 public struct MIDIPianoRollNote: Equatable, Codable {

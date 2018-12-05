@@ -7,9 +7,7 @@
 //
 
 import UIKit
-import ALKit
 import MusicTheorySwift
-import MIDIEventKit
 
 /// Informs delegate about cell changes.
 public protocol MIDIPianoRollViewDelegate: class {
