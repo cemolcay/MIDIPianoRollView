@@ -77,6 +77,8 @@ open class MIDIPianoRollCellView: UIView {
 
   /// Default initilization function.
   private func commonInit() {
+    backgroundColor = .green
+
     addSubview(resizeView)
     let resizeGesture = UIPanGestureRecognizer(target: self, action: #selector(didResize(pan:)))
     resizeView.addGestureRecognizer(resizeGesture)

@@ -14,7 +14,7 @@ public class MIDIPianoRollMeasureLineLayer: CALayer {
   /// Text on measure.
   public var textLayer = CATextLayer()
   /// Line on measure.
-  public var lineLayer = CALayer()
+  public var lineLayer = CAShapeLayer()
   /// Position on piano roll.
   public var pianoRollPosition: MIDIPianoRollPosition = .zero
 

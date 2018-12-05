@@ -43,7 +43,7 @@ public protocol MIDIPianoRollViewDelegate: class {
 }
 
 /// Piano roll with customisable row count, row range, beat count and editable note cells.
-open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGestureRecognizerDelegate {
+open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
   /// Piano roll bars.
   public enum Bars {
     /// Fixed number of bars.
@@ -70,6 +70,109 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
         return scale.pitches(octaves: [Int](minOctave...maxOctave)).sorted(by: { $0 > $1 })
       case .custom(let pitches):
         return pitches.sorted(by: { $0 > $1 })
+      }
+    }
+  }
+
+  /// All grid lines for line with and color customisation.
+  public enum GridLines {
+    /// Horizontal line under each row.
+    case rowHorizontal
+    /// Vertical line between row keys and the grid.
+    case rowVertical
+    /// Vertical line under the measure.
+    case measureBottom
+    /// Beat text on the measure. Width property represents the font size.
+    case measureText
+    /// Vertical line for each bar line
+    case bar
+    /// Vertical line for each half beat line.
+    case half
+    /// Vertical line for each quarter beat line.
+    case quarter
+    /// Vertical line for each eighth beat line.
+    case eighth
+    /// Vertical line for each sixteenth beat line.
+    case sixteenth
+    /// Vertical line for each thirtysecond beat line.
+    case thirtysecond
+    /// Vertical line for each sixthfourth beat line.
+    case sixtyfourth
+    /// Default line styling.
+    case `default`
+
+    /// Width of the line.
+    public var width: CGFloat {
+      switch self {
+      case .rowHorizontal: return 1.0 / UIScreen.main.scale
+      case .rowVertical: return 1.0 / UIScreen.main.scale
+      case .measureBottom: return 1
+      case .measureText: return 13
+      case .bar: return 1
+      case .half: return 1.0 / UIScreen.main.scale
+      case .quarter: return 1.0 / UIScreen.main.scale
+      case .eighth: return 1.0 / UIScreen.main.scale
+      case .sixteenth: return 1.0 / UIScreen.main.scale
+      case .thirtysecond: return 1.0 / UIScreen.main.scale
+      case .sixtyfourth: return 1.0 / UIScreen.main.scale
+      case .default: return 1.0 / UIScreen.main.scale
+      }
+    }
+
+    /// Color of the line.
+    public var color: UIColor {
+      switch self {
+      case .rowHorizontal: return .black
+      case .rowVertical: return .black
+      case .measureBottom: return .black
+      case .measureText: return .black
+      case .bar: return .black
+      case .half: return .gray
+      case .quarter: return .gray
+      case .eighth: return .gray
+      case .sixteenth: return .gray
+      case .thirtysecond: return .gray
+      case .sixtyfourth: return .gray
+      case .default: return .black
+      }
+    }
+
+    /// Color of the line.
+    public var dashPattern: [NSNumber]? {
+      switch self {
+      case .rowHorizontal: return nil
+      case .rowVertical: return nil
+      case .measureBottom: return nil
+      case .measureText: return nil
+      case .bar: return nil
+      case .half: return nil
+      case .quarter: return nil
+      case .eighth: return nil
+      case .sixteenth: return nil
+      case .thirtysecond: return nil
+      case .sixtyfourth: return nil
+      case .default: return nil
+      }
+    }
+
+    /// Initilize the line with piano roll position. Useful for initilizing for measure lines.
+    ///
+    /// - Parameter pianoRollPosition: Line's position on the piano roll.
+    public init?(from pianoRollPosition: MIDIPianoRollPosition) {
+      switch pianoRollPosition.noteValue {
+      case .some(let position):
+        switch position.type {
+        case .whole: self = .bar
+        case .half: self = .half
+        case .quarter: self = .quarter
+        case .eighth: self = .eighth
+        case .sixteenth: self = .sixteenth
+        case .thirtysecond: self = .thirtysecond
+        case .sixtyfourth: self = .sixtyfourth
+        default: return nil
+        }
+      case .none:
+        return nil
       }
     }
   }
@@ -186,8 +289,6 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
   public var minRowHeight: CGFloat = 30
   /// Label configuration for the measure beat labels.
   public var measureLabelConfig = UILabel()
-  /// Global variable for all line widths.
-  public var lineWidth: CGFloat = 0.5
 
   /// Delegate that informs about cell changes.
   public weak var pianoRollDelegate: MIDIPianoRollViewDelegate?
@@ -218,29 +319,26 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
   /// Layer that grid drawn on. Middle low layer.
   private var gridLayer = UIView()
   /// Reference of the all horizontal grid lines.
-  private var verticalGridLines: [CALayer] = []
+  private var verticalGridLines: [CAShapeLayer] = []
   /// Reference of the all horizontal grid lines.
-  private var horizontalGridLines: [CALayer] = []
+  private var horizontalGridLines: [CAShapeLayer] = []
   /// Layer that rows drawn on. Middle top layer.
 
   private var rowLayer = UIView()
   /// Reference of the all row views.
   private var rowViews: [MIDIPianoRollRowView] = []
   /// Reference of the line drawn on the right side between rows and piano roll grid.
-  private var rowLine = CALayer()
+  private var rowLine = CAShapeLayer()
 
   /// Layer that measure drawn on. Top most layer.
-  private var measureLayer = UIView()
+  public var measureLayer = UIView()
   /// Line layer that drawn under the measure.
-  private var measureLine = CALayer()
+  private var measureBottomLine = CAShapeLayer()
   /// Reference of the all vertical measure beat lines.
   private var measureLines: [MIDIPianoRollMeasureLineLayer] = []
 
-  /// Reference for controlling bar line redrawing in layoutSubview function.
-  private var needsRedrawBar: Bool = false
   /// The last bar by notes position and duration. Updates on cells notes array change.
   private var lastBar: Int = 0
-
   /// Calculates the number of bars in the piano roll by the `BarCount` rule.
   private var barCount: Int {
     switch bars {
@@ -248,6 +346,15 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
       return count
     case .auto:
       return lastBar + 1
+    }
+  }
+
+  /// Reference for controlling bar line redrawing in layoutSubview function.
+  private var needsRedrawBar: Bool = false {
+    didSet {
+      if needsRedrawBar {
+        setNeedsLayout()
+      }
     }
   }
 
@@ -279,7 +386,6 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
     addSubview(gridLayer)
     addSubview(rowLayer)
     addSubview(measureLayer)
-    measureLayer.backgroundColor = .white
     // Load
     reload()
   }
@@ -291,57 +397,75 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
     CATransaction.begin()
     CATransaction.setDisableActions(true)
 
+    let contentFrame = CGRect(
+      x: 0,
+      y: 0,
+      width: contentSize.width > 0 ? contentSize.width : frame.size.width,
+      height: contentSize.height > 0 ? contentSize.height : frame.size.height)
+
     // Layout master layers
-    cellLayer.frame = CGRect(origin: .zero, size: frame.size)
-    gridLayer.frame = CGRect(origin: .zero, size: frame.size)
+    cellLayer.frame = CGRect(
+      x: rowWidth,
+      y: isMeasureEnabled ? measureHeight : 0,
+      width: contentFrame.size.width - rowWidth,
+      height: contentFrame.size.height - measureHeight)
+
+    gridLayer.frame = CGRect(
+      x: rowWidth,
+      y: isMeasureEnabled ? measureHeight : 0,
+      width: contentFrame.size.width - rowWidth,
+      height: contentFrame.size.height - measureHeight)
+
     rowLayer.frame = CGRect(
       x: contentOffset.x,
-      y: contentOffset.y,
+      y: (isMeasureEnabled ? measureHeight : 0),
       width: rowWidth,
-      height: frame.size.height
+      height: contentFrame.size.height
     )
+
     measureLayer.frame = CGRect(
-      x: contentOffset.x,
+      x: rowWidth,
       y: contentOffset.y,
-      width: frame.size.width,
+      width: contentFrame.size.width - rowWidth,
       height: isMeasureEnabled ? measureHeight : 0)
 
     // Layout rows
-    var currentY: CGFloat = isMeasureEnabled ? measureHeight : 0
+    var currentY: CGFloat = 0
     for (index, rowView) in rowViews.enumerated() {
       // Layout row
       rowView.frame = CGRect(
         x: 0,
-        y: currentY - contentOffset.y,
+        y: currentY,
         width: rowWidth,
         height: rowHeight)
 
       // Layout horizontal line
-      horizontalGridLines[index].frame = CGRect(
-        x: contentOffset.x,
-        y: currentY,
-        width: frame.size.width,
-        height: lineWidth)
+      let horizontalGridLinePath = UIBezierPath()
+      horizontalGridLinePath.move(to: CGPoint(x: contentOffset.x, y: currentY))
+      horizontalGridLinePath.addLine(to: CGPoint(x: gridLayer.frame.size.width + contentOffset.x, y: currentY))
+      horizontalGridLinePath.close()
+      horizontalGridLines[index].path = horizontalGridLinePath.cgPath
+      horizontalGridLines[index].lineWidth = GridLines.rowHorizontal.width
 
       // Go to next row.
       currentY += rowHeight
     }
 
-    // Layout bottom horizontal line
-    horizontalGridLines.last?.frame = CGRect(
-      x: contentOffset.x,
-      y: currentY,
-      width: frame.size.width,
-      height: lineWidth)
-    horizontalGridLines.forEach({ $0.backgroundColor = UIColor.gray.cgColor })
+    // Layout bottom row horizontal line
+    let horizontalGridLinePath = UIBezierPath()
+    horizontalGridLinePath.move(to: CGPoint(x: contentOffset.x, y: currentY))
+    horizontalGridLinePath.addLine(to: CGPoint(x: gridLayer.frame.size.width + contentOffset.x, y: currentY))
+    horizontalGridLinePath.close()
+    horizontalGridLines.last?.path = horizontalGridLinePath.cgPath
+    horizontalGridLines.last?.lineWidth = GridLines.rowHorizontal.width
 
     // Layout left row line
-    rowLine.frame = CGRect(
-      x: rowWidth,
-      y: 0,
-      width: lineWidth,
-      height: frame.size.height)
-    rowLine.backgroundColor = UIColor.black.cgColor
+    let rowLinePath = UIBezierPath()
+    rowLinePath.move(to: CGPoint(x: rowWidth, y: contentOffset.y - measureLayer.frame.size.height))
+    rowLinePath.addLine(to: CGPoint(x: rowWidth, y: rowLayer.frame.size.height + contentOffset.y - measureLayer.frame.size.height))
+    rowLinePath.close()
+    rowLine.path = rowLinePath.cgPath
+    rowLine.lineWidth = GridLines.rowVertical.width
 
     // Update content size vertically
     contentSize.height = currentY
@@ -355,8 +479,11 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
       verticalGridLines.forEach({ $0.removeFromSuperlayer() })
       verticalGridLines = []
       // Reset bottom measure line
-      measureLine.removeFromSuperlayer()
-      measureLayer.layer.addSublayer(measureLine)
+      measureBottomLine.removeFromSuperlayer()
+      measureLayer.layer.addSublayer(measureBottomLine)
+      measureBottomLine.strokeColor = GridLines.measureBottom.color.cgColor
+      measureBottomLine.lineDashPattern = GridLines.measureBottom.dashPattern
+      measureBottomLine.contentsScale = UIScreen.main.scale
 
       let renderingTexts = zoomLevel.renderingMeasureTexts
 
@@ -366,19 +493,20 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
       for _ in 0...lineCount {
         // Create measure line
         let measureLine = MIDIPianoRollMeasureLineLayer()
+        let gridLine = GridLines(from: linePosition) ?? .default
         measureLine.pianoRollPosition = linePosition
+        measureLine.lineLayer.strokeColor = gridLine.color.cgColor
+        measureLine.lineLayer.lineDashPattern = gridLine.dashPattern
+        measureLine.lineLayer.contentsScale = UIScreen.main.scale
         measureLayer.layer.addSublayer(measureLine)
         measureLines.append(measureLine)
-
-        // Create vertical line
-        let verticalLine = CALayer()
-        verticalGridLines.append(verticalLine)
-        gridLayer.layer.addSublayer(verticalLine)
 
         // Decide if render measure text.
         if let lineNoteValue = linePosition.noteValue,
           renderingTexts.contains(where: { $0.type == lineNoteValue.type }) {
           measureLine.showsBeatText = true
+          measureLine.textLayer.foregroundColor = GridLines.measureText.color.cgColor
+          measureLine.textLayer.fontSize = GridLines.measureText.width
         } else {
           measureLine.showsBeatText = false
         }
@@ -388,6 +516,14 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
           measureLine.textLayer.string = "\(linePosition)"
         }
 
+        // Create vertical grid line under the measure
+        let verticalLine = CAShapeLayer()
+        verticalLine.strokeColor = gridLine.color.cgColor
+        verticalLine.lineDashPattern = gridLine.dashPattern
+        verticalLine.contentsScale = UIScreen.main.scale
+        verticalGridLines.append(verticalLine)
+        gridLayer.layer.addSublayer(verticalLine)
+
         // Go next line
         linePosition = linePosition + zoomLevel.noteValue.pianoRollDuration
       }
@@ -395,44 +531,47 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
     }
 
     // Layout measure and vertical lines.
-    var currentX: CGFloat = rowWidth
-    for (index, line) in measureLines.enumerated() {
-      line.frame = CGRect(
-        x: currentX - contentOffset.x,
+    var currentX: CGFloat = 0
+    for (index, measureLine) in measureLines.enumerated() {
+      let gridLine = GridLines(from: measureLine.pianoRollPosition) ?? .default
+      measureLine.frame = CGRect(
+        x: currentX,
         y: 0,
-        width: lineWidth * (line.pianoRollPosition.isBarPosition ? 2 : 1),
+        width: gridLine.width,
         height: measureHeight)
 
       // Layout measure line
-      line.lineLayer.frame = CGRect(origin: .zero, size: line.frame.size)
-      line.lineLayer.backgroundColor = line.pianoRollPosition.isBarPosition ? UIColor.black.cgColor : UIColor.gray.cgColor
+      let measureLinePath = UIBezierPath()
+      measureLinePath.move(to: CGPoint(x: 0, y: 0))
+      measureLinePath.addLine(to: CGPoint(x: 0, y: measureLine.frame.size.height))
+      measureLinePath.close()
+      measureLine.lineLayer.path = measureLinePath.cgPath
 
       // Layout measure text
-      line.textLayer.frame = CGRect(
+      measureLine.textLayer.frame = CGRect(
         x: 2,
-        y: measureHeight - 15,
+        y: measureHeight - GridLines.measureText.width - 2,
         width: beatWidth,
-        height: 15)
-      line.textLayer.fontSize = 13
+        height: GridLines.measureText.width + 2)
 
       // Layout vertical grid line
-      verticalGridLines[index].frame = CGRect(
-        x: currentX,
-        y: contentOffset.y + measureHeight,
-        width: lineWidth * (line.pianoRollPosition.isBarPosition ? 2 : 1),
-        height: frame.size.height - measureHeight)
-      verticalGridLines[index].backgroundColor = line.lineLayer.backgroundColor
+      let verticalGridLinePath = UIBezierPath()
+      verticalGridLinePath.move(to: CGPoint(x: currentX, y: contentOffset.y))
+      verticalGridLinePath.addLine(to: CGPoint(x: currentX, y: gridLayer.frame.size.height + contentOffset.y))
+      verticalGridLinePath.close()
+      verticalGridLines[index].path = verticalGridLinePath.cgPath
+      verticalGridLines[index].lineWidth = gridLine.width
 
       currentX += beatWidth
     }
 
     // Layout measure bottom line
-    measureLine.frame = CGRect(
-      x: 0,
-      y: measureHeight,
-      width: frame.size.width,
-      height: lineWidth * 2)
-    measureLine.backgroundColor = UIColor.black.cgColor
+    let measureBottomLinePath = UIBezierPath()
+    measureBottomLinePath.move(to: CGPoint(x: contentOffset.x - rowWidth, y: measureLayer.frame.size.height))
+    measureBottomLinePath.addLine(to: CGPoint(x: measureLayer.frame.size.width + contentOffset.x - rowWidth, y: measureLayer.frame.size.height))
+    measureBottomLinePath.close()
+    measureBottomLine.path = measureBottomLinePath.cgPath
+    measureBottomLine.lineWidth = GridLines.measureBottom.width
 
     // Update content size horizontally
     contentSize.width = currentX
@@ -461,23 +600,23 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
       let cellWidth = endPosition - startPosition
 
       cell.frame = CGRect(
-        x: rowWidth + startPosition,
-        y: row.frame.origin.y + contentOffset.y,
+        x: startPosition,
+        y: row.frame.origin.y,
         width: cellWidth,
         height: rowHeight)
-      cell.backgroundColor = .green
     }
 
     CATransaction.commit()
   }
 
   open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    let cellPoint = convert(point, to: cellLayer)
     guard isEditing,
-      let cell = cellViews.filter({ $0.frame.contains(point) }).first
+      let cell = cellViews.filter({ $0.frame.contains(cellPoint) }).first
       else { return super.hitTest(point, with: event) }
 
     // Check if cell is moving or resizing.
-    if cell.resizeView.bounds.contains(convert(point, to: cell.resizeView)) {
+    if cell.resizeView.frame.contains(convert(point, to: cell)) {
       return cell.resizeView
     }
     return cell
@@ -489,7 +628,10 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
     rowViews.forEach({ $0.removeFromSuperview() })
     rowViews = []
     // Reset row line
-    rowLine = CALayer()
+    rowLine = CAShapeLayer()
+    rowLine.lineDashPattern = GridLines.rowVertical.dashPattern
+    rowLine.strokeColor = GridLines.rowVertical.color.cgColor
+    rowLine.contentsScale = UIScreen.main.scale
     rowLayer.layer.addSublayer(rowLine)
     // Reset horizontal lines
     horizontalGridLines.forEach({ $0.removeFromSuperlayer() })
@@ -512,13 +654,19 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
       rowLayer.addSubview(rowView)
       rowViews.append(rowView)
       // Setup horizontal lines.
-      let line = CALayer()
+      let line = CAShapeLayer()
+      line.strokeColor = GridLines.rowHorizontal.color.cgColor
+      line.lineDashPattern = GridLines.rowHorizontal.dashPattern
+      line.contentsScale = UIScreen.main.scale
       gridLayer.layer.addSublayer(line)
       horizontalGridLines.append(line)
     }
 
     // Setup bottom horizontal line.
-    let bottomRowLine = CALayer()
+    let bottomRowLine = CAShapeLayer()
+    bottomRowLine.strokeColor = GridLines.rowHorizontal.color.cgColor
+    bottomRowLine.lineDashPattern = GridLines.rowHorizontal.dashPattern
+    bottomRowLine.contentsScale = UIScreen.main.scale
     gridLayer.layer.addSublayer(bottomRowLine)
     horizontalGridLines.append(bottomRowLine)
 
@@ -595,7 +743,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
   /// - Parameter cell: The cell that you want to get `MIDIPianoRollPosition`.
   /// - Returns: Returns the `MIDIPianoRollPosition` value of a position on the grid.
   private func pianoRollPosition(for cell: MIDIPianoRollCellView) -> MIDIPianoRollPosition {
-    let point = cell.frame.origin.x - rowWidth
+    let point = cell.frame.origin.x
     return pianoRollPosition(for: point)
   }
 
@@ -641,7 +789,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
   /// - Parameter cell: The cell you want to get the pitch of the row which the cell is on.
   /// - Returns: Returns the pitch of the row that the cell on.
   private func pianoRollPitch(for cell: MIDIPianoRollCellView) -> UInt8 {
-    let point = cell.frame.origin.y - measureHeight
+    let point = cell.frame.origin.y
     return pianoRollPitch(for: point)
   }
 
@@ -713,7 +861,6 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
       multipleEditingDraggingViewPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didDrag(pan:)))
       multipleEditingDraggingViewPanGestureRecognizer?.maximumNumberOfTouches = 1
       multipleEditingDraggingViewPanGestureRecognizer?.minimumNumberOfTouches = 1
-      multipleEditingDraggingViewPanGestureRecognizer?.delegate = self
       guard let pan = multipleEditingDraggingViewPanGestureRecognizer else { return }
       addGestureRecognizer(pan)
     } else {
@@ -807,7 +954,8 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
 
   public func midiPianoRollCellViewDidMove(_ midiPianoRollCellView: MIDIPianoRollCellView, pan: UIPanGestureRecognizer) {
     guard isEditing else { return }
-    let translation = pan.translation(in: self)
+    let translationView = self
+    let translation = pan.translation(in: translationView)
 
     // Mark the panning cell selected.
     if case .began = pan.state {
@@ -825,28 +973,28 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
     for cell in selectedCells {
       // Horizontal move
       if translation.x > beatWidth,
-        cell.frame.maxX < contentSize.width,
-        farMostCellPosition + beatWidth <= contentSize.width { // Right
+        cell.frame.maxX < cellLayer.frame.size.width,
+        farMostCellPosition + beatWidth <= cellLayer.frame.size.width { // Right
         cell.frame.origin.x += beatWidth
-        pan.setTranslation(CGPoint(x: 0, y: translation.y), in: self)
+        pan.setTranslation(CGPoint(x: 0, y: translation.y), in: translationView)
       } else if translation.x < -beatWidth,
-        cell.frame.minX > rowWidth,
-        leftMostCellPosition - beatWidth >= rowWidth { // Left
+        cell.frame.minX > 0,
+        leftMostCellPosition - beatWidth >= 0 { // Left
         cell.frame.origin.x -= beatWidth
-        pan.setTranslation(CGPoint(x: 0, y: translation.y), in: self)
+        pan.setTranslation(CGPoint(x: 0, y: translation.y), in: translationView)
       }
 
       // Vertical move
       if translation.y > rowHeight,
-        cell.frame.maxY < contentSize.height,
-        lowestCellPosition + rowWidth <= contentSize.height { // Down
+        cell.frame.maxY < cellLayer.frame.size.height,
+        lowestCellPosition + rowWidth <= cellLayer.frame.size.height { // Down
         cell.frame.origin.y += rowHeight
-        pan.setTranslation(CGPoint(x: translation.x, y: 0), in: self)
+        pan.setTranslation(CGPoint(x: translation.x, y: 0), in: translationView)
       } else if translation.y < -rowHeight,
-        cell.frame.minY > measureHeight,
+        cell.frame.minY > 0,
         topMostCellPosition - rowHeight >= 0 { // Up
         cell.frame.origin.y -= rowHeight
-        pan.setTranslation(CGPoint(x: translation.x, y: 0), in: self)
+        pan.setTranslation(CGPoint(x: translation.x, y: 0), in: translationView)
       }
 
       if case .ended = pan.state {
