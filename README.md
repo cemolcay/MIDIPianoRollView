@@ -16,6 +16,15 @@ Requirements
 * Xcode 10.0+
 
 
+Install
+----
+
+#### CocoaPods
+
+``` ruby
+pod 'MIDIPianoRollView'
+```
+
 Usage
 ----
 

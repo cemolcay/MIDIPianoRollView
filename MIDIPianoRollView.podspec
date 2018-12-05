@@ -18,6 +18,7 @@ Pod::Spec.new do |spec|
   spec.name         = "MIDIPianoRollView"
   spec.version      = "0.0.1"
   spec.summary      = "Customisable UIScrollView subclass for rendering/editing MIDI notes on a piano roll view."
+  spec.swift_version = "4.2"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -42,6 +43,15 @@ Requirements
 * Swift 4.2+
 * Xcode 10.0+
 
+
+Install
+----
+
+#### CocoaPods
+
+``` ruby
+pod 'MIDIPianoRollView'
+```
 
 Usage
 ----
