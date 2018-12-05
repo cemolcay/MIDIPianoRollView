@@ -13,7 +13,8 @@
     <a title="MIDIPianoRollView  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">MIDIPianoRollView Docs</a> (91% documented)</p>
+        <p><a href="index.html">MIDIPianoRollView Docs</a> (93% documented)</p>
+        <p class="header-right"><a href="https://github.com/cemolcay/MIDIPianoRollView"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -46,6 +47,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/MIDIPianoRollView/Keys.html">– Keys</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/MIDIPianoRollView/GridLines.html">– GridLines</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/MIDIPianoRollView/AutoScrollingDirection.html">– AutoScrollingDirection</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/MIDIPianoRollView/ZoomLevel.html">– ZoomLevel</a>
@@ -107,7 +114,7 @@
 <p>Customisable UIScrollView subclass for rendering/editing MIDI notes on a piano roll view.</p>
 <h2 id='demo' class='heading'>Demo</h2>
 
-<p><img src="" alt="alt tag"></p>
+<p><img src="https://github.com/cemolcay/MIDIPianoRollView/raw/master/demo.gif" alt="alt tag"></p>
 <h2 id='requirements' class='heading'>Requirements</h2>
 
 <ul>
@@ -118,11 +125,137 @@
 <h2 id='usage' class='heading'>Usage</h2>
 
 <p>Create a <code><a href="Classes/MIDIPianoRollView.html">MIDIPianoRollView</a></code> either from storyboard (subclass from <code>UIScrollView</code>) or programmatically.</p>
+<h4 id='code-midipianorollview-keys-code' class='heading'><code><a href="Classes/MIDIPianoRollView/Keys.html">MIDIPianoRollView.Keys</a></code></h4>
+
+<ul>
+<li>An enum that represents the data source of the piano roll&rsquo;s keys.</li>
+<li>It can be either
+
+<ul>
+<li>A range of <code>UInt8</code> MIDI notes like <code>30...50</code> (30th note to 50th note)</li>
+<li>A <code>Scale</code> of notes between specified octave range</li>
+<li>Or custom unordered pitches.</li>
+</ul></li>
+</ul>
+<h4 id='code-midipianorollview-bars-code' class='heading'><code><a href="Classes/MIDIPianoRollView/Bars.html">MIDIPianoRollView.Bars</a></code></h4>
+
+<ul>
+<li>An enum that represents the bar count on the piano roll.</li>
+<li>It can be either
+
+<ul>
+<li>A fixed value by <code>.fixed(barCount)</code></li>
+<li>Or <code>.auto</code> that auto-caluclating bar count by the data source.</li>
+</ul></li>
+</ul>
+<h4 id='code-midipianorollnote-code' class='heading'><code><a href="Structs/MIDIPianoRollNote.html">MIDIPianoRollNote</a></code></h4>
+
+<ul>
+<li>Set the <code>notes</code> data source array in order to pop the notes.</li>
+<li>It is a <code>[MIDIPianoRollNote]</code> array that has the start position, duration, midi note and velocity data for each note.</li>
+</ul>
+<h4 id='code-midipianorollposition-code' class='heading'><code><a href="Structs/MIDIPianoRollPosition.html">MIDIPianoRollPosition</a></code></h4>
+
+<ul>
+<li>This represents the both position and duration values for the notes on the piano roll. Contains <code>bar</code>, <code>beat</code>, <code>subbeat</code> and <code>cent</code> values.</li>
+<li>Each of them are <code>Int</code> and confomrs to <code>Comparable</code>, <code>Equatable</code>, <code>Codable</code> and custom <code>+</code> and <code>-</code> operatros.</li>
+<li>Each <code>bar</code> has a number of <code>beat</code>s that the piano roll&rsquo;s <code>timesingature</code> has.</li>
+<li>Each <code>beat</code> has 4 <code>subbeat</code>s.</li>
+<li>Each <code>subbeat</code> has 240 <code>cent</code>s for fine tuning.</li>
+</ul>
+<h4 id='code-midipianorollcellview-code' class='heading'><code><a href="Classes/MIDIPianoRollCellView.html">MIDIPianoRollCellView</a></code></h4>
+
+<ul>
+<li>Each cell on the piano roll is a subclass of the <code><a href="Classes/MIDIPianoRollCellView.html">MIDIPianoRollCellView</a></code>.</li>
+<li>You can basically create your custom cell view by subclassing it.</li>
+</ul>
+<h4 id='code-midipianorollrowview-code' class='heading'><code><a href="Classes/MIDIPianoRollRowView.html">MIDIPianoRollRowView</a></code></h4>
+
+<ul>
+<li>Each key view on the right side of the piano roll is a subclass of <code><a href="Classes/MIDIPianoRollRowView.html">MIDIPianoRollRowView</a></code>.</li>
+<li>You can create your custom sublass may be with some piano key images and render it on the piano roll.</li>
+</ul>
+<h4 id='code-midipianorollmeasureview-code' class='heading'><code>MIDIPianoRollMeasureView</code></h4>
+
+<ul>
+<li>Measure is a custom view with bunch of <code>CALayer</code>s that rendering the position texts and guide lines.</li>
+<li>You can set grid line width and colors.</li>
+<li>You can set measure position label font and text colors.</li>
+<li>If you don&rsquo;t want to render measure, then you can set the <code>isMeasureEnabled</code> property to false.</li>
+</ul>
+<h4 id='code-midipianorollview-zoomlevel-code' class='heading'><code><a href="Classes/MIDIPianoRollView/ZoomLevel.html">MIDIPianoRollView.ZoomLevel</a></code></h4>
+
+<ul>
+<li>Zoom level represents the currently rendering beat value on the piano roll.</li>
+<li>It has a customisable <code>minZoomLevel</code> and <code>maxZoomLevel</code> range.</li>
+<li>Each zoom level have note rate, for example,<br>
+
+<ul>
+<li><code>.halfNotes</code> means a bar have 2 beats with 2 half notes,</li>
+<li><code>.quarterNotes</code> means a bar have 4 beats with 4 quarter notes.</li>
+</ul></li>
+<li>If <code>isZoomingEnabled</code> is set true, then you can horizontally pinch-to-zoom in or out between customisable <code>minBeatWidth</code> and <code>maxBeatWidth</code> values to set current <code>beatWidth</code>.</li>
+<li>When a <code>beatWidth</code> hits the limit, the zoom level advances the next level depending on the zooming in or out.</li>
+<li>You can disable this behaviour by setting <code>isZoomingEnabled</code> property to false.</li>
+<li>The same behavior also controls the row height zooming. If you vertically pinch-to-zoom, then current <code>rowHeight</code> will scale between <code>minRowHeight</code> and <code>maxRowHeight</code> properties.</li>
+</ul>
+<h4 id='editing' class='heading'>Editing</h4>
+
+<ul>
+<li>You can enter the cell editing mode by setting <code>isEditing</code> property to true.</li>
+<li>When you are in the edit mode, you can not scroll the view but you can pan the cells to move or resize.</li>
+<li>You can enable/disable the multiple editing by setting the <code>isMultipleEditingEnabled</code> property to true. 
+
+<ul>
+<li>When it&rsquo;s enabled, you can drag your finger to render a multiple selection view to select all cells that under the drag-to-select box.</li>
+<li>Then you can move or resize the selected cells.</li>
+</ul></li>
+<li>When editing is done, piano roll will informs its delegate.</li>
+</ul>
+<h4 id='code-midipianorollviewdelegate-code' class='heading'><code><a href="Protocols/MIDIPianoRollViewDelegate.html">MIDIPianoRollViewDelegate</a></code></h4>
+
+<ul>
+<li>Informs the delegate when the cell is edited.</li>
+<li>You can update your <code>notes</code> data source in the delegate calls.</li>
+</ul>
+<pre class="highlight swift"><code>  <span class="kd">func</span> <span class="nf">midiPianoRollView</span><span class="p">(</span><span class="n">_</span> <span class="nv">midiPianoRollView</span><span class="p">:</span> <span class="kt">MIDIPianoRollView</span><span class="p">,</span>
+                         <span class="n">didMove</span> <span class="nv">cellView</span><span class="p">:</span> <span class="kt">MIDIPianoRollCellView</span><span class="p">,</span>
+                         <span class="n">to</span> <span class="nv">newPosition</span><span class="p">:</span> <span class="kt">MIDIPianoRollPosition</span><span class="p">,</span>
+                         <span class="nv">pitch</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span>
+</code></pre>
+
+<ul>
+<li>Informs delegate about that the cell is moved a new position and/or row.</li>
+<li>You can use the <code>pitch</code> value to determine which row is the cell moved.</li>
+</ul>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">midiPianoRollView</span><span class="p">(</span><span class="n">_</span> <span class="nv">midiPianoRollView</span><span class="p">:</span> <span class="kt">MIDIPianoRollView</span><span class="p">,</span>
+                         <span class="n">didResize</span> <span class="nv">cellView</span><span class="p">:</span> <span class="kt">MIDIPianoRollCellView</span><span class="p">,</span>
+                         <span class="n">to</span> <span class="nv">newDuration</span><span class="p">:</span> <span class="kt">MIDIPianoRollPosition</span><span class="p">)</span>
+</code></pre>
+
+<ul>
+<li>Informs delegate about that the cell&rsquo;s duration changed.</li>
+<li>Called when cell is resized.</li>
+</ul>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">midiPianoRollViewMultipleEditingDraggingView</span><span class="p">(</span><span class="n">_</span> <span class="nv">midiPianoRollView</span><span class="p">:</span> <span class="kt">MIDIPianoRollView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIView</span><span class="p">?</span>
+</code></pre>
+
+<ul>
+<li>Return a custom UIView if you want to render your custom drag-to-select view.</li>
+</ul>
+<h4 id='example-project' class='heading'>Example Project</h4>
+
+<ul>
+<li>Check out the example project for getting more information about the implementation.</li>
+</ul>
+<h2 id='documentation' class='heading'>Documentation</h2>
+
+<p>You can find the documentation <a href="https://cemolcay.github.io/MIDIPianoRollView">here</a>.</p>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/cemolcay/MIDIPianoRollView" target="_blank" rel="external">cemolcay</a>. All rights reserved. (Last updated: 2018-11-29)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/cemolcay/MIDIPianoRollView" target="_blank" rel="external">cemolcay</a>. All rights reserved. (Last updated: 2018-12-05)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

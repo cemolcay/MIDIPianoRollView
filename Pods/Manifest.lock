@@ -1,0 +1,24 @@
+PODS:
+  - ALKit (0.6)
+  - MIDIEventKit (0.0.2)
+  - MusicTheorySwift (1.1.0)
+
+DEPENDENCIES:
+  - ALKit
+  - MIDIEventKit
+  - MusicTheorySwift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - ALKit
+    - MIDIEventKit
+    - MusicTheorySwift
+
+SPEC CHECKSUMS:
+  ALKit: a89d4a258095382fbd830423c688beb971c4af62
+  MIDIEventKit: 079f8a6b67cd9f46f4513fa86d79cdb3c490b3f3
+  MusicTheorySwift: 555d61fc174c36c7cb1a41cf20b54628ba6b3e32
+
+PODFILE CHECKSUM: 2f312e3d397a74d62b688b7aa6fd8778b3bb9000
+
+COCOAPODS: 1.6.0.beta.2

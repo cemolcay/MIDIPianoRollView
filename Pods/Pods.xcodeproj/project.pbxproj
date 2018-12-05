@@ -1,0 +1,1157 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		014B9BD5A116EA894755D7AB66ABC34F /* Pods-MIDIPianoRollViewTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D223441416A3C07313D71D976A0F42DE /* Pods-MIDIPianoRollViewTests-dummy.m */; };
+		1547FE59DD43F0A58DAC4D4A845EC9DE /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = D586CB541CD3AB20392E46C4B08B2AA9 /* Interval.swift */; };
+		1C06B619BDFEE780D57DC1F338B24119 /* MIDIEventKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = C5F70D2A800C90B0FD8D180E56D36E8F /* MIDIEventKit.strings */; };
+		365E9A4C13FD7CFCDDD3573A2F84FD14 /* MusicTheorySwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 576BAA3ACAC696542924980EB163F342 /* MusicTheorySwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A88BA63E209FA7CD82F44538E23E357 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08623C52251B4131A08215522D48866 /* Foundation.framework */; };
+		42CE0D1D806C0A4E981693782C1C9720 /* MIDIEventKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8594E0024C3CEDA2CC7164878E263C2 /* MIDIEventKit.swift */; };
+		4FF04C3EB7AC937BE49A842C403D9118 /* MIDIEventKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 16C3F04597BA756B21B3FAC45BC9D2BB /* MIDIEventKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		508E4FC5DC9E0952BDB493DA6170C2FD /* NoteValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300BAB6A79A4D11984885759A40305B6 /* NoteValue.swift */; };
+		5098DB83B12519C4AF67B796461A9D2B /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507892FF84AB9F53BB92B9F6C995BA61 /* Key.swift */; };
+		50F0E5490FE49744E22104377A5D6329 /* MIDIEventKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 896BF0740AE9F35F06302B8A5D7B38A5 /* MIDIEventKit-dummy.m */; };
+		55C75E978291B406D9B49D8E9653EE10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08623C52251B4131A08215522D48866 /* Foundation.framework */; };
+		5929B30A13529956287A3B64985163B6 /* ALKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 788C8C47C094F246B1AB115CA304D0AC /* ALKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6F96B15ABA2B3F8B72E9CF8D9484C156 /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518D74E97401BCC6EEB99C597CD8E1FB /* Scale.swift */; };
+		743F0A8C2562B86C4AF2DCC5058623D8 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6FA0C6C2A17E8D6E829889A24C1E2FD /* CoreMIDI.framework */; };
+		7521A579E4683111A8190836494E087F /* Tempo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ACABBD8C4575EA62B31D2EF0DB87CC /* Tempo.swift */; };
+		7C3A85F980077247E3FEF9BEB1499389 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08623C52251B4131A08215522D48866 /* Foundation.framework */; };
+		8099F86D20E69A21E3E791CC51A951D0 /* TimeSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1528E70F7090373CD6882D75C64CA1AA /* TimeSignature.swift */; };
+		9EC599E175A0941947F7CADC67C5559D /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBBEA8480CF67FE13C369E7A3F644 /* Chord.swift */; };
+		A18597C6FBBF14114E1B914A4DC88E87 /* ChordProgression.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6EFFEE341E6072EDC027022DBB884B /* ChordProgression.swift */; };
+		A3C058E37C90A1F65AE91A522EAE0015 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08623C52251B4131A08215522D48866 /* Foundation.framework */; };
+		AD6A4961CE7B412CF27A6F4C445EEEB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08623C52251B4131A08215522D48866 /* Foundation.framework */; };
+		BB2442404CA921601400C185564EAE90 /* Pods-MIDIPianoRollView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BBFF26B653FA63358E937FFB58A24BEB /* Pods-MIDIPianoRollView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C129098CBD294E68C6211DF0147ADA53 /* MusicTheorySwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 896F7BD580D234CF389E4ED9E2B06DE0 /* MusicTheorySwift-dummy.m */; };
+		C9FF5AAA2F1D4693B02A469525B91AA1 /* Pitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAC911FF7DAEFB684FBB86575054501 /* Pitch.swift */; };
+		D4D9A472BCCACEBB22B0CBA95CD287C8 /* ALKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFB39EE9C25822667619C9F956FCF2B /* ALKit.swift */; };
+		E8C5BD78E527FF198B12C73B0E48B7FE /* Pods-MIDIPianoRollView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0BD274FCB8133D1336FB25E68DEA58 /* Pods-MIDIPianoRollView-dummy.m */; };
+		E90359C688C266C601A8EBD5D0142671 /* Accidental.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C785E4FE302B45FB482A83CC1520616 /* Accidental.swift */; };
+		FD794F677A170A2770C0FB213F5CF8D2 /* ALKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AA74FF12907658F5AE7C67B77F460B /* ALKit-dummy.m */; };
+		FDE146081EC0516FB0A967718836DDF4 /* Pods-MIDIPianoRollViewTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 87FE02E42857B290C84D8EEF5B8A26A7 /* Pods-MIDIPianoRollViewTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		134381BA5525BAAD569DE9ADA9C816FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA864645B8430D2B3976A384A9722165;
+			remoteInfo = "Pods-MIDIPianoRollView";
+		};
+		30961D9077A8F432EE835E2587AE8BBD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAC82D2C046A752333162241143C90DC;
+			remoteInfo = ALKit;
+		};
+		34E65BBE8FC882A11496E570144362D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7DDA53D73341AD34997441C4E0BA2C6;
+			remoteInfo = MIDIEventKit;
+		};
+		86E5B2A7CD97263C4A9CFFCF9B693517 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D667F3E263E41FD3BFCAF5C1E9A4E098;
+			remoteInfo = MusicTheorySwift;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04B74FB9EDDCA4388ACF7D6FE108A857 /* Pods_MIDIPianoRollViewTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MIDIPianoRollViewTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CB08C4E6F8CB95A5E16145B6AAFDE33 /* Pods-MIDIPianoRollView-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MIDIPianoRollView-frameworks.sh"; sourceTree = "<group>"; };
+		1528E70F7090373CD6882D75C64CA1AA /* TimeSignature.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimeSignature.swift; path = Source/TimeSignature.swift; sourceTree = "<group>"; };
+		16C3F04597BA756B21B3FAC45BC9D2BB /* MIDIEventKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MIDIEventKit-umbrella.h"; sourceTree = "<group>"; };
+		1DC890996DA4D9EE6A86C6AF6214977A /* Pods-MIDIPianoRollViewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MIDIPianoRollViewTests.debug.xcconfig"; sourceTree = "<group>"; };
+		20FDBBEA8480CF67FE13C369E7A3F644 /* Chord.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Chord.swift; path = Source/Chord.swift; sourceTree = "<group>"; };
+		24C1FA13C341938A7BD187C34FC566E5 /* ALKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ALKit-Info.plist"; sourceTree = "<group>"; };
+		2D8B79132F0F1D77BA8361D662AFFC00 /* MusicTheorySwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MusicTheorySwift.xcconfig; sourceTree = "<group>"; };
+		300BAB6A79A4D11984885759A40305B6 /* NoteValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NoteValue.swift; path = Source/NoteValue.swift; sourceTree = "<group>"; };
+		317B62043E9C86D4E9E17C74B2E3E0E7 /* MIDIEventKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MIDIEventKit.modulemap; sourceTree = "<group>"; };
+		3DE987C40FAA215E9A297B9C48C70A60 /* Pods-MIDIPianoRollViewTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MIDIPianoRollViewTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		3F4C01C05115803DE9157C89D42F116C /* ALKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ALKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44EE4D37DEF753FD2D2D8FEB114ACCF3 /* MusicTheorySwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MusicTheorySwift.modulemap; sourceTree = "<group>"; };
+		4C785E4FE302B45FB482A83CC1520616 /* Accidental.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Accidental.swift; path = Source/Accidental.swift; sourceTree = "<group>"; };
+		507892FF84AB9F53BB92B9F6C995BA61 /* Key.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Key.swift; path = Source/Key.swift; sourceTree = "<group>"; };
+		518D74E97401BCC6EEB99C597CD8E1FB /* Scale.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Scale.swift; path = Source/Scale.swift; sourceTree = "<group>"; };
+		539C81465C4CAAC55C65BC3E59389BF1 /* MIDIEventKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "MIDIEventKit-Info.plist"; sourceTree = "<group>"; };
+		576BAA3ACAC696542924980EB163F342 /* MusicTheorySwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MusicTheorySwift-umbrella.h"; sourceTree = "<group>"; };
+		5CF6A48D4EC8B571577E65A833AC2FD1 /* MusicTheorySwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MusicTheorySwift-prefix.pch"; sourceTree = "<group>"; };
+		63DA32234D7E556CBC17BEC2E4965EAA /* Pods-MIDIPianoRollViewTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MIDIPianoRollViewTests-Info.plist"; sourceTree = "<group>"; };
+		6DFBFEB721810BEC6D88B0AC40140090 /* MIDIEventKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MIDIEventKit.xcconfig; sourceTree = "<group>"; };
+		6EDC02F1AF165AF25C919686E1AD2677 /* MIDIEventKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MIDIEventKit-prefix.pch"; sourceTree = "<group>"; };
+		702235831EA6F48F66D339A2CE5ED938 /* Pods-MIDIPianoRollView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MIDIPianoRollView.modulemap"; sourceTree = "<group>"; };
+		77E79C2D0A766B4141C5219CDDD568F4 /* Pods-MIDIPianoRollViewTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MIDIPianoRollViewTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		788C8C47C094F246B1AB115CA304D0AC /* ALKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ALKit-umbrella.h"; sourceTree = "<group>"; };
+		7DD55A3EB1D345BEF8C47239BBE46A6E /* Pods-MIDIPianoRollView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MIDIPianoRollView.release.xcconfig"; sourceTree = "<group>"; };
+		8083F9CBC268DDF9E0F94FB88AEFDBEC /* MusicTheorySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MusicTheorySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		86197F77D04E26330FE73260FDD8B3D8 /* Pods_MIDIPianoRollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MIDIPianoRollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87FE02E42857B290C84D8EEF5B8A26A7 /* Pods-MIDIPianoRollViewTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MIDIPianoRollViewTests-umbrella.h"; sourceTree = "<group>"; };
+		896BF0740AE9F35F06302B8A5D7B38A5 /* MIDIEventKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MIDIEventKit-dummy.m"; sourceTree = "<group>"; };
+		896F7BD580D234CF389E4ED9E2B06DE0 /* MusicTheorySwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MusicTheorySwift-dummy.m"; sourceTree = "<group>"; };
+		9C57B403AE7629E520EDAB119CA7A49E /* Pods-MIDIPianoRollView-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MIDIPianoRollView-acknowledgements.markdown"; sourceTree = "<group>"; };
+		AAAC911FF7DAEFB684FBB86575054501 /* Pitch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Pitch.swift; path = Source/Pitch.swift; sourceTree = "<group>"; };
+		B0225E290BEF14DC23D1A75D6E35569D /* Pods-MIDIPianoRollView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MIDIPianoRollView-Info.plist"; sourceTree = "<group>"; };
+		B08623C52251B4131A08215522D48866 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		B11329FE532A5008F6CE968E1EE9CDCB /* ALKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ALKit.xcconfig; sourceTree = "<group>"; };
+		B3641B9FCF83B5CBF03722E7625D808A /* MusicTheorySwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "MusicTheorySwift-Info.plist"; sourceTree = "<group>"; };
+		B36AB396275697EEE1A5B13BA8A38FE3 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B57D5E923B34F4887EE03A3263ABD0FA /* Pods-MIDIPianoRollView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MIDIPianoRollView.debug.xcconfig"; sourceTree = "<group>"; };
+		BAFB39EE9C25822667619C9F956FCF2B /* ALKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALKit.swift; path = ALKit/ALKit.swift; sourceTree = "<group>"; };
+		BB19CA90C32873D8B2687662C9ADA483 /* ALKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ALKit-prefix.pch"; sourceTree = "<group>"; };
+		BBFF26B653FA63358E937FFB58A24BEB /* Pods-MIDIPianoRollView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MIDIPianoRollView-umbrella.h"; sourceTree = "<group>"; };
+		BE6EFFEE341E6072EDC027022DBB884B /* ChordProgression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChordProgression.swift; path = Source/ChordProgression.swift; sourceTree = "<group>"; };
+		C5F70D2A800C90B0FD8D180E56D36E8F /* MIDIEventKit.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = MIDIEventKit.strings; path = Source/MIDIEventKit.strings; sourceTree = "<group>"; };
+		C6FA0C6C2A17E8D6E829889A24C1E2FD /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/CoreMIDI.framework; sourceTree = DEVELOPER_DIR; };
+		C8594E0024C3CEDA2CC7164878E263C2 /* MIDIEventKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MIDIEventKit.swift; path = Source/MIDIEventKit.swift; sourceTree = "<group>"; };
+		D223441416A3C07313D71D976A0F42DE /* Pods-MIDIPianoRollViewTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MIDIPianoRollViewTests-dummy.m"; sourceTree = "<group>"; };
+		D29C194984985D0D2238F3EACD24476B /* ALKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ALKit.modulemap; sourceTree = "<group>"; };
+		D586CB541CD3AB20392E46C4B08B2AA9 /* Interval.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Interval.swift; path = Source/Interval.swift; sourceTree = "<group>"; };
+		D5AA74FF12907658F5AE7C67B77F460B /* ALKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ALKit-dummy.m"; sourceTree = "<group>"; };
+		D6892408E8823ECB66484F11088EA892 /* Pods-MIDIPianoRollView-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MIDIPianoRollView-acknowledgements.plist"; sourceTree = "<group>"; };
+		D8A6A3266E6FBE521CF7BDEDD0F2B963 /* Pods-MIDIPianoRollViewTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MIDIPianoRollViewTests.release.xcconfig"; sourceTree = "<group>"; };
+		D9ACABBD8C4575EA62B31D2EF0DB87CC /* Tempo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Tempo.swift; path = Source/Tempo.swift; sourceTree = "<group>"; };
+		E9C4D48F63E50686A775C9FCB7AE5204 /* MIDIEventKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MIDIEventKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB0BD274FCB8133D1336FB25E68DEA58 /* Pods-MIDIPianoRollView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MIDIPianoRollView-dummy.m"; sourceTree = "<group>"; };
+		FC4A8C210453CA7C85B533C61623E847 /* Pods-MIDIPianoRollViewTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MIDIPianoRollViewTests.modulemap"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1CD0D375E17C288B835EF30B520570E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A88BA63E209FA7CD82F44538E23E357 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A25F6067EE8F70C1471F1585C2861BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C3A85F980077247E3FEF9BEB1499389 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ED6FF5B5919F21EFCD093118F2A4498 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3C058E37C90A1F65AE91A522EAE0015 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB97A0BE6B05AA3536420F18FE591A1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				743F0A8C2562B86C4AF2DCC5058623D8 /* CoreMIDI.framework in Frameworks */,
+				55C75E978291B406D9B49D8E9653EE10 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB65172FE513730BD20882FC95AD8BD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD6A4961CE7B412CF27A6F4C445EEEB6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		040631BB3140C0917EF570F5FF2366AB /* MusicTheorySwift */ = {
+			isa = PBXGroup;
+			children = (
+				4C785E4FE302B45FB482A83CC1520616 /* Accidental.swift */,
+				20FDBBEA8480CF67FE13C369E7A3F644 /* Chord.swift */,
+				BE6EFFEE341E6072EDC027022DBB884B /* ChordProgression.swift */,
+				D586CB541CD3AB20392E46C4B08B2AA9 /* Interval.swift */,
+				507892FF84AB9F53BB92B9F6C995BA61 /* Key.swift */,
+				300BAB6A79A4D11984885759A40305B6 /* NoteValue.swift */,
+				AAAC911FF7DAEFB684FBB86575054501 /* Pitch.swift */,
+				518D74E97401BCC6EEB99C597CD8E1FB /* Scale.swift */,
+				D9ACABBD8C4575EA62B31D2EF0DB87CC /* Tempo.swift */,
+				1528E70F7090373CD6882D75C64CA1AA /* TimeSignature.swift */,
+				2E94E63DDDD823653BAF3132ECCFBD8C /* Support Files */,
+			);
+			path = MusicTheorySwift;
+			sourceTree = "<group>";
+		};
+		18ECBC14BAC84F90DC7CBDCEBF1D6EB3 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				317B62043E9C86D4E9E17C74B2E3E0E7 /* MIDIEventKit.modulemap */,
+				6DFBFEB721810BEC6D88B0AC40140090 /* MIDIEventKit.xcconfig */,
+				896BF0740AE9F35F06302B8A5D7B38A5 /* MIDIEventKit-dummy.m */,
+				539C81465C4CAAC55C65BC3E59389BF1 /* MIDIEventKit-Info.plist */,
+				6EDC02F1AF165AF25C919686E1AD2677 /* MIDIEventKit-prefix.pch */,
+				16C3F04597BA756B21B3FAC45BC9D2BB /* MIDIEventKit-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/MIDIEventKit";
+			sourceTree = "<group>";
+		};
+		2E94E63DDDD823653BAF3132ECCFBD8C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				44EE4D37DEF753FD2D2D8FEB114ACCF3 /* MusicTheorySwift.modulemap */,
+				2D8B79132F0F1D77BA8361D662AFFC00 /* MusicTheorySwift.xcconfig */,
+				896F7BD580D234CF389E4ED9E2B06DE0 /* MusicTheorySwift-dummy.m */,
+				B3641B9FCF83B5CBF03722E7625D808A /* MusicTheorySwift-Info.plist */,
+				5CF6A48D4EC8B571577E65A833AC2FD1 /* MusicTheorySwift-prefix.pch */,
+				576BAA3ACAC696542924980EB163F342 /* MusicTheorySwift-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/MusicTheorySwift";
+			sourceTree = "<group>";
+		};
+		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D03A9FDAD2C88B7E14175C49F7F8BD0F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6199E1951169E719176A5D579A1C60F1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C5F70D2A800C90B0FD8D180E56D36E8F /* MIDIEventKit.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		62DECFD0A60B7C0DC6F5A9986B44305B /* Pods-MIDIPianoRollViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				FC4A8C210453CA7C85B533C61623E847 /* Pods-MIDIPianoRollViewTests.modulemap */,
+				77E79C2D0A766B4141C5219CDDD568F4 /* Pods-MIDIPianoRollViewTests-acknowledgements.markdown */,
+				3DE987C40FAA215E9A297B9C48C70A60 /* Pods-MIDIPianoRollViewTests-acknowledgements.plist */,
+				D223441416A3C07313D71D976A0F42DE /* Pods-MIDIPianoRollViewTests-dummy.m */,
+				63DA32234D7E556CBC17BEC2E4965EAA /* Pods-MIDIPianoRollViewTests-Info.plist */,
+				87FE02E42857B290C84D8EEF5B8A26A7 /* Pods-MIDIPianoRollViewTests-umbrella.h */,
+				1DC890996DA4D9EE6A86C6AF6214977A /* Pods-MIDIPianoRollViewTests.debug.xcconfig */,
+				D8A6A3266E6FBE521CF7BDEDD0F2B963 /* Pods-MIDIPianoRollViewTests.release.xcconfig */,
+			);
+			name = "Pods-MIDIPianoRollViewTests";
+			path = "Target Support Files/Pods-MIDIPianoRollViewTests";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				B36AB396275697EEE1A5B13BA8A38FE3 /* Podfile */,
+				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
+				DF2D7EE2727C1EB8273F975879535565 /* Pods */,
+				AE8D19C3B0E0A45BA344DE166FBCF22F /* Products */,
+				EFCDB4E5D342DB4E54D80ABE991ED56C /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		881E13CF0A27B1455B8621AFE325AD6D /* MIDIEventKit */ = {
+			isa = PBXGroup;
+			children = (
+				C8594E0024C3CEDA2CC7164878E263C2 /* MIDIEventKit.swift */,
+				6199E1951169E719176A5D579A1C60F1 /* Resources */,
+				18ECBC14BAC84F90DC7CBDCEBF1D6EB3 /* Support Files */,
+			);
+			path = MIDIEventKit;
+			sourceTree = "<group>";
+		};
+		AE619054A090D5D66F8674ADC43F4EC1 /* Pods-MIDIPianoRollView */ = {
+			isa = PBXGroup;
+			children = (
+				702235831EA6F48F66D339A2CE5ED938 /* Pods-MIDIPianoRollView.modulemap */,
+				9C57B403AE7629E520EDAB119CA7A49E /* Pods-MIDIPianoRollView-acknowledgements.markdown */,
+				D6892408E8823ECB66484F11088EA892 /* Pods-MIDIPianoRollView-acknowledgements.plist */,
+				FB0BD274FCB8133D1336FB25E68DEA58 /* Pods-MIDIPianoRollView-dummy.m */,
+				0CB08C4E6F8CB95A5E16145B6AAFDE33 /* Pods-MIDIPianoRollView-frameworks.sh */,
+				B0225E290BEF14DC23D1A75D6E35569D /* Pods-MIDIPianoRollView-Info.plist */,
+				BBFF26B653FA63358E937FFB58A24BEB /* Pods-MIDIPianoRollView-umbrella.h */,
+				B57D5E923B34F4887EE03A3263ABD0FA /* Pods-MIDIPianoRollView.debug.xcconfig */,
+				7DD55A3EB1D345BEF8C47239BBE46A6E /* Pods-MIDIPianoRollView.release.xcconfig */,
+			);
+			name = "Pods-MIDIPianoRollView";
+			path = "Target Support Files/Pods-MIDIPianoRollView";
+			sourceTree = "<group>";
+		};
+		AE8D19C3B0E0A45BA344DE166FBCF22F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F4C01C05115803DE9157C89D42F116C /* ALKit.framework */,
+				E9C4D48F63E50686A775C9FCB7AE5204 /* MIDIEventKit.framework */,
+				8083F9CBC268DDF9E0F94FB88AEFDBEC /* MusicTheorySwift.framework */,
+				86197F77D04E26330FE73260FDD8B3D8 /* Pods_MIDIPianoRollView.framework */,
+				04B74FB9EDDCA4388ACF7D6FE108A857 /* Pods_MIDIPianoRollViewTests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BBA1FB6D332C4BC039EC7B9E959CBCC9 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D29C194984985D0D2238F3EACD24476B /* ALKit.modulemap */,
+				B11329FE532A5008F6CE968E1EE9CDCB /* ALKit.xcconfig */,
+				D5AA74FF12907658F5AE7C67B77F460B /* ALKit-dummy.m */,
+				24C1FA13C341938A7BD187C34FC566E5 /* ALKit-Info.plist */,
+				BB19CA90C32873D8B2687662C9ADA483 /* ALKit-prefix.pch */,
+				788C8C47C094F246B1AB115CA304D0AC /* ALKit-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ALKit";
+			sourceTree = "<group>";
+		};
+		D03A9FDAD2C88B7E14175C49F7F8BD0F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C6FA0C6C2A17E8D6E829889A24C1E2FD /* CoreMIDI.framework */,
+				B08623C52251B4131A08215522D48866 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		DF2D7EE2727C1EB8273F975879535565 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EDC66E44D8FED840881ECA5A2BDF28BA /* ALKit */,
+				881E13CF0A27B1455B8621AFE325AD6D /* MIDIEventKit */,
+				040631BB3140C0917EF570F5FF2366AB /* MusicTheorySwift */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EDC66E44D8FED840881ECA5A2BDF28BA /* ALKit */ = {
+			isa = PBXGroup;
+			children = (
+				BAFB39EE9C25822667619C9F956FCF2B /* ALKit.swift */,
+				BBA1FB6D332C4BC039EC7B9E959CBCC9 /* Support Files */,
+			);
+			path = ALKit;
+			sourceTree = "<group>";
+		};
+		EFCDB4E5D342DB4E54D80ABE991ED56C /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				AE619054A090D5D66F8674ADC43F4EC1 /* Pods-MIDIPianoRollView */,
+				62DECFD0A60B7C0DC6F5A9986B44305B /* Pods-MIDIPianoRollViewTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		04A36CDD1AA4703AE36F1771A17032B6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDE146081EC0516FB0A967718836DDF4 /* Pods-MIDIPianoRollViewTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		257038B7B8FD519B72865F938F8D04E6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB2442404CA921601400C185564EAE90 /* Pods-MIDIPianoRollView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E1A5FA01A59FDC3A5862A2CF730DD9F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FF04C3EB7AC937BE49A842C403D9118 /* MIDIEventKit-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7751ACF0F56F55FFA94ACDC25B6A6909 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5929B30A13529956287A3B64985163B6 /* ALKit-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D96BE46C59338A3BCEA26CA69BBE78DF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				365E9A4C13FD7CFCDDD3573A2F84FD14 /* MusicTheorySwift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		65D07ADE72EFF996C2B1099EBC83C8CC /* Pods-MIDIPianoRollViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2E9C4A8CE3AB1D77DCBCDC886D28B08 /* Build configuration list for PBXNativeTarget "Pods-MIDIPianoRollViewTests" */;
+			buildPhases = (
+				04A36CDD1AA4703AE36F1771A17032B6 /* Headers */,
+				BFFD725EAD285F57A9FE33BD20BB020B /* Sources */,
+				BB65172FE513730BD20882FC95AD8BD7 /* Frameworks */,
+				ABDEF755A7317F241C78B6E02B870244 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				933B0191CC63313AEC87689F66B06195 /* PBXTargetDependency */,
+			);
+			name = "Pods-MIDIPianoRollViewTests";
+			productName = "Pods-MIDIPianoRollViewTests";
+			productReference = 04B74FB9EDDCA4388ACF7D6FE108A857 /* Pods_MIDIPianoRollViewTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D667F3E263E41FD3BFCAF5C1E9A4E098 /* MusicTheorySwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3CFBE5662A59DBB99495019FE7DB28A /* Build configuration list for PBXNativeTarget "MusicTheorySwift" */;
+			buildPhases = (
+				D96BE46C59338A3BCEA26CA69BBE78DF /* Headers */,
+				DE7CBA93096BD6C6AD0C5A015BAF6EE9 /* Sources */,
+				8ED6FF5B5919F21EFCD093118F2A4498 /* Frameworks */,
+				0F3E806EF733C92C49C55F8D6E4F343C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MusicTheorySwift;
+			productName = MusicTheorySwift;
+			productReference = 8083F9CBC268DDF9E0F94FB88AEFDBEC /* MusicTheorySwift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		DA864645B8430D2B3976A384A9722165 /* Pods-MIDIPianoRollView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 205F50DC3644265C3A469114A1998438 /* Build configuration list for PBXNativeTarget "Pods-MIDIPianoRollView" */;
+			buildPhases = (
+				257038B7B8FD519B72865F938F8D04E6 /* Headers */,
+				0B65B5BBC66F52B69EF8C76FFDDE3579 /* Sources */,
+				1CD0D375E17C288B835EF30B520570E1 /* Frameworks */,
+				0ECF23F580FCFD9EDB35E088A8C03232 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A8AC9A9BAABFEEF2724B9A74E37098BE /* PBXTargetDependency */,
+				C61D68FD6B3A663DBFBEC15102400002 /* PBXTargetDependency */,
+				B912A34A56B4F9A60E111786929886A8 /* PBXTargetDependency */,
+			);
+			name = "Pods-MIDIPianoRollView";
+			productName = "Pods-MIDIPianoRollView";
+			productReference = 86197F77D04E26330FE73260FDD8B3D8 /* Pods_MIDIPianoRollView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E7DDA53D73341AD34997441C4E0BA2C6 /* MIDIEventKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76E53880DFFDB1807630B5853C08CC7E /* Build configuration list for PBXNativeTarget "MIDIEventKit" */;
+			buildPhases = (
+				3E1A5FA01A59FDC3A5862A2CF730DD9F /* Headers */,
+				B7B5C88A8483F6772AD52E5B62AC168A /* Sources */,
+				AB97A0BE6B05AA3536420F18FE591A1E /* Frameworks */,
+				258B0F867CAA11367A705F1710CB11C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MIDIEventKit;
+			productName = MIDIEventKit;
+			productReference = E9C4D48F63E50686A775C9FCB7AE5204 /* MIDIEventKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FAC82D2C046A752333162241143C90DC /* ALKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B29DF3814DBAD8E0AB8CECBF647F35A /* Build configuration list for PBXNativeTarget "ALKit" */;
+			buildPhases = (
+				7751ACF0F56F55FFA94ACDC25B6A6909 /* Headers */,
+				49B8518A22726D7AFBB525C9F2FD9840 /* Sources */,
+				4A25F6067EE8F70C1471F1585C2861BD /* Frameworks */,
+				48186E2F1D0CAA780652D9D1B286E7AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ALKit;
+			productName = ALKit;
+			productReference = 3F4C01C05115803DE9157C89D42F116C /* ALKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 1010;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = AE8D19C3B0E0A45BA344DE166FBCF22F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAC82D2C046A752333162241143C90DC /* ALKit */,
+				E7DDA53D73341AD34997441C4E0BA2C6 /* MIDIEventKit */,
+				D667F3E263E41FD3BFCAF5C1E9A4E098 /* MusicTheorySwift */,
+				DA864645B8430D2B3976A384A9722165 /* Pods-MIDIPianoRollView */,
+				65D07ADE72EFF996C2B1099EBC83C8CC /* Pods-MIDIPianoRollViewTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0ECF23F580FCFD9EDB35E088A8C03232 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F3E806EF733C92C49C55F8D6E4F343C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		258B0F867CAA11367A705F1710CB11C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C06B619BDFEE780D57DC1F338B24119 /* MIDIEventKit.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48186E2F1D0CAA780652D9D1B286E7AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABDEF755A7317F241C78B6E02B870244 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0B65B5BBC66F52B69EF8C76FFDDE3579 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8C5BD78E527FF198B12C73B0E48B7FE /* Pods-MIDIPianoRollView-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49B8518A22726D7AFBB525C9F2FD9840 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD794F677A170A2770C0FB213F5CF8D2 /* ALKit-dummy.m in Sources */,
+				D4D9A472BCCACEBB22B0CBA95CD287C8 /* ALKit.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7B5C88A8483F6772AD52E5B62AC168A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50F0E5490FE49744E22104377A5D6329 /* MIDIEventKit-dummy.m in Sources */,
+				42CE0D1D806C0A4E981693782C1C9720 /* MIDIEventKit.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFFD725EAD285F57A9FE33BD20BB020B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				014B9BD5A116EA894755D7AB66ABC34F /* Pods-MIDIPianoRollViewTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE7CBA93096BD6C6AD0C5A015BAF6EE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E90359C688C266C601A8EBD5D0142671 /* Accidental.swift in Sources */,
+				9EC599E175A0941947F7CADC67C5559D /* Chord.swift in Sources */,
+				A18597C6FBBF14114E1B914A4DC88E87 /* ChordProgression.swift in Sources */,
+				1547FE59DD43F0A58DAC4D4A845EC9DE /* Interval.swift in Sources */,
+				5098DB83B12519C4AF67B796461A9D2B /* Key.swift in Sources */,
+				C129098CBD294E68C6211DF0147ADA53 /* MusicTheorySwift-dummy.m in Sources */,
+				508E4FC5DC9E0952BDB493DA6170C2FD /* NoteValue.swift in Sources */,
+				C9FF5AAA2F1D4693B02A469525B91AA1 /* Pitch.swift in Sources */,
+				6F96B15ABA2B3F8B72E9CF8D9484C156 /* Scale.swift in Sources */,
+				7521A579E4683111A8190836494E087F /* Tempo.swift in Sources */,
+				8099F86D20E69A21E3E791CC51A951D0 /* TimeSignature.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		933B0191CC63313AEC87689F66B06195 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-MIDIPianoRollView";
+			target = DA864645B8430D2B3976A384A9722165 /* Pods-MIDIPianoRollView */;
+			targetProxy = 134381BA5525BAAD569DE9ADA9C816FB /* PBXContainerItemProxy */;
+		};
+		A8AC9A9BAABFEEF2724B9A74E37098BE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ALKit;
+			target = FAC82D2C046A752333162241143C90DC /* ALKit */;
+			targetProxy = 30961D9077A8F432EE835E2587AE8BBD /* PBXContainerItemProxy */;
+		};
+		B912A34A56B4F9A60E111786929886A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MusicTheorySwift;
+			target = D667F3E263E41FD3BFCAF5C1E9A4E098 /* MusicTheorySwift */;
+			targetProxy = 86E5B2A7CD97263C4A9CFFCF9B693517 /* PBXContainerItemProxy */;
+		};
+		C61D68FD6B3A663DBFBEC15102400002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MIDIEventKit;
+			target = E7DDA53D73341AD34997441C4E0BA2C6 /* MIDIEventKit */;
+			targetProxy = 34E65BBE8FC882A11496E570144362D5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		02D001B05E6CBB73BAC73E9B56649E73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B11329FE532A5008F6CE968E1EE9CDCB /* ALKit.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ALKit/ALKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ALKit/ALKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ALKit/ALKit.modulemap";
+				PRODUCT_MODULE_NAME = ALKit;
+				PRODUCT_NAME = ALKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		035EB376C6035C7507A67C7E01159C70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DFBFEB721810BEC6D88B0AC40140090 /* MIDIEventKit.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/MIDIEventKit/MIDIEventKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MIDIEventKit/MIDIEventKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MIDIEventKit/MIDIEventKit.modulemap";
+				PRODUCT_MODULE_NAME = MIDIEventKit;
+				PRODUCT_NAME = MIDIEventKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		105F90BF10F8688032FB629A9DA204FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		11CA6573B11D2A43BEB19968FD89383E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D8B79132F0F1D77BA8361D662AFFC00 /* MusicTheorySwift.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/MusicTheorySwift/MusicTheorySwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MusicTheorySwift/MusicTheorySwift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MusicTheorySwift/MusicTheorySwift.modulemap";
+				PRODUCT_MODULE_NAME = MusicTheorySwift;
+				PRODUCT_NAME = MusicTheorySwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2D78A8FF83A86760FA30618F4C6992B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1DC890996DA4D9EE6A86C6AF6214977A /* Pods-MIDIPianoRollViewTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MIDIPianoRollViewTests/Pods-MIDIPianoRollViewTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MIDIPianoRollViewTests/Pods-MIDIPianoRollViewTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		36684D9446CE02470969B4463617DB2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B57D5E923B34F4887EE03A3263ABD0FA /* Pods-MIDIPianoRollView.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MIDIPianoRollView/Pods-MIDIPianoRollView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MIDIPianoRollView/Pods-MIDIPianoRollView.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4523AD7643ED91A440EAEA20025EC111 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		468F715A0359D21BE78136EC83624771 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8A6A3266E6FBE521CF7BDEDD0F2B963 /* Pods-MIDIPianoRollViewTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MIDIPianoRollViewTests/Pods-MIDIPianoRollViewTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MIDIPianoRollViewTests/Pods-MIDIPianoRollViewTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7C7886954B0F0940294D91032262EF75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D8B79132F0F1D77BA8361D662AFFC00 /* MusicTheorySwift.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/MusicTheorySwift/MusicTheorySwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MusicTheorySwift/MusicTheorySwift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MusicTheorySwift/MusicTheorySwift.modulemap";
+				PRODUCT_MODULE_NAME = MusicTheorySwift;
+				PRODUCT_NAME = MusicTheorySwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8E0F87284B12A96AF688AE7135348277 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DD55A3EB1D345BEF8C47239BBE46A6E /* Pods-MIDIPianoRollView.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MIDIPianoRollView/Pods-MIDIPianoRollView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MIDIPianoRollView/Pods-MIDIPianoRollView.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		AF2927C86FFD73FEC1EDFADCA7ADE364 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B11329FE532A5008F6CE968E1EE9CDCB /* ALKit.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ALKit/ALKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ALKit/ALKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ALKit/ALKit.modulemap";
+				PRODUCT_MODULE_NAME = ALKit;
+				PRODUCT_NAME = ALKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E8B890D68259E9A0F68D69C88BD4E6A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DFBFEB721810BEC6D88B0AC40140090 /* MIDIEventKit.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/MIDIEventKit/MIDIEventKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MIDIEventKit/MIDIEventKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MIDIEventKit/MIDIEventKit.modulemap";
+				PRODUCT_MODULE_NAME = MIDIEventKit;
+				PRODUCT_NAME = MIDIEventKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		205F50DC3644265C3A469114A1998438 /* Build configuration list for PBXNativeTarget "Pods-MIDIPianoRollView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36684D9446CE02470969B4463617DB2D /* Debug */,
+				8E0F87284B12A96AF688AE7135348277 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				105F90BF10F8688032FB629A9DA204FD /* Debug */,
+				4523AD7643ED91A440EAEA20025EC111 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B29DF3814DBAD8E0AB8CECBF647F35A /* Build configuration list for PBXNativeTarget "ALKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02D001B05E6CBB73BAC73E9B56649E73 /* Debug */,
+				AF2927C86FFD73FEC1EDFADCA7ADE364 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		76E53880DFFDB1807630B5853C08CC7E /* Build configuration list for PBXNativeTarget "MIDIEventKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8B890D68259E9A0F68D69C88BD4E6A6 /* Debug */,
+				035EB376C6035C7507A67C7E01159C70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2E9C4A8CE3AB1D77DCBCDC886D28B08 /* Build configuration list for PBXNativeTarget "Pods-MIDIPianoRollViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D78A8FF83A86760FA30618F4C6992B4 /* Debug */,
+				468F715A0359D21BE78136EC83624771 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D3CFBE5662A59DBB99495019FE7DB28A /* Build configuration list for PBXNativeTarget "MusicTheorySwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C7886954B0F0940294D91032262EF75 /* Debug */,
+				11CA6573B11D2A43BEB19968FD89383E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

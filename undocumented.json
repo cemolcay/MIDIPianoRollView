@@ -2,28 +2,28 @@
   "warnings": [
     {
       "file": "/Users/cem.olcay/Desktop/MIDIPianoRollView/MIDIPianoRollView/Source/MIDIPianoRollCellView.swift",
-      "line": 93,
+      "line": 95,
       "symbol": "MIDIPianoRollCellView.layoutSubviews()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/cem.olcay/Desktop/MIDIPianoRollView/MIDIPianoRollView/Source/MIDIPianoRollCellView.swift",
-      "line": 104,
+      "line": 106,
       "symbol": "MIDIPianoRollCellView.didTap(tap:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/cem.olcay/Desktop/MIDIPianoRollView/MIDIPianoRollView/Source/MIDIPianoRollCellView.swift",
-      "line": 108,
+      "line": 110,
       "symbol": "MIDIPianoRollCellView.didMove(pan:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/cem.olcay/Desktop/MIDIPianoRollView/MIDIPianoRollView/Source/MIDIPianoRollCellView.swift",
-      "line": 112,
+      "line": 114,
       "symbol": "MIDIPianoRollCellView.didResize(pan:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -37,7 +37,7 @@
     },
     {
       "file": "/Users/cem.olcay/Desktop/MIDIPianoRollView/MIDIPianoRollView/Source/MIDIPianoRollPosition.swift",
-      "line": 223,
+      "line": 221,
       "symbol": "NoteValue.pianoRollDuration",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
@@ -51,14 +51,14 @@
     },
     {
       "file": "/Users/cem.olcay/Desktop/MIDIPianoRollView/MIDIPianoRollView/Source/MIDIPianoRollView.swift",
-      "line": 289,
+      "line": 434,
       "symbol": "MIDIPianoRollView.layoutSubviews()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/cem.olcay/Desktop/MIDIPianoRollView/MIDIPianoRollView/Source/MIDIPianoRollView.swift",
-      "line": 472,
+      "line": 652,
       "symbol": "MIDIPianoRollView.hitTest(_:with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

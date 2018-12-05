@@ -1,0 +1,114 @@
+/* 
+  MIDIEventKit.strings
+  MIDIEventKit
+
+  Created by Cem Olcay on 7.03.2018.
+  Copyright © 2018 cemolcay. All rights reserved.
+*/
+
+// MIDI System Realtime
+
+"midi_timingClock" = "Timing Clock";
+"midi_start" = "Start";
+"midi_continue" = "Continue";
+"midi_stop" = "Stop";
+"midi_activeSensing" = "Active Sensing";
+"midi_reset" = "Reset";
+
+// MIDI System common
+
+"midi_systemExclusive" = "System Exclusive";
+"midi_songPositionPointer" = "Song Position Pointer";
+"midi_songSelect" = "Song Select";
+"midi_tuneRequest" = "Tune Request";
+"midi_eox" = "EOX";
+"midi_quarterFrameEvent" = "Quarter Frame";
+
+// MIDI Channel Change
+
+"midi_allSoundOff" = "All Sound Off";
+"midi_resetAllControllers" = "Reset All Controllers";
+"midi_localControl" = "Local Control";
+"midi_allNotesOff" = "All Notes Off";
+"midi_omniModeOff" = "Omni Mode Off";
+"midi_omniModeOn" = "Omni Mode On";
+"midi_monoModeOn" = "Mono Mode On";
+"midi_polyModeOn" = "Poly Mode On";
+
+// MIDI Voice Change
+
+"midi_noteOff" = "Note Off";
+"midi_noteOn" = "Note On";
+"midi_polyphonicAftertouch" = "Polyphonic Aftertouch";
+"midi_channelAftertouch" = "Channel Aftertouch";
+"midi_pitchBendChange" = "Pitch Bend Change";
+
+// MIDI CC
+
+"midi_bankSelect" = "Bank Select";
+"midi_modulationWheel" = "Modulation Wheel";
+"midi_breathController" = "Breath Controller";
+"midi_footController" = "Foot Controller";
+"midi_portamentoTime" = "Portamento Time";
+"midi_dataEntryMSB" = "Data Entry MSB";
+"midi_channelVolume" = "Channel Volume";
+"midi_balance" = "Balance";
+"midi_pan" = "Pan";
+"midi_expressionController" = "Expression Controller";
+"midi_effectControl1" = "Effect Control 1";
+"midi_effectControl2" = "Effect Control 2";
+"midi_generalPurposeController1" = "General Purpose Controller 1";
+"midi_generalPurposeController2" = "General Purpose Controller 2";
+"midi_generalPurposeController3" = "General Purpose Controller 3";
+"midi_generalPurposeController4" = "General Purpose Controller 4";
+"midi_lsbBankSelect" = "LSB Bank Select";
+"midi_lsbModulationWheel" = "LSB Modulation Wheel";
+"midi_lsbBreathController" = "LSB Breath Controller";
+"midi_lsbFootController" = "LSB Foot Controller";
+"midi_lsbPortamentoTime" = "LSB Portamento Time";
+"midi_lsbDataEntryMSB" = "LSB Data Entry MSB";
+"midi_lsbChannelVolume" = "LSB Channel Volume";
+"midi_lsbBalance" = "LSB Balance";
+"midi_lsbPan" = "LSB Pan";
+"midi_lsbExpressionController" = "LSB Expression Controller";
+"midi_lsbEffectControl1" = "LSB Effect Control 1";
+"midi_lsbEffectControl2" = "LSB Effect Control 2";
+"midi_lsbGeneralPurposeController1" = "LSB General Purpose Controller 1";
+"midi_lsbGeneralPurposeController2" = "LSB General Purpose Controller 2";
+"midi_lsbGeneralPurposeController3" = "LSB General Purpose Controller 3";
+"midi_lsbGeneralPurposeController4" = "LSB General Purpose Controller 4";
+"midi_damperPedal" = "Damper Pedal";
+"midi_portamentoOn" = "Portamento On";
+"midi_sostenutoOn" = "Sostenuto On";
+"midi_softPedalOn" = "Soft Pedal On";
+"midi_legatoFootswitch" = "Legato Footswitch";
+"midi_hold2" = "Hold 2";
+"midi_soundVariation" = "Sound Variation";
+"midi_timbreIntesity" = "Timbre Intesity";
+"midi_releaseTime" = "Release Time";
+"midi_attackTime" = "Attack Time";
+"midi_brightness" = "Brightness";
+"midi_decayTime" = "Decay Time";
+"midi_vibratoRate" = "Vibrato Rate";
+"midi_vibratoDepth" = "Vibrato Depth";
+"midi_vibratoDelay" = "Vibrato Delay";
+"midi_defaultUndefined" = "Default Undefined";
+"midi_generalPurposeController5" = "General Purpose Controller5";
+"midi_generalPurposeController6" = "general Purpose Controller6";
+"midi_generalPurposeController7" = "General Purpose Controller7";
+"midi_generalPurposeController8" = "General Purpose Controller8";
+"midi_portamentoControl" = "Portamento Control";
+"midi_highResolutionVelocityPrefix" = "High Resolution Velocity Prefix";
+"midi_reverbSendLevel" = "Reverb Send Level";
+"midi_tremoloDepth" = "Tremolo Depth";
+"midi_chorusSendLevel" = "Chorus Send Level";
+"midi_celesteDepth" = "Celeste Depth";
+"midi_phaserDepth" = "Phaser Depth";
+"midi_dataIncrement" = "Data Increment";
+"midi_dataDecrement" = "Data Decrement";
+"midi_nonRegisteredParameterNumberLSB" = "Non-Registered Parameter Number LSB";
+"midi_nonRegisteredParameterNumberMSB" = "Non-RegisteredParameterNumberMSB";
+"midi_registeredParameterNumberLSB" = "Registered Parameter Number LSB";
+"midi_registeredParameterNumberMSB" = "Registered Parameter Number MSB";
+
+"midi_undefined" = "Undefined";
