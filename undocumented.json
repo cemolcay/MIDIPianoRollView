@@ -51,14 +51,14 @@
     },
     {
       "file": "/Users/cem.olcay/Desktop/MIDIPianoRollView/MIDIPianoRollView/Source/MIDIPianoRollView.swift",
-      "line": 434,
+      "line": 363,
       "symbol": "MIDIPianoRollView.layoutSubviews()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/cem.olcay/Desktop/MIDIPianoRollView/MIDIPianoRollView/Source/MIDIPianoRollView.swift",
-      "line": 652,
+      "line": 582,
       "symbol": "MIDIPianoRollView.hitTest(_:with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

@@ -50,10 +50,7 @@
                 <a href="../Classes/MIDIPianoRollView/Keys.html">– Keys</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/MIDIPianoRollView/GridLines.html">– GridLines</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/MIDIPianoRollView/AutoScrollingDirection.html">– AutoScrollingDirection</a>
+                <a href="../Classes/MIDIPianoRollView/GridLine.html">– GridLine</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/MIDIPianoRollView/ZoomLevel.html">– ZoomLevel</a>
@@ -181,9 +178,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:17MIDIPianoRollViewAAC9GridLinesO"></a>
-                    <a name="//apple_ref/swift/Enum/GridLines" class="dashAnchor"></a>
-                    <a class="token" href="#/s:17MIDIPianoRollViewAAC9GridLinesO">GridLines</a>
+                    <a name="/s:17MIDIPianoRollViewAAC8GridLineV"></a>
+                    <a name="//apple_ref/swift/Struct/GridLine" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC8GridLineV">GridLine</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -193,41 +190,13 @@
                       <div class="abstract">
                         <p>All grid lines for line with and color customisation.</p>
 
-                        <a href="../Classes/MIDIPianoRollView/GridLines.html" class="slightly-smaller">See more</a>
+                        <a href="../Classes/MIDIPianoRollView/GridLine.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">GridLines</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:17MIDIPianoRollViewAAC22AutoScrollingDirectionV"></a>
-                    <a name="//apple_ref/swift/Struct/AutoScrollingDirection" class="dashAnchor"></a>
-                    <a class="token" href="#/s:17MIDIPianoRollViewAAC22AutoScrollingDirectionV">AutoScrollingDirection</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The direction towards on auto scrolling.</p>
-
-                        <a href="../Classes/MIDIPianoRollView/AutoScrollingDirection.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AutoScrollingDirection</span> <span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">GridLine</span></code></pre>
 
                         </div>
                       </div>
@@ -859,9 +828,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:17MIDIPianoRollViewAAC22isAutoScrollingEnabledSbvp"></a>
-                    <a name="//apple_ref/swift/Property/isAutoScrollingEnabled" class="dashAnchor"></a>
-                    <a class="token" href="#/s:17MIDIPianoRollViewAAC22isAutoScrollingEnabledSbvp">isAutoScrollingEnabled</a>
+                    <a name="/s:17MIDIPianoRollViewAAC9cellLayerSo6UIViewCvp"></a>
+                    <a name="//apple_ref/swift/Property/cellLayer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC9cellLayerSo6UIViewCvp">cellLayer</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -869,14 +838,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Enables/disables the auto scrolling on cell editing, when user hits the auto scrolling insets from an edge.</p>
+                        <p>Layer that cells drawn on. Lowest layer.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isAutoScrollingEnabled</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">cellLayer</span><span class="p">:</span> <span class="kt">UIView</span></code></pre>
 
                         </div>
                       </div>
@@ -886,9 +855,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:17MIDIPianoRollViewAAC19autoScrollingInsets12CoreGraphics7CGFloatVvp"></a>
-                    <a name="//apple_ref/swift/Property/autoScrollingInsets" class="dashAnchor"></a>
-                    <a class="token" href="#/s:17MIDIPianoRollViewAAC19autoScrollingInsets12CoreGraphics7CGFloatVvp">autoScrollingInsets</a>
+                    <a name="/s:17MIDIPianoRollViewAAC9gridLayerSo6UIViewCvp"></a>
+                    <a name="//apple_ref/swift/Property/gridLayer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC9gridLayerSo6UIViewCvp">gridLayer</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -896,14 +865,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>When user edits a cell, if their finger inside from that inset, it start auto scrolling.</p>
+                        <p>Layer that grid drawn on. Middle low layer.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">autoScrollingInsets</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">gridLayer</span><span class="p">:</span> <span class="kt">UIView</span></code></pre>
 
                         </div>
                       </div>
@@ -913,9 +882,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:17MIDIPianoRollViewAAC25autoScrollingTimeIntervalSdvp"></a>
-                    <a name="//apple_ref/swift/Property/autoScrollingTimeInterval" class="dashAnchor"></a>
-                    <a class="token" href="#/s:17MIDIPianoRollViewAAC25autoScrollingTimeIntervalSdvp">autoScrollingTimeInterval</a>
+                    <a name="/s:17MIDIPianoRollViewAAC8rowLayerSo6UIViewCvp"></a>
+                    <a name="//apple_ref/swift/Property/rowLayer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:17MIDIPianoRollViewAAC8rowLayerSo6UIViewCvp">rowLayer</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -923,41 +892,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Interval of the auto scrolling timer.</p>
+                        <p>Layer that rows drawn on. Middle top layer.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">autoScrollingTimeInterval</span><span class="p">:</span> <span class="kt">TimeInterval</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:17MIDIPianoRollViewAAC18autoScrollingSpeed12CoreGraphics7CGFloatVvp"></a>
-                    <a name="//apple_ref/swift/Property/autoScrollingSpeed" class="dashAnchor"></a>
-                    <a class="token" href="#/s:17MIDIPianoRollViewAAC18autoScrollingSpeed12CoreGraphics7CGFloatVvp">autoScrollingSpeed</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Auto scrolling speed that happens in each <code><a href="../Classes/MIDIPianoRollView.html#/s:17MIDIPianoRollViewAAC25autoScrollingTimeIntervalSdvp">autoScrollingTimeInterval</a></code>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">autoScrollingSpeed</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">rowLayer</span><span class="p">:</span> <span class="kt">UIView</span></code></pre>
 
                         </div>
                       </div>
