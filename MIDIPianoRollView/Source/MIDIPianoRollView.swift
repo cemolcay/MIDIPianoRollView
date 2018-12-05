@@ -43,7 +43,7 @@ public protocol MIDIPianoRollViewDelegate: class {
 }
 
 /// Piano roll with customisable row count, row range, beat count and editable note cells.
-open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGestureRecognizerDelegate {
+open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
   /// Piano roll bars.
   public enum Bars {
     /// Fixed number of bars.
@@ -104,18 +104,18 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
     /// Width of the line.
     public var width: CGFloat {
       switch self {
-      case .rowHorizontal: return 0.5
-      case .rowVertical: return 0.5
+      case .rowHorizontal: return 1.0 / UIScreen.main.scale
+      case .rowVertical: return 1.0 / UIScreen.main.scale
       case .measureBottom: return 1
       case .measureText: return 13
       case .bar: return 1
-      case .half: return 0.5
-      case .quarter: return 0.5
-      case .eighth: return 0.5
-      case .sixteenth: return 0.5
-      case .thirtysecond: return 0.5
-      case .sixtyfourth: return 0.5
-      case .default: return 0.5
+      case .half: return 1.0 / UIScreen.main.scale
+      case .quarter: return 1.0 / UIScreen.main.scale
+      case .eighth: return 1.0 / UIScreen.main.scale
+      case .sixteenth: return 1.0 / UIScreen.main.scale
+      case .thirtysecond: return 1.0 / UIScreen.main.scale
+      case .sixtyfourth: return 1.0 / UIScreen.main.scale
+      case .default: return 1.0 / UIScreen.main.scale
       }
     }
 
@@ -444,8 +444,8 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
       horizontalGridLinePath.move(to: CGPoint(x: contentOffset.x, y: currentY))
       horizontalGridLinePath.addLine(to: CGPoint(x: gridLayer.frame.size.width + contentOffset.x, y: currentY))
       horizontalGridLinePath.close()
-      horizontalGridLinePath.lineWidth = GridLines.rowHorizontal.width
       horizontalGridLines[index].path = horizontalGridLinePath.cgPath
+      horizontalGridLines[index].lineWidth = GridLines.rowHorizontal.width
 
       // Go to next row.
       currentY += rowHeight
@@ -456,16 +456,16 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
     horizontalGridLinePath.move(to: CGPoint(x: contentOffset.x, y: currentY))
     horizontalGridLinePath.addLine(to: CGPoint(x: gridLayer.frame.size.width + contentOffset.x, y: currentY))
     horizontalGridLinePath.close()
-    horizontalGridLinePath.lineWidth = GridLines.rowHorizontal.width
     horizontalGridLines.last?.path = horizontalGridLinePath.cgPath
+    horizontalGridLines.last?.lineWidth = GridLines.rowHorizontal.width
 
     // Layout left row line
     let rowLinePath = UIBezierPath()
     rowLinePath.move(to: CGPoint(x: rowWidth, y: contentOffset.y - measureLayer.frame.size.height))
     rowLinePath.addLine(to: CGPoint(x: rowWidth, y: rowLayer.frame.size.height + contentOffset.y - measureLayer.frame.size.height))
     rowLinePath.close()
-    rowLinePath.lineWidth = GridLines.rowVertical.width
     rowLine.path = rowLinePath.cgPath
+    rowLine.lineWidth = GridLines.rowVertical.width
 
     // Update content size vertically
     contentSize.height = currentY
@@ -559,8 +559,8 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
       verticalGridLinePath.move(to: CGPoint(x: currentX, y: contentOffset.y))
       verticalGridLinePath.addLine(to: CGPoint(x: currentX, y: gridLayer.frame.size.height + contentOffset.y))
       verticalGridLinePath.close()
-      verticalGridLinePath.lineWidth = gridLine.width
       verticalGridLines[index].path = verticalGridLinePath.cgPath
+      verticalGridLines[index].lineWidth = gridLine.width
 
       currentX += beatWidth
     }
@@ -570,8 +570,8 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
     measureBottomLinePath.move(to: CGPoint(x: contentOffset.x - rowWidth, y: measureLayer.frame.size.height))
     measureBottomLinePath.addLine(to: CGPoint(x: measureLayer.frame.size.width + contentOffset.x - rowWidth, y: measureLayer.frame.size.height))
     measureBottomLinePath.close()
-    measureBottomLinePath.lineWidth = GridLines.measureBottom.width
     measureBottomLine.path = measureBottomLinePath.cgPath
+    measureBottomLine.lineWidth = GridLines.measureBottom.width
 
     // Update content size horizontally
     contentSize.width = currentX
@@ -1042,12 +1042,5 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGes
 
   public func midiPianoRollCellViewDidDelete(_ midiPianoRollCellView: MIDIPianoRollCellView) {
     guard isEditing else { return }
-  }
-
-  // MARK: UIGestureRecognizerDelegate
-
-  public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-    print(gestureRecognizer.view, otherGestureRecognizer.view)
-    return true
   }
 }
