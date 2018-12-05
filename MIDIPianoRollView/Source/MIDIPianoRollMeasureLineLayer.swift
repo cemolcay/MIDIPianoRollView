@@ -49,12 +49,7 @@ public class MIDIPianoRollMeasureLineLayer: CALayer {
 
   /// Default initilizer.
   private func commonInit() {
-    masksToBounds = false
-    // Setup text layer.
-    textLayer.masksToBounds = false
-    textLayer.foregroundColor = UIColor.black.cgColor
     textLayer.contentsScale = UIScreen.main.scale
-    // Add sublayers.
     addSublayer(lineLayer)
     addSublayer(textLayer)
   }

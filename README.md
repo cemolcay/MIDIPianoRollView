@@ -78,6 +78,11 @@ Create a `MIDIPianoRollView` either from storyboard (subclass from `UIScrollView
 - You can disable this behaviour by setting `isZoomingEnabled` property to false.
 - The same behavior also controls the row height zooming. If you vertically pinch-to-zoom, then current `rowHeight` will scale between `minRowHeight` and `maxRowHeight` properties.
 
+#### `MIDIPianoRollView.GridLine`
+
+- Contains line properties for grid line styling.
+- You can set each line's width, color or dash pattern styling.
+
 #### Editing
 
 - You can enter the cell editing mode by setting `isEditing` property to true.

@@ -38,11 +38,14 @@ class ViewController: UIViewController, MIDIPianoRollViewDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    MIDIPianoRollView.GridLine.rowVertical.color = .lightGray
+    MIDIPianoRollView.GridLine.rowVertical.width = 4
     pianoRollView?.pianoRollDelegate = self
     pianoRollView?.keys = .ranged(50...70)
     pianoRollView?.notes = notes
     pianoRollView?.bars = .fixed(4) // 4-bars
     pianoRollView?.maxZoomLevel = .thirtysecondNotes
+    pianoRollView?.measureLayer.backgroundColor = .white
   }
 
   // MARK: Actions
@@ -74,4 +77,3 @@ class ViewController: UIViewController, MIDIPianoRollViewDelegate {
     return nil
   }
 }
-
