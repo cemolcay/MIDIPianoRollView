@@ -143,6 +143,29 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
     public static var sixtyfourth = GridLine(color: .gray)
   }
 
+  /// The direction towards on auto scrolling.
+  public struct AutoScrollingDirection: OptionSet {
+    /// Not auto scrolling.
+    public static let none = AutoScrollingDirection(rawValue: 1 << 0)
+    /// Left direction.
+    public static let left = AutoScrollingDirection(rawValue: 1 << 1)
+    /// Right direction.
+    public static let right = AutoScrollingDirection(rawValue: 1 << 2)
+    /// Up direction.
+    public static let up = AutoScrollingDirection(rawValue: 1 << 3)
+    /// Down direction.
+    public static let down = AutoScrollingDirection(rawValue: 1 << 4)
+
+    // MARK: OptionSet
+
+    public typealias RawValue = Int
+    public var rawValue: Int
+
+    public init(rawValue: Int) {
+      self.rawValue = rawValue
+    }
+  }
+
   /// Zoom level of the piano roll that showing the mininum amount of beat.
   public enum ZoomLevel: Int {
     /// A beat represent whole note. See one beat in a bar.
@@ -237,6 +260,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
   public var maxZoomLevel: ZoomLevel = .sixteenthNotes
   /// Speed of zooming by pinch gesture.
   public var zoomSpeed: CGFloat = 0.4
+
   /// Maximum width of a beat on the bar, max zoomed in.
   public var maxBeatWidth: CGFloat = 40
   /// Minimum width of a beat on the bar, max zoomed out.
@@ -267,6 +291,21 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
   public var isMeasureEnabled: Bool = true { didSet { needsRedrawBar = true }}
   /// Enables/disables the multiple note cell editing at once. Defaults false.
   public var isMultipleEditing: Bool = false { didSet { multipleEditingDidChange() }}
+  /// Enables/disables the auto scrolling on cell editing, when user hits the auto scrolling insets from an edge.
+  public var isAutoScrollingEnabled: Bool = true
+
+  /// When user edits a cell, if their finger inside from that inset, it start auto scrolling.
+  public var autoScrollingInsets: CGFloat = 40.0
+  /// Interval of the auto scrolling timer.
+  public var autoScrollingTimeInterval: TimeInterval = 0.3
+  /// Auto scrolling speed that happens in each `autoScrollingTimeInterval`.
+  public var autoScrollingSpeed: CGFloat = 30
+  /// Current auto scrolling direction.
+  private var autoScrollingDirection: AutoScrollingDirection = .none
+  /// The timer that auto scrolls the piano roll.
+  private var autoScrollingTimer: Timer?
+  /// Determines if it's auto scrolling right now.
+  private var isAutoScrolling: Bool = false
 
   /// Visual cue for editing multiple cells.
   private var multipleEditingDraggingView: UIView?
@@ -550,7 +589,8 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
     let subbeatWidth = normalizedBeatWidth / 4.0
     let centWidth = subbeatWidth / 240.0
     for cell in cellViews {
-      guard let row = rowViews.filter({ $0.pitch.rawValue == cell.note.midiNote }).first
+      guard let row = rowViews.filter({ $0.pitch.rawValue == cell.note.midiNote }).first,
+        isAutoScrolling == false
         else { continue }
 
       let startPosition = gridPosition(
@@ -918,6 +958,38 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
     }
   }
 
+  // MARK: Auto Scrolling
+
+  @objc private func autoScrollingTimerTick() {
+    if autoScrollingDirection == .none {
+      autoScrollingTimer?.invalidate()
+      autoScrollingTimer = nil
+      return
+    }
+
+    var newRect = CGRect(
+      x: contentOffset.x,
+      y: contentOffset.y,
+      width: frame.size.width,
+      height: frame.size.height)
+
+    // Calculate new scrolling bounds
+    if autoScrollingDirection.contains(.right) {
+      newRect.origin.x -= autoScrollingSpeed
+    } else if autoScrollingDirection.contains(.left) {
+      newRect.origin.x += autoScrollingSpeed
+    }
+
+    if autoScrollingDirection.contains(.up) {
+      newRect.origin.y -= autoScrollingSpeed
+    } else if autoScrollingDirection.contains(.down) {
+      newRect.origin.y += autoScrollingSpeed
+    }
+
+    // Scroll
+    scrollRectToVisible(newRect, animated: true)
+  }
+
   // MARK: MIDIPianoRollViewCellDelegate
 
   public func midiPianoRollCellViewDidMove(_ midiPianoRollCellView: MIDIPianoRollCellView, pan: UIPanGestureRecognizer) {
@@ -965,10 +1037,69 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
         pan.setTranslation(CGPoint(x: translation.x, y: 0), in: translationView)
       }
 
+      // End moving
       if case .ended = pan.state {
         let newCellPosition = pianoRollPosition(for: cell)
         let newCellRow = pianoRollPitch(for: cell)
         pianoRollDelegate?.midiPianoRollView(self, didMove: cell, to: newCellPosition, pitch: newCellRow)
+      }
+    }
+
+    // Auto scrolling
+    if isAutoScrollingEnabled {
+      isAutoScrolling = false
+      let touchLocation = pan.location(in: nil)
+
+      // Check if location is in bounds
+      if touchLocation.x < autoScrollingInsets {
+        autoScrollingDirection.insert(.right)
+        autoScrollingDirection.remove(.left)
+        autoScrollingDirection.remove(.none)
+        isAutoScrolling = true
+      } else {
+        autoScrollingDirection.remove(.right)
+      }
+
+      if touchLocation.x > frame.size.width - autoScrollingInsets {
+        autoScrollingDirection.insert(.left)
+        autoScrollingDirection.remove(.right)
+        autoScrollingDirection.remove(.none)
+        isAutoScrolling = true
+      } else {
+        autoScrollingDirection.remove(.left)
+      }
+
+      if touchLocation.y < autoScrollingInsets {
+        autoScrollingDirection.insert(.up)
+        autoScrollingDirection.remove(.down)
+        autoScrollingDirection.remove(.none)
+        isAutoScrolling = true
+      } else {
+        autoScrollingDirection.remove(.up)
+      }
+
+      if touchLocation.y > frame.size.height - autoScrollingInsets {
+        autoScrollingDirection.insert(.down)
+        autoScrollingDirection.remove(.up)
+        autoScrollingDirection.remove(.none)
+        isAutoScrolling = true
+      } else {
+        autoScrollingDirection.remove(.down)
+      }
+
+      // Start autoscrolling
+      if isAutoScrolling, autoScrollingTimer == nil {
+        autoScrollingTimer = Timer.scheduledTimer(
+          timeInterval: autoScrollingTimeInterval,
+          target: self,
+          selector: #selector(autoScrollingTimerTick),
+          userInfo: nil,
+          repeats: true)
+      } else { // Reset autoscrolling.
+        autoScrollingTimer?.invalidate()
+        autoScrollingTimer = nil
+        autoScrollingDirection = .none
+        isAutoScrolling = false
       }
     }
   }
