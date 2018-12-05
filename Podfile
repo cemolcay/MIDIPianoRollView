@@ -3,8 +3,6 @@
 target 'MIDIPianoRollView' do
   use_frameworks!
   pod 'MusicTheorySwift'
-  pod 'MIDIEventKit'
-  pod 'ALKit'
 
   target 'MIDIPianoRollViewTests' do
     inherit! :search_paths
