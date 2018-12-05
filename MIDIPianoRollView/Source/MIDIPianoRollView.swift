@@ -9,9 +9,9 @@
 import UIKit
 import MusicTheorySwift
 
-/// Informs delegate about cell changes.
+/// Informs the delegate about cell changes.
 public protocol MIDIPianoRollViewDelegate: class {
-  /// Informs delegate about that the cell is moved a new position and/or row.
+  /// Informs the delegate about that the cell is moved a new position and/or row.
   ///
   /// - Parameters:
   ///   - midiPianoRollView: Edited piano roll view.
@@ -23,7 +23,7 @@ public protocol MIDIPianoRollViewDelegate: class {
                          to newPosition: MIDIPianoRollPosition,
                          pitch: UInt8)
 
-  /// Informs delegate about that the cell's duration changed.
+  /// Informs the delegate about that the cell's duration changed.
   ///
   /// - Parameters:
   ///   - midiPianoRollView: Edited piano roll view.
@@ -33,6 +33,30 @@ public protocol MIDIPianoRollViewDelegate: class {
                          didResize cellView: MIDIPianoRollCellView,
                          to newDuration: MIDIPianoRollPosition)
 
+  /// Informs the delegate about a new note is started to drawn.
+  /// Start updating your local data source but don't update the piano roll's data source until drawing is done.
+  ///
+  /// - Parameters:
+  ///   - midiPianoRollView: Editing piano roll view.
+  ///   - note: New note's data reference.
+  func midiPianoRollView(_ midiPianoRollView: MIDIPianoRollView, didStartDrawing note: MIDIPianoRollNote)
+
+  /// Informs the delegate about a note's drawing is updated.
+  /// Update your local data source but don't update the piano roll's data source until drawing is done.
+  ///
+  /// - Parameters:
+  ///   - midiPianoRollView: Editing piano roll view
+  ///   - noteData: Drawing note's data reference.
+  func midiPianoRollView(_ midiPianoRollView: MIDIPianoRollView, didUpdateDrawing note: MIDIPianoRollNote)
+
+  /// Informs the delegate about a note's drawing is done.
+  /// Update your local data source. You are safe to update/reload piano roll's data source at this point.
+  ///
+  /// - Parameters:
+  ///   - midiPianoRollView: Edited piano roll.
+  ///   - noteData: Drawn note's data reference.
+  func midiPianoRollView(_ midiPianoRollView: MIDIPianoRollView, didEndDrawing note: MIDIPianoRollNote)
+
   /// Gets custom dragging view from delegate. The view using for multiple selection visual cue.
   ///
   /// - Parameter midiPianoRollView: Editing piano roll.
@@ -41,7 +65,7 @@ public protocol MIDIPianoRollViewDelegate: class {
 }
 
 /// Piano roll with customisable row count, row range, beat count and editable note cells.
-open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
+open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate, UIGestureRecognizerDelegate {
   /// Piano roll bars.
   public enum Bars {
     /// Fixed number of bars.
@@ -261,12 +285,14 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
 
   /// Enables/disables the edit mode. Defaults false.
   public var isEditing: Bool = false { didSet { isScrollEnabled = !isEditing }}
+  /// Enables/disables the multiple note cell editing at once. Defaults false.
+  public var isMultipleEditing: Bool = false { didSet { multipleEditingModeDidChange() }}
+  /// Enables/disables the adding new notes.
+  public var isDrawing: Bool = false { didSet { drawingModeDidChange() }}
   /// Enables/disables the zooming feature. Defaults true.
   public var isZoomingEnabled: Bool = true { didSet { zoomGesture.isEnabled = isZoomingEnabled }}
   /// Enables/disables the measure rendering. Defaults true.
   public var isMeasureEnabled: Bool = true { didSet { needsRedrawBar = true }}
-  /// Enables/disables the multiple note cell editing at once. Defaults false.
-  public var isMultipleEditing: Bool = false { didSet { multipleEditingDidChange() }}
 
   /// Visual cue for editing multiple cells.
   private var multipleEditingDraggingView: UIView?
@@ -276,6 +302,13 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
   private var multipleEditingDraggingViewPanGestureRecognizer: UIPanGestureRecognizer?
   /// Pinch gesture for zooming.
   private var zoomGesture = UIPinchGestureRecognizer()
+
+  /// A unique ID for a newly drawing note.
+  private var drawingNoteUUID: String?
+  /// Tap gesture recognizer for tap-to-add new note.
+  private var drawingNoteTapGestureRecognizer: UITapGestureRecognizer?
+  /// Pan gesture recognizer for draw-to-add new note.
+  private var drawingNotePanGestureRecognizer: UIPanGestureRecognizer?
 
   /// Layer that cells drawn on. Lowest layer.
   public private(set) var cellLayer = UIView()
@@ -715,11 +748,11 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
     return pianoRollPosition(for: point)
   }
 
-  /// Calculates the duration of a `MIDIPianoCellView` in `MIDIPianoRollPosition` units calculated by the cell's width.
+  /// Calculates the duration of a `MIDIPianoCellView` in `MIDIPianoRollPosition` units calculated by the given width.
   ///
   /// - Parameter cell: Cell that you want to calculate its duration.
   /// - Returns: Returns the duration of a cell in `MIDIPianoRollPosition`.
-  private func pianoRollDuration(for cell: MIDIPianoRollCellView) -> MIDIPianoRollPosition {
+  private func pianoRollDuration(for width: CGFloat) -> MIDIPianoRollPosition {
     // Calculate measure widths
     let normalizedBeatWidth = beatWidth * CGFloat(zoomLevel.rawValue) / 4.0
     let barWidth = normalizedBeatWidth * CGFloat(timeSignature.beats)
@@ -727,20 +760,28 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
     let centWidth = subbeatWidth / 240.0
 
     // Calculate new position
-    var width = cell.frame.size.width
-    let bars = width / barWidth
-    width -= CGFloat(Int(bars)) * barWidth
-    let beats = width / normalizedBeatWidth
-    width -= CGFloat(Int(beats)) * normalizedBeatWidth
-    let subbeats = width / subbeatWidth
-    width -= CGFloat(Int(subbeats)) * subbeatWidth
-    let cents = width / centWidth
+    var totalWidth = width
+    let bars = totalWidth / barWidth
+    totalWidth -= CGFloat(Int(bars)) * barWidth
+    let beats = totalWidth / normalizedBeatWidth
+    totalWidth -= CGFloat(Int(beats)) * normalizedBeatWidth
+    let subbeats = totalWidth / subbeatWidth
+    totalWidth -= CGFloat(Int(subbeats)) * subbeatWidth
+    let cents = totalWidth / centWidth
 
     return MIDIPianoRollPosition(
       bar: Int(bars),
       beat: Int(beats),
       subbeat: Int(subbeats),
       cent: Int(cents))
+  }
+
+  /// Calculates the duration of a `MIDIPianoCellView` in `MIDIPianoRollPosition` units calculated by the cell's width.
+  ///
+  /// - Parameter cell: Cell that you want to calculate its duration.
+  /// - Returns: Returns the duration of a cell in `MIDIPianoRollPosition`.
+  private func pianoRollDuration(for cell: MIDIPianoRollCellView) -> MIDIPianoRollPosition {
+    return pianoRollDuration(for: cell.frame.size.width)
   }
 
   /// Returns the corresponding pitch of a row on a y-position on the screeen.
@@ -824,7 +865,7 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
   // MARK: Multiple Editing
 
   /// Called when user sets `isMultipleEditingEnabled`.
-  private func multipleEditingDidChange() {
+  private func multipleEditingModeDidChange() {
     if isMultipleEditing {
       multipleEditingDraggingViewPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didDrag(pan:)))
       multipleEditingDraggingViewPanGestureRecognizer?.maximumNumberOfTouches = 1
@@ -913,6 +954,81 @@ open class MIDIPianoRollView: UIScrollView, MIDIPianoRollCellViewDelegate {
       multipleEditingDraggingView?.removeFromSuperview()
       multipleEditingDraggingView = nil
 
+    default:
+      return
+    }
+  }
+
+  // MARK: Drawing
+
+  private func drawingModeDidChange() {
+    if isDrawing {
+      // Create pan
+      drawingNotePanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didDrawNewNote(pan:)))
+      drawingNotePanGestureRecognizer?.maximumNumberOfTouches = 1
+      drawingNotePanGestureRecognizer?.minimumNumberOfTouches = 1
+      // Create tap
+      drawingNoteTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapToAddNewNote(tap:)))
+      drawingNoteTapGestureRecognizer?.numberOfTapsRequired = 1
+      drawingNoteTapGestureRecognizer?.numberOfTouchesRequired = 1
+      // Add pan
+      guard let pan = drawingNotePanGestureRecognizer else { return }
+      addGestureRecognizer(pan)
+      // Add tap
+      guard let tap = drawingNoteTapGestureRecognizer else { return }
+      addGestureRecognizer(tap)
+      pan.require(toFail: tap)
+    } else {
+      // Remove pan
+      guard let pan = drawingNotePanGestureRecognizer else { return }
+      pan.removeTarget(self, action: #selector(didDrawNewNote(pan:)))
+      removeGestureRecognizer(pan)
+      drawingNotePanGestureRecognizer = nil
+      // Remove tap
+      guard let tap = drawingNoteTapGestureRecognizer else { return }
+      tap.removeTarget(self, action: #selector(didTapToAddNewNote(tap:)))
+      removeGestureRecognizer(tap)
+      drawingNoteTapGestureRecognizer = nil
+    }
+  }
+
+  @objc private func didTapToAddNewNote(tap: UITapGestureRecognizer) {
+
+  }
+
+  @objc private func didDrawNewNote(pan: UIPanGestureRecognizer) {
+    guard isDrawing else { return }
+    let touchLocation = pan.location(in: cellLayer)
+    let translation = pan.translation(in: self)
+
+    switch pan.state {
+    case .began:
+      var startPosition = pianoRollPosition(for: touchLocation.x)
+      startPosition.flatten() // snap to bar.
+      let pitch = pianoRollPitch(for: touchLocation.y)
+      let oneBeat = pianoRollDuration(for: beatWidth)
+      // Update local data source.
+      let note = MIDIPianoRollNote(midiNote: pitch, velocity: 90, position: startPosition, duration: oneBeat)
+      notes.append(note)
+      drawingNoteUUID = note.uuid
+      // Inform delegate
+      pianoRollDelegate?.midiPianoRollView(self, didStartDrawing: note)
+    case .changed:
+      guard translation.x > beatWidth || translation.x < -beatWidth,
+        let uuid = drawingNoteUUID,
+        var note = notes.last,
+        note.uuid == uuid
+        else { return }
+      var updatedPosition = pianoRollPosition(for: touchLocation.x)
+      updatedPosition.flatten()
+      let duration = max(updatedPosition, note.position) - min(updatedPosition, note.position)
+      note.duration = duration
+      // Update local data source.
+      notes[notes.count - 1] = note
+      // Inform delegate.
+      pianoRollDelegate?.midiPianoRollView(self, didUpdateDrawing: note)
+    case .ended, .cancelled, .failed:
+      return
     default:
       return
     }

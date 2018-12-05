@@ -79,6 +79,19 @@ public func -(lhs: MIDIPianoRollPosition, rhs: MIDIPianoRollPosition) -> MIDIPia
   }
 }
 
+/// Checks if the two `MIDIPianoRollPosition`s are the same by their values.
+///
+/// - Parameters:
+///   - lhs: Left hand side of the equation.
+///   - rhs: Right hand side of the equation.
+/// - Returns: Returns the equality of the `MIDIPianoRollPosition`s.
+public func ==(lhs: MIDIPianoRollPosition, rhs: MIDIPianoRollPosition) -> Bool {
+  return lhs.bar == rhs.bar &&
+    lhs.beat == rhs.beat &&
+    lhs.subbeat == rhs.subbeat &&
+    lhs.cent == rhs.cent
+}
+
 // MARK: - Comparable
 
 /// Compares if left hand side position is less than right hand side position.
@@ -193,6 +206,13 @@ public struct MIDIPianoRollPosition: Equatable, Comparable, Codable, CustomStrin
     } else {
       return "\(bar).\(beat).\(subbeat).\(cent)"
     }
+  }
+
+  /// Flattens the beat, subbeat and cent values of the position. Useful for snapping to the closest bar.
+  public mutating func flatten() {
+    beat = 0
+    subbeat = 0
+    cent = 0
   }
 }
 

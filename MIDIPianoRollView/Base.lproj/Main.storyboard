@@ -24,37 +24,54 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZPV-dy-jkB">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="oRk-M2-GEj">
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="oRk-M2-GEj">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="31"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" translatesAutoresizingMaskIntoConstraints="NO" id="UkV-Qr-S3s">
-                                                <rect key="frame" x="0.0" y="0.0" width="183.5" height="31"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8NJ-BZ-wMy">
+                                                <rect key="frame" x="0.0" y="0.0" width="127" height="31"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Mode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eka-cH-qeQ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="134.5" height="31"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Draw:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syr-Ul-irX">
+                                                        <rect key="frame" x="0.0" y="0.0" width="78" height="31"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IJj-Pq-OiZ">
-                                                        <rect key="frame" x="134.5" y="0.0" width="51" height="31"/>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="X9R-kH-Cw7">
+                                                        <rect key="frame" x="78" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="drawModeValueChangedWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="Ydg-ou-YQJ"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UkV-Qr-S3s">
+                                                <rect key="frame" x="135" y="0.0" width="83.5" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Edit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eka-cH-qeQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="34.5" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IJj-Pq-OiZ">
+                                                        <rect key="frame" x="34.5" y="0.0" width="51" height="31"/>
                                                         <connections>
                                                             <action selector="editModeValueChangedWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="49Z-Qx-s00"/>
                                                         </connections>
                                                     </switch>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" translatesAutoresizingMaskIntoConstraints="NO" id="FL1-NN-YDP">
-                                                <rect key="frame" x="191.5" y="0.0" width="183.5" height="31"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FL1-NN-YDP">
+                                                <rect key="frame" x="226.5" y="0.0" width="148.5" height="31"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multiple Editing:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jh1-jQ-kBM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="134.5" height="31"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Multiple Edit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jh1-jQ-kBM">
+                                                        <rect key="frame" x="0.0" y="0.0" width="99.5" height="31"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5dL-dn-DdL">
-                                                        <rect key="frame" x="134.5" y="0.0" width="51" height="31"/>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5dL-dn-DdL">
+                                                        <rect key="frame" x="99.5" y="0.0" width="51" height="31"/>
                                                         <connections>
                                                             <action selector="multipleEditingModeValueChangedWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="uul-JN-m1N"/>
                                                         </connections>

@@ -46,9 +46,14 @@ class ViewController: UIViewController, MIDIPianoRollViewDelegate {
     pianoRollView?.bars = .fixed(4) // 4-bars
     pianoRollView?.maxZoomLevel = .thirtysecondNotes
     pianoRollView?.measureLayer.backgroundColor = .white
+    pianoRollView?.reload()
   }
 
   // MARK: Actions
+
+  @IBAction func drawModeValueChanged(sender: UISwitch) {
+    pianoRollView?.isDrawing = sender.isOn
+  }
 
   @IBAction func editModeValueChanged(sender: UISwitch) {
     pianoRollView?.isEditing = sender.isOn
@@ -75,5 +80,17 @@ class ViewController: UIViewController, MIDIPianoRollViewDelegate {
 
   func midiPianoRollViewMultipleEditingDraggingView(_ midiPianoRollView: MIDIPianoRollView) -> UIView? {
     return nil
+  }
+
+  func midiPianoRollView(_ midiPianoRollView: MIDIPianoRollView, didStartDrawing note: MIDIPianoRollNote) {
+
+  }
+
+  func midiPianoRollView(_ midiPianoRollView: MIDIPianoRollView, didUpdateDrawing note: MIDIPianoRollNote) {
+
+  }
+
+  func midiPianoRollView(_ midiPianoRollView: MIDIPianoRollView, didEndDrawing note: MIDIPianoRollNote) {
+    
   }
 }
