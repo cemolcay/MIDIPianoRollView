@@ -34,7 +34,7 @@ Create a `MIDIPianoRollView` either from storyboard (subclass from `UIScrollView
 
 - An enum that represents the data source of the piano roll's keys.
 - It can be either
-	- 	A range of `UInt8` MIDI notes like `30...50` (30th note to 50th note)
+	-  A range of `UInt8` MIDI notes like `30...50` (30th note to 50th note)
 	-  A `Scale` of notes between specified octave range
 	-  Or custom unordered pitches.
 
@@ -43,7 +43,7 @@ Create a `MIDIPianoRollView` either from storyboard (subclass from `UIScrollView
 - An enum that represents the bar count on the piano roll.
 - It can be either
 	- A fixed value by `.fixed(barCount)` 
-	- Or `.auto` that auto-caluclating bar count by the data source.
+	- Or `.auto` that auto-calculating bar count by the data source.
 
 #### `MIDIPianoRollNote`
 
@@ -52,7 +52,7 @@ Create a `MIDIPianoRollView` either from storyboard (subclass from `UIScrollView
 
 #### `MIDIPianoRollPosition`
 
-- This represents the both position and duration values for the notes on the piano roll. Contains `bar`, `beat`, `subbeat` and `cent` values.
+- This represents both position and duration values for the notes on the piano roll. Contains `bar`, `beat`, `subbeat` and `cent` values.
 - Each of them are `Int` and confomrs to `Comparable`, `Equatable`, `Codable` and custom `+` and `-` operatros.
 - Each `bar` has a number of `beat`s that the piano roll's `timesingature` has.
 - Each `beat` has 4 `subbeat`s.
@@ -66,7 +66,7 @@ Create a `MIDIPianoRollView` either from storyboard (subclass from `UIScrollView
 #### `MIDIPianoRollRowView`
 
 - Each key view on the right side of the piano roll is a subclass of `MIDIPianoRollRowView`.
-- You can create your custom sublass may be with some piano key images and render it on the piano roll.
+- You can create your custom subclass may be with some piano key images and render it on the piano roll.
 
 #### `MIDIPianoRollMeasureView`
 
